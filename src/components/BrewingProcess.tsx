@@ -360,25 +360,25 @@ const BrewingProcess = () => {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="bg-[#2A2A2B] p-6 rounded-lg max-w-xl mx-auto"
+               className="bg-[#2A2A2B] p-4 sm:p-6 rounded-lg max-w-xl mx-auto"
               >
                 {currentQuestion < questions.length ? (
                   <>
                     <h4 className="text-[#E5E1E6] text-lg mb-4">
                       {questions[currentQuestion].question}
                     </h4>
-                    <div className="grid grid-cols-2 gap-4">
+                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                       {questions[currentQuestion].options.map((option, index) => (
                         <button
                           key={index}
                           onClick={() => handleAnswer(index)}
-                          className="px-4 py-2 bg-[#222223] text-[#E5E1E6] rounded-lg hover:bg-[#B3A269] hover:text-[#222223] transition-colors"
+                         className="px-3 py-3 bg-[#222223] text-[#E5E1E6] rounded-lg hover:bg-[#B3A269] hover:text-[#222223] transition-colors text-sm leading-tight text-center"
                         >
                           {option}
                         </button>
                       ))}
                     </div>
-                    <p className="text-[#B3A269] mt-4">
+                   <p className="text-[#B3A269] mt-4 text-center">
                       Pregunta {currentQuestion + 1} de {questions.length}
                     </p>
                   </>
