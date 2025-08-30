@@ -1,0 +1,9 @@
+<svg width="200" height="50" viewBox="0 0 200 50">
+  <g transform="translate(60, 10)">
+    <text x="0" y="25" fill="#B3A269" font-family="Arial" font-size="24" font-weight="bold">Sierra Dorada</text>
+  </g>
+  <g transform="translate(10, 0)">
+    <circle cx="25" cy="25" r="25" fill="#B3A269"/>
+    <path d="M25 10 C15 10, 10 20, 10 30 C10 35, 15 40, 25 40 C35 40, 40 35, 40 30 C40 20, 35 10, 25 10" fill="white"/>
+  </g>
+</svg>
