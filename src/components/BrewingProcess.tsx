@@ -243,11 +243,11 @@ const BrewingProcess = () => {
 
   return (
     <div className="py-12">
-      <div className="max-w-4xl mx-auto px-4">
-        <div className="relative bg-[#222223] p-8 rounded-lg">
+      <div className="max-w-4xl mx-auto px-2 sm:px-4">
+        <div className="relative bg-[#222223] p-4 sm:p-8 rounded-lg">
           <h3 className="text-center text-[#B3A269] text-2xl font-dorsa mb-12">PROCESO CERVECERO</h3>
           
-          <div className="grid grid-cols-4 gap-8 mb-8">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-8 mb-8">
             {steps.slice(0, 4).map((step, index) => (
               <div key={step.id} className="flex flex-col items-center">
                 <motion.div 
@@ -258,24 +258,24 @@ const BrewingProcess = () => {
                 >
                   <button
                     onClick={() => setSelectedStep(selectedStep === step.id ? null : step.id)}
-                    className={`w-20 h-24 bg-[#2A2A2B] rounded-lg flex items-center justify-center mb-2 transition-all duration-300 ${
+                    className={`w-16 sm:w-20 h-20 sm:h-24 bg-[#2A2A2B] rounded-lg flex items-center justify-center mb-2 transition-all duration-300 ${
                       selectedStep === step.id ? 'ring-2 ring-[#B3A269]' : ''
                     }`}
                   >
-                    <div className="absolute top-2 left-2 w-6 h-6 bg-[#B3A269] rounded-full flex items-center justify-center text-[#222223] text-sm font-bold">
+                    <div className="absolute top-1 left-1 sm:top-2 sm:left-2 w-5 h-5 sm:w-6 sm:h-6 bg-[#B3A269] rounded-full flex items-center justify-center text-[#222223] text-xs sm:text-sm font-bold">
                       {step.id}
                     </div>
-                    <step.icon className="w-8 h-8 text-[#B3A269]" />
+                    <step.icon className="w-6 h-6 sm:w-8 sm:h-8 text-[#B3A269]" />
                   </button>
-                  {index < 3 && (
+                  {index < 3 && index % 2 === 1 && (
                     <motion.div 
-                      className="absolute right-[-2rem] top-1/2 w-8 h-0.5 bg-[#B3A269]"
+                      className="hidden sm:block absolute right-[-2rem] top-1/2 w-8 h-0.5 bg-[#B3A269]"
                       initial={{ scaleX: 0 }}
                       animate={{ scaleX: 1 }}
                       transition={{ delay: index * 0.2 + 0.2, duration: 0.5 }}
                     />
                   )}
-                  <span className="text-[#B3A269] text-sm font-barlow-condensed text-center block">
+                  <span className="text-[#B3A269] text-xs sm:text-sm font-barlow-condensed text-center block">
                     {step.name}
                   </span>
                 </motion.div>
@@ -283,7 +283,7 @@ const BrewingProcess = () => {
             ))}
           </div>
 
-          <div className="grid grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-8">
             {steps.slice(4).map((step, index) => (
               <div key={step.id} className="flex flex-col items-center">
                 <motion.div 
@@ -294,24 +294,24 @@ const BrewingProcess = () => {
                 >
                   <button
                     onClick={() => setSelectedStep(selectedStep === step.id ? null : step.id)}
-                    className={`w-20 h-24 bg-[#2A2A2B] rounded-lg flex items-center justify-center mb-2 transition-all duration-300 ${
+                    className={`w-16 sm:w-20 h-20 sm:h-24 bg-[#2A2A2B] rounded-lg flex items-center justify-center mb-2 transition-all duration-300 ${
                       selectedStep === step.id ? 'ring-2 ring-[#B3A269]' : ''
                     }`}
                   >
-                    <div className="absolute top-2 left-2 w-6 h-6 bg-[#B3A269] rounded-full flex items-center justify-center text-[#222223] text-sm font-bold">
+                    <div className="absolute top-1 left-1 sm:top-2 sm:left-2 w-5 h-5 sm:w-6 sm:h-6 bg-[#B3A269] rounded-full flex items-center justify-center text-[#222223] text-xs sm:text-sm font-bold">
                       {step.id}
                     </div>
-                    <step.icon className="w-8 h-8 text-[#B3A269]" />
+                    <step.icon className="w-6 h-6 sm:w-8 sm:h-8 text-[#B3A269]" />
                   </button>
-                  {index < 3 && (
+                  {index < 3 && index % 2 === 1 && (
                     <motion.div 
-                      className="absolute right-[-2rem] top-1/2 w-8 h-0.5 bg-[#B3A269]"
+                      className="hidden sm:block absolute right-[-2rem] top-1/2 w-8 h-0.5 bg-[#B3A269]"
                       initial={{ scaleX: 0 }}
                       animate={{ scaleX: 1 }}
                       transition={{ delay: (index + 4) * 0.2 + 0.2, duration: 0.5 }}
                     />
                   )}
-                  <span className="text-[#B3A269] text-sm font-barlow-condensed text-center block">
+                  <span className="text-[#B3A269] text-xs sm:text-sm font-barlow-condensed text-center block">
                     {step.name}
                   </span>
                 </motion.div>
@@ -326,12 +326,12 @@ const BrewingProcess = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 20 }}
-                className="mt-8 bg-[#2A2A2B] p-6 rounded-lg"
+                className="mt-6 sm:mt-8 bg-[#2A2A2B] p-4 sm:p-6 rounded-lg"
               >
-                <h4 className="text-[#B3A269] text-xl mb-4">
+                <h4 className="text-[#B3A269] text-lg sm:text-xl mb-3 sm:mb-4">
                   {steps[selectedStep - 1].name}
                 </h4>
-                <p className="text-[#E5E1E6] leading-relaxed">
+                <p className="text-[#E5E1E6] text-sm sm:text-base leading-relaxed">
                   {steps[selectedStep - 1].description}
                 </p>
               </motion.div>
@@ -340,7 +340,7 @@ const BrewingProcess = () => {
 
           {/* Vertical connection line */}
           <motion.div 
-            className="absolute left-1/2 top-[45%] w-0.5 h-16 bg-[#B3A269]"
+            className="hidden sm:block absolute left-1/2 top-[45%] w-0.5 h-16 bg-[#B3A269]"
             initial={{ scaleY: 0 }}
             animate={{ scaleY: 1 }}
             transition={{ delay: 1.6, duration: 0.5 }}
@@ -348,11 +348,11 @@ const BrewingProcess = () => {
           />
 
           {/* Test Button */}
-          <div className="mt-12 text-center">
+          <div className="mt-8 sm:mt-12 text-center">
             {!showTest ? (
               <button
                 onClick={() => setShowTest(true)}
-                className="px-6 py-2 bg-[#B3A269] text-[#222223] rounded-full font-medium hover:bg-[#B3A269]/90 transition-colors"
+                className="px-4 sm:px-6 py-2 bg-[#B3A269] text-[#222223] rounded-full font-medium hover:bg-[#B3A269]/90 transition-colors text-sm sm:text-base"
               >
                 Descubre tu cerveza ideal
               </button>
@@ -360,32 +360,32 @@ const BrewingProcess = () => {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-               className="bg-[#2A2A2B] p-4 sm:p-6 rounded-lg max-w-xl mx-auto"
+               className="bg-[#2A2A2B] p-4 sm:p-6 rounded-lg max-w-sm sm:max-w-xl mx-auto"
               >
                 {currentQuestion < questions.length ? (
                   <>
-                    <h4 className="text-[#E5E1E6] text-lg mb-4">
+                    <h4 className="text-[#E5E1E6] text-base sm:text-lg mb-4 text-center">
                       {questions[currentQuestion].question}
                     </h4>
-                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                   <div className="grid grid-cols-1 gap-3">
                       {questions[currentQuestion].options.map((option, index) => (
                         <button
                           key={index}
                           onClick={() => handleAnswer(index)}
-                         className="px-3 py-3 bg-[#222223] text-[#E5E1E6] rounded-lg hover:bg-[#B3A269] hover:text-[#222223] transition-colors text-sm leading-tight text-center"
+                         className="px-4 py-3 bg-[#222223] text-[#E5E1E6] rounded-lg hover:bg-[#B3A269] hover:text-[#222223] transition-colors text-sm sm:text-base leading-tight text-center min-h-[3rem] flex items-center justify-center"
                         >
                           {option}
                         </button>
                       ))}
                     </div>
-                   <p className="text-[#B3A269] mt-4 text-center">
+                   <p className="text-[#B3A269] mt-4 text-center text-sm sm:text-base">
                       Pregunta {currentQuestion + 1} de {questions.length}
                     </p>
                   </>
                 ) : (
                   <div className="text-center">
-                    <h4 className="text-[#E5E1E6] text-xl mb-2">¡Analizando tu perfil!</h4>
-                    <p className="text-[#B3A269]">
+                    <h4 className="text-[#E5E1E6] text-lg sm:text-xl mb-2">¡Analizando tu perfil!</h4>
+                    <p className="text-[#B3A269] text-sm sm:text-base">
                       Descubriendo tu cerveza ideal...
                     </p>
                   </div>
