@@ -1,0 +1,349 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Primary Colors */
+  --color-gold: #B3A269;
+  --color-black: #222223;
+  --color-light: #E5E1E6;
+  
+  /* Additional Colors */
+  --color-forest: #034638;
+  --color-burgundy: #5C1D45;
+  --color-gray: #757878;
+}
+
+@font-face {
+  font-family: 'Dorsa';
+  src: url('/fonts/Dorsa-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Video Container Styles */
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.video-container video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Animated Background */
+.animated-bg {
+  background: linear-gradient(
+    45deg,
+    rgba(34, 34, 35, 1) 0%,
+    rgba(42, 42, 43, 1) 50%,
+    rgba(34, 34, 35, 1) 100%
+  );
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  position: relative;
+}
+
+.animated-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(179, 162, 105, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(179, 162, 105, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Shimmering Title Effect */
+.shimmer-title {
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(
+    90deg,
+    var(--color-gold) 0%,
+    #E5E1E6 25%,
+    var(--color-gold) 50%,
+    #E5E1E6 75%,
+    var(--color-gold) 100%
+  );
+  background-size: 200% auto;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: shimmer 6s linear infinite;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: background-position;
+}
+
+.shimmer-title::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  animation: shimmerOverlay 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  to {
+    background-position: 200% center;
+  }
+}
+
+@keyframes shimmerOverlay {
+  100% {
+    transform: translateX(50%);
+  }
+}
+
+/* Brewery-themed backgrounds */
+.brewery-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23B3A269' fill-opacity='0.05'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.hops-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23B3A269' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.barley-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='84' height='48' viewBox='0 0 84 48' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23B3A269' fill-opacity='0.04'%3E%3Cpath d='M13 0h3v3h-3V0zm0 7h3v3h-3V7zm0 7h3v3h-3v-3zm0 7h3v3h-3v-3zm0 7h3v3h-3v-3zm0 7h3v3h-3v-3zm7-35h3v3h-3V0zm0 7h3v3h-3V7zm0 7h3v3h-3v-3zm0 7h3v3h-3v-3zm0 7h3v3h-3v-3zm0 7h3v3h-3v-3zm7-35h3v3h-3V0zm0 7h3v3h-3V7zm0 7h3v3h-3v-3zm0 7h3v3h-3v-3zm0 7h3v3h-3v-3zm0 7h3v3h-3v-3zm7-35h3v3h-3V0zm0 7h3v3h-3V7zm0 7h3v3h-3v-3zm0 7h3v3h-3v-3zm0 7h3v3h-3v-3zm0 7h3v3h-3v-3z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.glass-bg {
+  position: relative;
+}
+
+.glass-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    linear-gradient(45deg, rgba(179, 162, 105, 0.05) 0%, transparent 100%),
+    url("https://images.unsplash.com/photo-1559526324-593bc073d938?auto=format&fit=crop&w=2000&q=80");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.wood-bg {
+  position: relative;
+}
+
+.wood-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    linear-gradient(45deg, rgba(34, 34, 35, 0.95) 0%, rgba(34, 34, 35, 0.85) 100%),
+    url("https://images.unsplash.com/photo-1541233349642-6e425fe6190e?auto=format&fit=crop&w=2000&q=80");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.barrel-bg {
+  position: relative;
+}
+
+.barrel-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    linear-gradient(45deg, rgba(34, 34, 35, 0.95) 0%, rgba(34, 34, 35, 0.85) 100%),
+    url("https://images.unsplash.com/photo-1584225064785-c62a8b43d148?auto=format&fit=crop&w=2000&q=80");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Glass Effect */
+.glass-effect {
+  background: rgba(42, 42, 43, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(179, 162, 105, 0.1);
+}
+
+/* Interactive Elements */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(179, 162, 105, 0.1);
+}
+
+.hover-glow {
+  transition: box-shadow 0.3s ease;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 20px rgba(179, 162, 105, 0.2);
+}
+
+/* Smooth Scrolling */
+.smooth-scroll {
+  scroll-behavior: smooth;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Animated Elements */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* DatePicker Dark Theme */
+.react-datepicker {
+  background-color: #2A2A2B !important;
+  border-color: #B3A269 !important;
+  font-family: 'Barlow', sans-serif !important;
+}
+
+.react-datepicker__header {
+  background-color: #222223 !important;
+  border-bottom: 1px solid #B3A269 !important;
+}
+
+.react-datepicker__current-month,
+.react-datepicker__day-name,
+.react-datepicker__day {
+  color: #E5E1E6 !important;
+}
+
+.react-datepicker__day:hover {
+  background-color: #B3A269 !important;
+  color: #222223 !important;
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--keyboard-selected {
+  background-color: #B3A269 !important;
+  color: #222223 !important;
+}
+
+.react-datepicker__year-dropdown,
+.react-datepicker__month-dropdown {
+  background-color: #2A2A2B !important;
+  border-color: #B3A269 !important;
+}
+
+.react-datepicker__year-option:hover,
+.react-datepicker__month-option:hover {
+  background-color: #B3A269 !important;
+  color: #222223 !important;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #222223;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #B3A269;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(179, 162, 105, 0.8);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-[#222223] font-barlow text-[#E5E1E6];
+  }
+
+  h1, h2, h3, .title-font {
+    @apply font-dorsa tracking-wider;
+  }
+
+  h4, h5, h6, .subtitle-font {
+    @apply font-barlow-condensed;
+  }
+
+  /* Typography Scale */
+  h1 { @apply text-7xl md:text-8xl leading-tight; }
+  h2 { @apply text-5xl md:text-6xl leading-tight; }
+  h3 { @apply text-3xl md:text-4xl leading-tight; }
+  h4 { @apply text-xl md:text-2xl leading-snug; }
+  h5 { @apply text-lg md:text-xl leading-snug; }
+  h6 { @apply text-base md:text-lg leading-snug; }
+
+  p { @apply text-base leading-relaxed; }
+
+  .small-text { @apply text-sm leading-relaxed; }
+
+  /* Interactive Elements */
+  button, a {
+    @apply transition-all duration-300 ease-in-out;
+  }
+
+  /* Form Elements */
+  input, select, textarea {
+    @apply transition-all duration-200;
+  }
+
+  /* Focus States */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-[#B3A269] ring-opacity-50;
+  }
+}

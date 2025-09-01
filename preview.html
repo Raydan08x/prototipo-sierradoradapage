@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="/assets/isotipo-color.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sierra Dorada - Previsualización</title>
+  <style>
+    @font-face {
+      font-family: 'Dorsa';
+      src: url('/fonts/Dorsa-Regular.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+    
+    body {
+      background-color: #222223;
+      color: #E5E1E6;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    
+    header {
+      padding: 2rem;
+      text-align: center;
+      border-bottom: 1px solid #B3A269;
+    }
+    
+    .logo {
+      max-width: 200px;
+    }
+    
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      text-align: center;
+    }
+    
+    h1 {
+      font-family: 'Dorsa', sans-serif;
+      font-size: 5rem;
+      color: #B3A269;
+      margin-bottom: 1rem;
+    }
+    
+    p {
+      max-width: 600px;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+    
+    .button {
+      background-color: #B3A269;
+      color: #222223;
+      padding: 0.75rem 2rem;
+      border-radius: 9999px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background-color 0.3s;
+    }
+    
+    .button:hover {
+      background-color: #9a8a58;
+    }
+    
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 2rem;
+      width: 100%;
+      max-width: 1200px;
+      margin-top: 3rem;
+    }
+    
+    .grid-item {
+      border-radius: 0.5rem;
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 1/1;
+      background-color: #2A2A2B;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .grid-item img {
+      max-width: 100%;
+      height: auto;
+    }
+    
+    footer {
+      padding: 2rem;
+      text-align: center;
+      border-top: 1px solid #B3A269;
+      font-size: 0.875rem;
+      color: #B3A269;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="/assets/logo-color.svg" alt="Sierra Dorada" class="logo" />
+  </header>
+  
+  <main>
+    <h1>Sierra Dorada</h1>
+    <p>
+      Estamos trabajando en la previsualización completa de este sitio web. 
+      Este es un vistazo previo a la cerveza artesanal que representa nuestra región, 
+      elaborada con ingredientes selectos y tradición cervecera.
+    </p>
+    <a href="#" class="button">Explorar Sierra Dorada</a>
+    
+    <div class="image-grid">
+      <div class="grid-item">
+        <img src="/assets/isotipo-color.png" alt="Sierra Dorada Logo" />
+      </div>
+      <div class="grid-item">
+        <h2 style="color: #B3A269; font-family: 'Dorsa', sans-serif; font-size: 3rem;">Nuestra Leyenda</h2>
+      </div>
+      <div class="grid-item">
+        <h2 style="color: #B3A269; font-family: 'Dorsa', sans-serif; font-size: 3rem;">Proceso Artesanal</h2>
+      </div>
+      <div class="grid-item">
+        <h2 style="color: #B3A269; font-family: 'Dorsa', sans-serif; font-size: 3rem;">Productos Premium</h2>
+      </div>
+    </div>
+  </main>
+  
+  <footer>
+    &copy; 2025 Sierra Dorada. Todos los derechos reservados.
+  </footer>
+</body>
+</html>
