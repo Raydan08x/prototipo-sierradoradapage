@@ -243,7 +243,7 @@ const BrewingProcess = () => {
 
   return (
     <div className="py-12">
-      <div className="max-w-4xl mx-auto px-2 sm:px-4">
+      <div className="max-w-full sm:max-w-4xl mx-auto px-1 sm:px-4">
         <div className="relative bg-[#222223] p-4 sm:p-8 rounded-lg">
           <h3 className="text-center text-[#B3A269] text-2xl font-dorsa mb-12">PROCESO CERVECERO</h3>
           
