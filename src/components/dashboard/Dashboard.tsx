@@ -1,26 +1,10 @@
-import React from 'react';
-import { useAuth } from '../../contexts/AuthContext';
 import { useNavigate, Routes, Route, useLocation } from 'react-router-dom';
-import { 
-  Beer, 
-  Calendar, 
-  ShoppingCart, 
-  Users, 
-  Settings, 
-  LogOut, 
-  Factory, 
-  BarChart as ChartBar,
-  Truck,
-  ArrowLeft
+import { useAuth } from '../../contexts/AuthContext';
+import {
+  LogOut,
 } from 'lucide-react';
-import DashboardHome from './DashboardHome';
 import ProductManagement from './ProductManagement';
 import ReservationManagement from './ReservationManagement';
-import SalesManagement from './SalesManagement';
-import CustomerManagement from './CustomerManagement';
-import ProductionManagement from './ProductionManagement';
-import LogisticsManagement from './LogisticsManagement';
-import Analytics from './Analytics';
 
 const Dashboard = () => {
   const { user, signOut } = useAuth();
@@ -36,105 +20,89 @@ const Dashboard = () => {
     }
   };
 
-  const isSubPage = location.pathname !== '/admin/dashboard';
-
-  const modules = [
-    {
-      title: 'Gestión de Productos',
-      icon: Beer,
-      description: 'Administra el catálogo de cervezas y productos',
-      path: '/admin/dashboard/products'
-    },
-    {
-      title: 'Reservas',
-      icon: Calendar,
-      description: 'Gestiona las reservas y visitas guiadas',
-      path: '/admin/dashboard/reservations'
-    },
-    {
-      title: 'Ventas',
-      icon: ShoppingCart,
-      description: 'Control de pedidos y ventas online',
-      path: '/admin/dashboard/sales'
-    },
-    {
-      title: 'Clientes',
-      icon: Users,
-      description: 'Administración de usuarios y club de cerveceros',
-      path: '/admin/dashboard/customers'
-    },
-    {
-      title: 'Producción',
-      icon: Factory,
-      description: 'Gestión de producción y control de calidad',
-      path: '/admin/dashboard/production'
-    },
-    {
-      title: 'Logística',
-      icon: Truck,
-      description: 'Control de inventario y gestión de envíos',
-      path: '/admin/dashboard/logistics'
-    },
-    {
-      title: 'Analytics',
-      icon: ChartBar,
-      description: 'Métricas e indicadores de gestión',
-      path: '/admin/dashboard/analytics'
-    }
-  ];
-
   return (
     <div className="min-h-screen bg-[#222223]">
-      <nav className="bg-[#B3A269] shadow-lg">
+      <nav className="bg-[#B3A269] shadow-lg sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16 items-center">
-            <div className="flex items-center">
-              {isSubPage && (
-                <button
-                  onClick={() => navigate('/admin/dashboard')}
-                  className="mr-4 p-2 rounded-full hover:bg-[#222223]/10 transition-colors"
-                >
-                  <ArrowLeft className="h-5 w-5 text-[#222223]" />
-                </button>
-              )}
-              <img 
-                src="/assets/logo-white.svg" 
-                alt="Sierra Dorada" 
+            <div className="flex items-center gap-4">
+              <img
+                src="/assets/logo-white.svg"
+                alt="Sierra Dorada"
                 className="h-8 w-auto"
               />
-              <span className="ml-2 text-[#222223] font-bold text-lg">
-                Panel de Administración
-              </span>
+              <div className="flex flex-col">
+                <span className="text-[#222223] font-extrabold text-lg leading-tight">
+                  Panel Administrativo
+                </span>
+                <span className="text-[#222223]/80 text-xs font-medium">
+                  Gestión Integral
+                </span>
+              </div>
             </div>
-            <div className="flex items-center space-x-4">
-              <span className="text-[#222223]">{user?.email}</span>
+
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center gap-6">
               <button
-                onClick={() => navigate('/admin/dashboard/settings')}
-                className="p-2 rounded-full hover:bg-[#222223]/10 transition-colors"
+                onClick={() => navigate('/admin/dashboard/products')}
+                className={`text-sm font-bold uppercase tracking-wide transition-colors ${location.pathname.includes('products') ? 'text-[#222223] border-b-2 border-[#222223]' : 'text-[#222223]/60 hover:text-[#222223]'
+                  }`}
               >
-                <Settings className="h-5 w-5 text-[#222223]" />
+                Productos
+              </button>
+              <button
+                onClick={() => navigate('/admin/dashboard/reservations')}
+                className={`text-sm font-bold uppercase tracking-wide transition-colors ${location.pathname.includes('reservations') ? 'text-[#222223] border-b-2 border-[#222223]' : 'text-[#222223]/60 hover:text-[#222223]'
+                  }`}
+              >
+                Reservas
+              </button>
+            </div>
+
+            <div className="flex items-center space-x-4">
+              <button
+                onClick={() => navigate('/')}
+                className="p-2 rounded-full hover:bg-[#222223]/10 transition-colors text-[#222223] font-medium text-sm flex items-center gap-1"
+              >
+                Ver Sitio
               </button>
               <button
                 onClick={handleSignOut}
                 className="p-2 rounded-full hover:bg-[#222223]/10 transition-colors"
+                title="Cerrar Sesión"
               >
                 <LogOut className="h-5 w-5 text-[#222223]" />
               </button>
             </div>
           </div>
+
+          {/* Mobile Navigation */}
+          <div className="md:hidden flex pb-4 gap-4">
+            <button
+              onClick={() => navigate('/admin/dashboard/products')}
+              className={`flex-1 text-center py-2 text-xs font-bold uppercase transition-colors rounded ${location.pathname.includes('products') ? 'bg-[#222223] text-[#B3A269]' : 'bg-[#222223]/10 text-[#222223]'
+                }`}
+            >
+              Productos
+            </button>
+            <button
+              onClick={() => navigate('/admin/dashboard/reservations')}
+              className={`flex-1 text-center py-2 text-xs font-bold uppercase transition-colors rounded ${location.pathname.includes('reservations') ? 'bg-[#222223] text-[#B3A269]' : 'bg-[#222223]/10 text-[#222223]'
+                }`}
+            >
+              Reservas
+            </button>
+          </div>
         </div>
       </nav>
 
-      <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto py-8 sm:px-6 lg:px-8">
         <Routes>
-          <Route index element={<DashboardHome modules={modules} />} />
-          <Route path="products/*" element={<ProductManagement />} />
-          <Route path="reservations/*" element={<ReservationManagement />} />
-          <Route path="sales/*" element={<SalesManagement />} />
-          <Route path="customers/*" element={<CustomerManagement />} />
-          <Route path="production/*" element={<ProductionManagement />} />
-          <Route path="logistics/*" element={<LogisticsManagement />} />
-          <Route path="analytics/*" element={<Analytics />} />
+          <Route index element={<ProductManagement />} />
+          <Route path="products" element={<ProductManagement />} />
+          <Route path="reservations" element={<ReservationManagement />} />
+          {/* Catch all */}
+          <Route path="*" element={<ProductManagement />} />
         </Routes>
       </div>
     </div>

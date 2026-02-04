@@ -40,13 +40,13 @@ const ContactPage = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Here you would typically send the data to your backend
     console.log('Form submitted:', formData);
-    
+
     // Show success message
     toast.success('Formulario enviado correctamente');
-    
+
     // Redirect to WhatsApp
     const whatsappMessage = encodeURIComponent(
       `Hola, estoy interesado en contactarme con Sierra Dorada.\n` +
@@ -89,7 +89,7 @@ const ContactPage = () => {
                   </div>
                   <div>
                     <h3 className="font-barlow-condensed text-xl text-[#E5E1E6] mb-2">Teléfono</h3>
-                    <a 
+                    <a
                       href="tel:+573138718154"
                       className="font-barlow text-[#E5E1E6]/80 hover:text-[#B3A269] transition-colors"
                     >
@@ -104,7 +104,7 @@ const ContactPage = () => {
                   </div>
                   <div>
                     <h3 className="font-barlow-condensed text-xl text-[#E5E1E6] mb-2">Correo Electrónico</h3>
-                    <a 
+                    <a
                       href="mailto:contacto@sierradorada.co"
                       className="font-barlow text-[#E5E1E6]/80 hover:text-[#B3A269] transition-colors"
                     >
@@ -119,10 +119,16 @@ const ContactPage = () => {
                   </div>
                   <div>
                     <h3 className="font-barlow-condensed text-xl text-[#E5E1E6] mb-2">Ubicación</h3>
-                    <p className="font-barlow text-[#E5E1E6]/80">
-                      Calle Principal 123<br />
-                      Ciudad, País
-                    </p>
+                    <a
+                      href="https://www.google.com/maps/search/?api=1&query=5.0361865663151395,-73.99458376574964"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-barlow text-[#E5E1E6]/80 hover:text-[#B3A269] transition-colors block"
+                    >
+                      Calle 26#12-63 Local 112<br />
+                      CC Paseo de Gracia, Prados del Mirador<br />
+                      Zipaquirá, Cundinamarca
+                    </a>
                   </div>
                 </div>
 
@@ -137,6 +143,21 @@ const ContactPage = () => {
                       Sábados: 10:00 AM - 3:00 PM
                     </p>
                   </div>
+                </div>
+
+                {/* Dark Mode Google Map Embed */}
+                <div className="mt-8 rounded-xl overflow-hidden shadow-2xl border border-[#B3A269]/20 w-full h-[300px] relative bg-[#222223]">
+                  <div className="absolute inset-0 bg-[#B3A269]/5 pointer-events-none z-10 mix-blend-overlay"></div>
+                  <iframe
+                    src="https://maps.google.com/maps?q=5.0361865663151395,-73.99458376574964&z=16&output=embed"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg) contrast(1.2) brightness(0.8)' }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Sierra Dorada Map"
+                  ></iframe>
                 </div>
               </div>
             </div>
@@ -274,10 +295,22 @@ const ContactPage = () => {
                 Enviar
               </button>
             </form>
+
+            <div className="mt-12 pt-8 border-t border-[#B3A269]/20 text-center">
+              <p className="text-[#E5E1E6] font-barlow mb-4">
+                ¿Buscas agendar una visita a la planta?
+              </p>
+              <a
+                href="/servicios"
+                className="inline-block px-6 py-3 border border-[#B3A269] text-[#B3A269] rounded-full font-barlow-condensed font-bold hover:bg-[#B3A269]/10 transition-colors"
+              >
+                RESERVAR VISITA
+              </a>
+            </div>
           </motion.div>
         </div>
-      </div>
-    </div>
+      </div >
+    </div >
   );
 };
 

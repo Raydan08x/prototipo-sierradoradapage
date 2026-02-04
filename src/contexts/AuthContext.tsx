@@ -1,21 +1,34 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { User } from '@supabase/supabase-js';
-import { supabase } from '../lib/supabase';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
-import { Database } from '../lib/database.types';
+import { api } from '../lib/api';
 
-type Profile = Database['public']['Tables']['profiles']['Row'];
+// Types for local backend
+export type User = {
+  id: string;
+  email: string;
+  role?: string;
+};
+
+export type Profile = {
+  id: string;
+  full_name: string | null;
+  phone: string | null;
+  address?: string | null;
+  birth_date?: string | null;
+  gender?: string | null;
+  // Add other fields as matched in schema.sql
+};
 
 interface AuthContextType {
   user: User | null;
   profile: Profile | null;
   loading: boolean;
-  isAgeVerified: boolean;
-  setIsAgeVerified: (value: boolean) => void;
   signIn: (email: string, password: string) => Promise<void>;
-  signUp: (email: string, password: string, userData: Partial<Profile>) => Promise<void>;
+  signUp: (email: string, password: string, userData: any) => Promise<void>;
   signOut: () => Promise<void>;
+  isAgeVerified: boolean;
+  setIsAgeVerified: (verified: boolean) => void;
   updateProfile: (data: Partial<Profile>) => Promise<void>;
 }
 
@@ -26,173 +39,104 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
   const [isAgeVerified, setIsAgeVerified] = useState(() => {
-    const stored = localStorage.getItem('isAgeVerified');
-    return stored === 'true';
+    return localStorage.getItem('ageVerified') === 'true';
   });
+
   const navigate = useNavigate();
 
   useEffect(() => {
-    localStorage.setItem('isAgeVerified', isAgeVerified.toString());
+    // Persist age verification
+    localStorage.setItem('ageVerified', isAgeVerified.toString());
   }, [isAgeVerified]);
 
   useEffect(() => {
-    const initializeAuth = async () => {
+    // Check active session on mount
+    const checkUser = async () => {
       try {
-        const { data: { session } } = await supabase.auth.getSession();
-        
-        if (session?.user) {
-          setUser(session.user);
-          await fetchProfile(session.user.id);
+        const { data, error } = await api.auth.getUser();
+        if (data && data.user) {
+          setUser(data.user);
+          // In our local API auth/me returns merged user+profile, or we can fetch profile separately
+          // For now, let's assume setUser gets the base user info
+          // and we set profile if returned, or we rely on the object shape
+          setProfile(data.user as any);
         }
-      } catch (error) {
-        console.error('Error initializing auth:', error);
+      } catch (e) {
+        // No active session
+        console.log('No active session');
       } finally {
         setLoading(false);
       }
-
-      const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
-        if (session?.user) {
-          setUser(session.user);
-          await fetchProfile(session.user.id);
-        } else {
-          setUser(null);
-          setProfile(null);
-        }
-        setLoading(false);
-      });
-
-      return () => {
-        subscription.unsubscribe();
-      };
     };
-
-    initializeAuth();
+    checkUser();
   }, []);
 
-  const fetchProfile = async (userId: string) => {
+  const signIn = async (email: string, password: string) => {
     try {
-      const { data, error } = await supabase
-        .from('profiles')
-        .select('*')
-        .eq('id', userId)
-        .single();
+      const { data, error } = await api.auth.signInWithPassword({ email, password });
 
       if (error) throw error;
-      
-      if (data?.birth_date) {
-        setIsAgeVerified(true);
+
+      if (data.user) {
+        setUser(data.user);
+        setProfile(data.user as any); // Adapt based on actual API response
+        toast.success('¡Bienvenido!');
+        navigate('/');
       }
-      
-      setProfile(data);
-    } catch (error) {
-      console.error('Error fetching profile:', error);
-    }
-  };
-
-  const signUp = async (email: string, password: string, userData: Partial<Profile>) => {
-    try {
-      const { data, error } = await supabase.auth.signUp({
-        email,
-        password,
-      });
-
-      if (error) throw error;
-      if (!data.user) throw new Error('No user data returned');
-
-      const { error: profileError } = await supabase
-        .from('profiles')
-        .insert({
-          id: data.user.id,
-          ...userData,
-        });
-
-      if (profileError) throw profileError;
-
-      setIsAgeVerified(true);
-      toast.success('Registro exitoso. Por favor, inicia sesión.');
-      navigate('/login');
-    } catch (error) {
-      console.error('Error signing up:', error);
-      if (error instanceof Error) {
-        toast.error(error.message);
-      }
+    } catch (error: any) {
+      console.error(error);
+      const msg = error.error || 'Error al iniciar sesión';
+      toast.error(msg);
       throw error;
     }
   };
 
-  const signIn = async (email: string, password: string) => {
+  const signUp = async (email: string, password: string, userData: any) => {
     try {
-      const { data, error } = await supabase.auth.signInWithPassword({
+      const { data, error } = await api.auth.signUp({
         email,
         password,
+        ...userData
       });
 
       if (error) throw error;
-      if (!data.user) throw new Error('No user data returned');
 
-      toast.success('¡Bienvenido!');
-      navigate('/');
-    } catch (error) {
-      console.error('Error signing in:', error);
-      if (error instanceof Error) {
-        toast.error('Error al iniciar sesión. Por favor, verifica tus credenciales.');
-      }
+      toast.success('Cuenta creada exitosamente. Por favor inicia sesión.');
+      navigate('/login');
+    } catch (error: any) {
+      console.error(error);
+      const msg = error.error || 'Error al registrarse';
+      toast.error(msg);
       throw error;
     }
   };
 
   const signOut = async () => {
-    try {
-      const { error } = await supabase.auth.signOut();
-      if (error) throw error;
-      
-      setUser(null);
-      setProfile(null);
-      navigate('/login');
-    } catch (error) {
-      console.error('Error signing out:', error);
-      if (error instanceof Error) {
-        toast.error(error.message);
-      }
-      throw error;
-    }
+    await api.auth.signOut();
+    setUser(null);
+    setProfile(null);
+    navigate('/');
   };
 
   const updateProfile = async (data: Partial<Profile>) => {
-    try {
-      if (!user) throw new Error('No user logged in');
-
-      const { error } = await supabase
-        .from('profiles')
-        .update(data)
-        .eq('id', user.id);
-
-      if (error) throw error;
-      
-      await fetchProfile(user.id);
-      toast.success('Perfil actualizado correctamente');
-    } catch (error) {
-      console.error('Error updating profile:', error);
-      if (error instanceof Error) {
-        toast.error(error.message);
-      }
-      throw error;
-    }
+    // Placeholder for update logic
+    console.log('Update profile not fully implemented in local version yet', data);
+    toast.success('Perfil actualizado (simulado)');
   };
 
   return (
-    <AuthContext.Provider value={{ 
-      user, 
-      profile, 
-      loading, 
+    <AuthContext.Provider value={{
+      user,
+      profile,
+      loading,
+      signIn,
+      signUp,
+      signOut,
       isAgeVerified,
       setIsAgeVerified,
-      signIn, 
-      signUp, 
-      signOut, 
-      updateProfile 
+      updateProfile
     }}>
-      {children}
+      {!loading && children}
     </AuthContext.Provider>
   );
 };

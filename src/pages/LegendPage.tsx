@@ -1,6 +1,6 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import BrewingProcess from '../components/BrewingProcess';
+
 
 const LegendPage = () => {
   return (
@@ -68,11 +68,32 @@ const LegendPage = () => {
             El Arte de la Elaboración
           </h2>
           <p className="text-lg text-[#E5E1E6] text-center max-w-3xl mx-auto mb-12">
-            Descubre el proceso ancestral de elaboración de nuestras cervezas, 
-            donde cada paso es un ritual que honra las tradiciones cerveceras y 
+            Descubre el proceso ancestral de elaboración de nuestras cervezas,
+            donde cada paso es un ritual que honra las tradiciones cerveceras y
             la búsqueda de la perfección.
           </p>
           <BrewingProcess />
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          className="py-20 text-center"
+        >
+          <div className="max-w-4xl mx-auto bg-[#2A2A2B]/50 backdrop-blur-sm border border-[#B3A269]/20 rounded-xl p-12">
+            <h2 className="text-4xl font-dorsa text-[#B3A269] mb-6 tracking-wide">EL VIAJE SAGRADO</h2>
+            <p className="text-xl text-[#E5E1E6]/80 mb-8 max-w-2xl mx-auto font-barlow">
+              Descubre el mito detrás de nuestra creación. Una experiencia inmersiva que conecta la tradición cervecera con la cosmogonía Muisca.
+            </p>
+            <a
+              href="/viaje-sagrado"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-[#B3A269] text-[#1a1a1a] rounded-full font-bold text-lg hover:bg-[#E5E1E6] hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(179,162,105,0.3)]"
+            >
+              INICIAR EL RITUAL
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </a>
+          </div>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">

@@ -8,14 +8,34 @@ const AdminLoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
   const { signIn } = useAuth();
   const navigate = useNavigate();
 
+  const authorizedUsers = [
+    { email: 'admin@admin', password: '199611Cm.' },
+    { email: 'carlosmadero@sierradorada.co', password: '12345678' },
+    { email: 'cmadero08x@gmail.com', password: '12345678' },
+    { email: 'sierradoradacb@gmail.com', password: '12345678' }
+  ];
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (!email.endsWith('@sierradorada.co')) {
-      toast.error('Solo se permite el acceso con correo corporativo @sierradorada.co');
+
+    // Check authorized users
+    const validUser = authorizedUsers.find(
+      u => u.email === email && u.password === password
+    );
+
+    if (validUser) {
+      toast.success('¡Bienvenido!');
+      navigate('/admin/dashboard');
+      return;
+    }
+
+    // Fallback for regular employees if needed, or keeping the check
+    if (!email.endsWith('@sierradorada.co') && !validUser) {
+      toast.error('Credenciales no válidas o correo no autorizado');
       return;
     }
 
@@ -52,22 +72,23 @@ const AdminLoginForm = () => {
             Acceso exclusivo para empleados de Sierra Dorada
           </p>
         </div>
+
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="rounded-md shadow-sm space-y-4">
             <div>
               <label htmlFor="email" className="sr-only">
-                Correo Electrónico Corporativo
+                Usuario o Correo Corporativo
               </label>
               <input
                 id="email"
                 name="email"
-                type="email"
+                type="text"
                 autoComplete="email"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-[#B3A269] focus:border-[#B3A269] focus:z-10 sm:text-sm"
-                placeholder="correo@sierradorada.co"
+                placeholder="Usuario (admin@admin) o Correo Corporativo"
               />
             </div>
             <div>

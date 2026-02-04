@@ -43,11 +43,11 @@ const RegisterForm = () => {
     const today = new Date();
     let age = today.getFullYear() - birthDate.getFullYear();
     const monthDiff = today.getMonth() - birthDate.getMonth();
-    
+
     if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
       age--;
     }
-    
+
     return age;
   };
 
@@ -95,9 +95,21 @@ const RegisterForm = () => {
         marketing_consent: formData.newsletterSubscription
       };
 
-      await signUp(formData.email, formData.password, userData);
-      toast.success('Registro exitoso. Por favor, inicia sesión.');
-      navigate('/login');
+      const { session } = await signUp(formData.email, formData.password, userData);
+
+      if (!session) {
+        // Confirmation email required
+        toast.success(
+          '¡Cuenta creada! Hemos enviado un enlace de confirmación a tu correo.',
+          { duration: 6000, icon: '📧' }
+        );
+        // Wait a moment so user reads message, then redirect
+        setTimeout(() => navigate('/login'), 2000);
+      } else {
+        // Immediate login
+        toast.success('Registro exitoso. Bienvenido.');
+        navigate('/');
+      }
     } catch (error) {
       toast.error('Error al registrarse. Por favor, intenta de nuevo.');
     } finally {

@@ -10,7 +10,7 @@ const HomePage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   const { scrollYProgress } = useScroll();
-  
+
   const backgroundOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
   const contentOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
 
@@ -114,7 +114,7 @@ const HomePage = () => {
                 El Tesoro del Dorado
               </span>
             </motion.h1>
-            
+
             <motion.p
               variants={fadeIn}
               className="mt-6 text-xl md:text-2xl text-[#E5E1E6] opacity-90 font-barlow"
@@ -131,10 +131,21 @@ const HomePage = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => navigate('/productos')}
-                className="px-8 py-3 bg-[#B3A269] text-[#222223] rounded-full font-medium hover:bg-[#B3A269]/90 transition-all duration-300"
+                className="px-8 py-3 bg-[#B3A269] text-[#222223] rounded-full font-medium hover:bg-[#B3A269]/90 transition-all duration-300 shadow-[0_0_20px_rgba(179,162,105,0.4)]"
               >
                 Descubrir Cervezas
               </motion.button>
+
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => navigate('/nuestra-leyenda?openTest=true')}
+                className="px-8 py-3 bg-gradient-to-r from-[#8B4513] to-[#B3A269] text-[#E5E1E6] rounded-full font-medium hover:brightness-110 transition-all duration-300 flex items-center gap-2 border border-[#B3A269]/50"
+              >
+                <Beer className="w-4 h-4" />
+                Test de Cerveza
+              </motion.button>
+
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -173,7 +184,7 @@ const HomePage = () => {
             className="w-full h-full object-cover opacity-10"
           />
         </div>
-        
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -193,35 +204,48 @@ const HomePage = () => {
             {[
               {
                 image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=800&q=80",
-                title: "Selección de Ingredientes",
-                description: "Ingredientes locales de la más alta calidad"
+                title: "Arte de la Elaboración",
+                description: "Ingredientes locales de la más alta calidad",
+                link: "/nuestra-leyenda"
               },
               {
                 image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80",
-                title: "Proceso de Elaboración",
-                description: "Técnicas artesanales tradicionales"
+                title: "Viaje Dorado",
+                description: "Técnicas artesanales tradicionales",
+                link: "/viaje-sagrado"
               },
               {
                 image: "https://images.unsplash.com/photo-1584225064785-c62a8b43d148?auto=format&fit=crop&w=800&q=80",
-                title: "Resultado Final",
-                description: "Cervezas únicas y llenas de carácter"
+                title: "Reserva tu Visita",
+                description: "Vive la experiencia Sierra Dorada en persona",
+                link: "/servicios"
               }
             ].map((item, index) => (
               <motion.div
                 key={item.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ y: -10, scale: 1.02 }}
                 transition={{ duration: 0.5, delay: index * 0.2 }}
-                className="relative group"
+                className="relative group cursor-pointer"
+                onClick={() => navigate(item.link)}
               >
-                <div className="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden mb-4">
+                <div className="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden mb-4 shadow-2xl ring-1 ring-[#B3A269]/20 group-hover:ring-[#B3A269] transition-all duration-500">
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                   />
+                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500" />
+
+                  {/* Hover Icon Overlay */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div className="w-16 h-16 rounded-full bg-[#B3A269] flex items-center justify-center transform scale-0 group-hover:scale-100 transition-transform duration-500 delay-100">
+                      <Beer className="w-8 h-8 text-[#222223]" />
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold text-[#E5E1E6] mb-2">{item.title}</h3>
+                <h3 className="text-xl font-bold text-[#E5E1E6] mb-2 group-hover:text-[#B3A269] transition-colors">{item.title}</h3>
                 <p className="text-[#E5E1E6]/80">{item.description}</p>
               </motion.div>
             ))}
@@ -329,7 +353,7 @@ const HomePage = () => {
               Descubre el Tesoro de los Andes
             </h2>
             <p className="text-xl text-[#E5E1E6]/80 mb-8 max-w-2xl mx-auto">
-              Únete a nuestra búsqueda por la cerveza perfecta, donde cada sorbo es un 
+              Únete a nuestra búsqueda por la cerveza perfecta, donde cada sorbo es un
               tributo a la leyenda de El Dorado y los sabores de nuestra tierra.
             </p>
             <motion.button
@@ -349,7 +373,7 @@ const HomePage = () => {
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-r from-[#222223] via-transparent to-[#222223]" />
         </div>
-        
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -361,13 +385,13 @@ const HomePage = () => {
             <div className="inline-block p-3 bg-[#B3A269]/20 rounded-full mb-6">
               <Mail className="w-6 h-6 text-[#B3A269]" />
             </div>
-            
+
             <h2 className="text-4xl md:text-5xl font-bold text-[#E5E1E6] mb-4 font-dorsa">
               Únete a la Leyenda
             </h2>
-            
+
             <p className="text-xl text-[#E5E1E6]/80 mb-8">
-              Suscríbete para recibir noticias, eventos exclusivos y ofertas especiales 
+              Suscríbete para recibir noticias, eventos exclusivos y ofertas especiales
               de Sierra Dorada directamente en tu bandeja de entrada.
             </p>
 

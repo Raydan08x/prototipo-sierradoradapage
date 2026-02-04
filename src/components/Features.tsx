@@ -168,7 +168,7 @@ const Features = () => {
 
       if (!isDragging && container) {
         const baseSpeed = 0.5;
-        
+
         let speedMultiplier;
         if (scrollSpeed === 0.25) speedMultiplier = 0.5;
         else if (scrollSpeed === 1) speedMultiplier = 1.25;
@@ -179,7 +179,7 @@ const Features = () => {
         const scrollWidth = container.scrollWidth;
         const clientWidth = container.clientWidth;
         const maxScroll = scrollWidth - clientWidth;
-        
+
         if (container.scrollLeft >= maxScroll * 0.75) {
           setClonedProducts(prev => [...prev, ...products]);
         }
@@ -188,7 +188,7 @@ const Features = () => {
           container.scrollLeft = maxScroll * 0.25;
         }
       }
-      
+
       animationFrameId = requestAnimationFrame(animate);
     };
 
@@ -277,36 +277,33 @@ const Features = () => {
           <div className="flex gap-4">
             <button
               onClick={() => handleSpeedChange(0.25)}
-              className={`px-6 py-2 rounded-full font-barlow-condensed transition-all duration-300 ${
-                scrollSpeed === 0.25
-                  ? 'bg-[#B3A269] text-[#222223] shadow-lg'
-                  : 'border border-[#B3A269] text-[#B3A269] hover:bg-[#B3A269]/10'
-              }`}
+              className={`px-6 py-2 rounded-full font-barlow-condensed transition-all duration-300 ${scrollSpeed === 0.25
+                ? 'bg-[#B3A269] text-[#222223] shadow-lg'
+                : 'border border-[#B3A269] text-[#B3A269] hover:bg-[#B3A269]/10'
+                }`}
             >
               Lento
             </button>
             <button
               onClick={() => handleSpeedChange(0.5)}
-              className={`px-6 py-2 rounded-full font-barlow-condensed transition-all duration-300 ${
-                scrollSpeed === 0.5
-                  ? 'bg-[#B3A269] text-[#222223] shadow-lg'
-                  : 'border border-[#B3A269] text-[#B3A269] hover:bg-[#B3A269]/10'
-              }`}
+              className={`px-6 py-2 rounded-full font-barlow-condensed transition-all duration-300 ${scrollSpeed === 0.5
+                ? 'bg-[#B3A269] text-[#222223] shadow-lg'
+                : 'border border-[#B3A269] text-[#B3A269] hover:bg-[#B3A269]/10'
+                }`}
             >
               Normal
             </button>
             <button
               onClick={() => handleSpeedChange(1)}
-              className={`px-6 py-2 rounded-full font-barlow-condensed transition-all duration-300 ${
-                scrollSpeed === 1
-                  ? 'bg-[#B3A269] text-[#222223] shadow-lg'
-                  : 'border border-[#B3A269] text-[#B3A269] hover:bg-[#B3A269]/10'
-              }`}
+              className={`px-6 py-2 rounded-full font-barlow-condensed transition-all duration-300 ${scrollSpeed === 1
+                ? 'bg-[#B3A269] text-[#222223] shadow-lg'
+                : 'border border-[#B3A269] text-[#B3A269] hover:bg-[#B3A269]/10'
+                }`}
             >
               Rápido
             </button>
           </div>
-          
+
           <div className="flex gap-2">
             <button
               onClick={() => {
@@ -346,9 +343,8 @@ const Features = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`w-96 bg-[#222223] rounded-lg overflow-hidden shadow-xl transform hover:scale-105 transition-all duration-300 flex flex-col ${
-                  product.id === '3' ? 'relative ring-2 ring-[#B3A269]' : ''
-                }`}
+                className={`w-96 bg-[#222223] rounded-lg overflow-hidden shadow-xl transform hover:scale-105 transition-all duration-300 flex flex-col ${product.id === '3' ? 'relative ring-2 ring-[#B3A269]' : ''
+                  }`}
               >
                 {product.id === '3' && (
                   <div className="absolute top-4 right-4 z-10">
@@ -357,7 +353,7 @@ const Features = () => {
                     </div>
                   </div>
                 )}
-                
+
                 <div className="relative h-48">
                   <img
                     src={product.image}
@@ -366,7 +362,7 @@ const Features = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#222223] to-transparent" />
                 </div>
-                
+
                 <div className="p-6 flex-1 flex flex-col">
                   <div className="flex items-center justify-between mb-4">
                     <div>
@@ -375,7 +371,7 @@ const Features = () => {
                         ${product.price.toLocaleString()}
                       </p>
                     </div>
-                    <div 
+                    <div
                       className="w-8 h-8 rounded-full border-2 border-[#B3A269]"
                       style={{ backgroundColor: product.colorHex }}
                       title={product.colorName}
@@ -451,7 +447,7 @@ const Features = () => {
                 key={product.id}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="bg-[#222223] rounded-lg overflow-hidden shadow-xl"
+                className="bg-[#222223] rounded-lg overflow-hidden shadow-xl flex flex-col h-full"
               >
                 <div className="relative h-48">
                   <img
@@ -461,23 +457,24 @@ const Features = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#222223] to-transparent" />
                 </div>
-                
-                <div className="p-6">
+
+                <div className="p-6 flex flex-col flex-1">
                   <h3 className="font-dorsa text-2xl text-[#E5E1E6] mb-2">{product.name}</h3>
                   <p className="font-barlow-condensed text-[#B3A269] mb-4">
                     ${product.price.toLocaleString()}
                   </p>
-                  <button
-                    onClick={() => handleAddToPack(product)}
-                    disabled={customPack.length >= 4}
-                    className={`w-full px-4 py-2 rounded-full font-medium transition-colors ${
-                      customPack.length >= 4
+                  <div className="mt-auto w-full">
+                    <button
+                      onClick={() => handleAddToPack(product)}
+                      disabled={customPack.length >= 4}
+                      className={`w-full px-4 py-2 rounded-full font-medium transition-colors ${customPack.length >= 4
                         ? 'bg-gray-500 text-gray-300 cursor-not-allowed'
                         : 'bg-[#B3A269] text-[#222223] hover:bg-[#B3A269]/90'
-                    }`}
-                  >
-                    Agregar al Pack
-                  </button>
+                        }`}
+                    >
+                      Agregar al Pack
+                    </button>
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -493,11 +490,10 @@ const Features = () => {
               {Array(4).fill(null).map((_, index) => (
                 <div
                   key={index}
-                  className={`h-24 rounded-lg ${
-                    customPack[index]
-                      ? 'bg-[#2A2A2B]'
-                      : 'border-2 border-dashed border-[#2A2A2B]'
-                  } flex items-center justify-center relative`}
+                  className={`h-24 rounded-lg ${customPack[index]
+                    ? 'bg-[#2A2A2B]'
+                    : 'border-2 border-dashed border-[#2A2A2B]'
+                    } flex items-center justify-center relative`}
                 >
                   {customPack[index] ? (
                     <>
@@ -541,11 +537,10 @@ const Features = () => {
                 <button
                   onClick={handleAddPackToCart}
                   disabled={customPack.length < 4}
-                  className={`px-6 py-3 rounded-full font-medium flex items-center gap-2 ${
-                    customPack.length < 4
-                      ? 'bg-gray-500 text-gray-300 cursor-not-allowed'
-                      : 'bg-[#B3A269] text-[#222223] hover:bg-[#B3A269]/90'
-                  }`}
+                  className={`px-6 py-3 rounded-full font-medium flex items-center gap-2 ${customPack.length < 4
+                    ? 'bg-gray-500 text-gray-300 cursor-not-allowed'
+                    : 'bg-[#B3A269] text-[#222223] hover:bg-[#B3A269]/90'
+                    }`}
                 >
                   <ShoppingCart className="w-5 h-5" />
                   Agregar al Carrito

@@ -1,7 +1,7 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { GraduationCap, Beer, PartyPopper, Store } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import BookingForm from '../components/reservations/BookingForm';
 
 const ServicesPage = () => {
   const navigate = useNavigate();
@@ -85,9 +85,9 @@ const ServicesPage = () => {
                 </div>
                 <h2 className="font-dorsa text-3xl text-[#E5E1E6]">{service.title}</h2>
               </div>
-              
+
               <p className="font-barlow text-[#E5E1E6]/80 mb-6">{service.description}</p>
-              
+
               <ul className="space-y-3">
                 {service.features.map((feature, index) => (
                   <li key={index} className="flex items-center font-barlow text-[#E5E1E6]">
@@ -106,6 +106,25 @@ const ServicesPage = () => {
             </motion.div>
           ))}
         </div>
+
+        {/* Booking Section */}
+        <section className="mt-24 pt-16 border-t border-[#B3A269]/20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="max-w-4xl mx-auto"
+          >
+            <div className="text-center mb-12">
+              <h2 className="font-dorsa text-6xl text-[#E5E1E6] mb-4">Reserva tu Visita</h2>
+              <p className="font-barlow text-xl text-[#E5E1E6]/80">
+                Ven y vive la experiencia Sierra Dorada. Recorridos guiados todos los fines de semana.
+              </p>
+            </div>
+            <BookingForm />
+          </motion.div>
+        </section>
       </div>
     </div>
   );

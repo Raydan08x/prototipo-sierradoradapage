@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
+console.warn('Supabase client is currently inactive. The application is running with a local backend.');
 import { Database } from './database.types';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
@@ -21,9 +22,4 @@ export const supabase = createClient<Database>(supabaseUrl, supabaseAnonKey, {
     }
   },
   // Add proper CORS configuration
-  headers: {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type, Authorization'
-  }
 });

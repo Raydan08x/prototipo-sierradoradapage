@@ -40,28 +40,28 @@ const Navbar = () => {
     { name: 'Inicio', path: '/' },
     { name: 'Productos', path: '/productos' },
     { name: 'Nuestra Leyenda', path: '/nuestra-leyenda' },
+    { name: 'Gastrobar', path: '/gastrobar' },
     { name: 'Servicios', path: '/servicios' },
     { name: 'Contacto', path: '/contacto' }
   ];
 
   return (
-    <nav 
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-[#222223]/80 backdrop-blur-lg border-b border-[#B3A269]/10' 
-          : 'bg-transparent'
-      }`}
+    <nav
+      className={`fixed w-full z-50 transition-all duration-300 ${isScrolled
+        ? 'bg-[#222223]/80 backdrop-blur-lg border-b border-[#B3A269]/10'
+        : 'bg-transparent'
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <div className="flex-shrink-0">
-            <button 
+            <button
               onClick={() => handleNavigation('/')}
               className="focus:outline-none"
             >
-              <img 
-                src="/assets/logo-color.svg" 
-                alt="Sierra Dorada" 
+              <img
+                src="/assets/logo-color.svg"
+                alt="Sierra Dorada"
                 className="h-12 w-auto"
               />
             </button>
@@ -73,11 +73,10 @@ const Navbar = () => {
                 <button
                   key={item.path}
                   onClick={() => handleNavigation(item.path)}
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                    location.pathname === item.path
-                      ? 'text-[#B3A269]'
-                      : 'text-[#E5E1E6] hover:text-[#B3A269]'
-                  }`}
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${location.pathname === item.path
+                    ? 'text-[#B3A269]'
+                    : 'text-[#E5E1E6] hover:text-[#B3A269]'
+                    }`}
                 >
                   {item.name}
                 </button>
@@ -123,6 +122,13 @@ const Navbar = () => {
                   >
                     Registrarse
                   </button>
+                  <button
+                    onClick={() => handleNavigation('/acceso-admin')}
+                    className="p-2 text-[#E5E1E6] hover:text-[#B3A269] transition-colors"
+                    title="Acceso Personal"
+                  >
+                    <UserCircle className="w-6 h-6" />
+                  </button>
                 </div>
               )}
             </div>
@@ -157,11 +163,10 @@ const Navbar = () => {
               <button
                 key={item.path}
                 onClick={() => handleNavigation(item.path)}
-                className={`block w-full text-left px-3 py-2 rounded-md text-base font-medium ${
-                  location.pathname === item.path
-                    ? 'text-[#B3A269]'
-                    : 'text-[#E5E1E6] hover:text-[#B3A269]'
-                }`}
+                className={`block w-full text-left px-3 py-2 rounded-md text-base font-medium ${location.pathname === item.path
+                  ? 'text-[#B3A269]'
+                  : 'text-[#E5E1E6] hover:text-[#B3A269]'
+                  }`}
               >
                 {item.name}
               </button>
@@ -194,6 +199,12 @@ const Navbar = () => {
                   className="block w-full text-left px-4 py-2 bg-[#B3A269] text-[#222223] rounded-full hover:bg-[#B3A269]/90 transition-colors"
                 >
                   Registrarse
+                </button>
+                <button
+                  onClick={() => handleNavigation('/acceso-admin')}
+                  className="block w-full text-left px-4 py-2 text-[#E5E1E6] hover:text-[#B3A269] transition-colors"
+                >
+                  Acceso Personal
                 </button>
               </>
             )}
