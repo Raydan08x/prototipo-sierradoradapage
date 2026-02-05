@@ -153,7 +153,7 @@ const Features = () => {
   const [scrollLeft, setScrollLeft] = useState(0);
   const [clonedProducts] = useState([...products, ...products, ...products, ...products]); // Fixed size, no state growth
   const [customPack, setCustomPack] = useState<typeof products[0][]>([]);
-  const [showPackModal, setShowPackModal] = useState(false);
+
 
   useEffect(() => {
     if (!containerRef.current || !autoScroll || isDragging) return; // Stop auto-scroll on drag
@@ -178,7 +178,7 @@ const Features = () => {
 
       // Infinite Scroll Logic (Reset Position)
       const scrollWidth = container.scrollWidth;
-      const clientWidth = container.clientWidth;
+
       // We assume the content is tripled/quadrupled. 
       // Reset when we've scrolled past the first set of items (roughly 1/4 of total width)
       const oneSetWidth = scrollWidth / 4;
@@ -274,7 +274,7 @@ const Features = () => {
         price: product.price * 0.75
       });
     });
-    setShowPackModal(false);
+
     setCustomPack([]);
   };
 
