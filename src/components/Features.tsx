@@ -351,7 +351,7 @@ const Features = () => {
 
         <div
           ref={containerRef}
-          className="flex overflow-x-hidden cursor-grab active:cursor-grabbing"
+          className="flex overflow-x-auto md:overflow-x-hidden cursor-grab active:cursor-grabbing snap-x snap-mandatory scroll-smooth no-scrollbar"
           onMouseDown={handleMouseDown}
           onMouseUp={handleMouseUp}
           onMouseLeave={handleMouseUp}
@@ -359,6 +359,7 @@ const Features = () => {
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
           onTouchMove={handleTouchMove}
+          style={{ WebkitOverflowScrolling: 'touch' }}
         >
           <div className="flex gap-8 min-w-max px-4">
             {clonedProducts.map((product, index) => (
@@ -367,7 +368,7 @@ const Features = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`w-96 bg-[#222223] rounded-lg overflow-hidden shadow-xl transform hover:scale-105 transition-all duration-300 flex flex-col ${product.id === '3' ? 'relative ring-2 ring-[#B3A269]' : ''
+                className={`w-80 md:w-96 bg-[#222223] rounded-lg overflow-hidden shadow-xl transform hover:scale-105 transition-all duration-300 flex flex-col snap-center ${product.id === '3' ? 'relative ring-2 ring-[#B3A269]' : ''
                   }`}
               >
                 {product.id === '3' && (

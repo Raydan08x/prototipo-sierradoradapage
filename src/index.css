@@ -9,7 +9,7 @@
   --color-gold: #B3A269;
   --color-black: #222223;
   --color-light: #E5E1E6;
-  
+
   /* Additional Colors */
   --color-forest: #034638;
   --color-burgundy: #5C1D45;
@@ -46,12 +46,10 @@
 
 /* Animated Background */
 .animated-bg {
-  background: linear-gradient(
-    45deg,
-    rgba(34, 34, 35, 1) 0%,
-    rgba(42, 42, 43, 1) 50%,
-    rgba(34, 34, 35, 1) 100%
-  );
+  background: linear-gradient(45deg,
+      rgba(34, 34, 35, 1) 0%,
+      rgba(42, 42, 43, 1) 50%,
+      rgba(34, 34, 35, 1) 100%);
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
   position: relative;
@@ -64,7 +62,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: 
+  background:
     radial-gradient(circle at 20% 30%, rgba(179, 162, 105, 0.05) 0%, transparent 50%),
     radial-gradient(circle at 80% 70%, rgba(179, 162, 105, 0.05) 0%, transparent 50%);
   pointer-events: none;
@@ -74,14 +72,12 @@
 .shimmer-title {
   position: relative;
   display: inline-block;
-  background: linear-gradient(
-    90deg,
-    var(--color-gold) 0%,
-    #E5E1E6 25%,
-    var(--color-gold) 50%,
-    #E5E1E6 75%,
-    var(--color-gold) 100%
-  );
+  background: linear-gradient(90deg,
+      var(--color-gold) 0%,
+      #E5E1E6 25%,
+      var(--color-gold) 50%,
+      #E5E1E6 75%,
+      var(--color-gold) 100%);
   background-size: 200% auto;
   color: transparent;
   background-clip: text;
@@ -100,12 +96,10 @@
   left: 0;
   width: 200%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.2) 50%,
-    transparent 100%
-  );
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.2) 50%,
+      transparent 100%);
   transform: translateX(-100%);
   animation: shimmerOverlay 3s ease-in-out infinite;
 }
@@ -146,7 +140,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: 
+  background:
     linear-gradient(45deg, rgba(179, 162, 105, 0.05) 0%, transparent 100%),
     url("https://images.unsplash.com/photo-1559526324-593bc073d938?auto=format&fit=crop&w=2000&q=80");
   background-size: cover;
@@ -166,7 +160,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: 
+  background:
     linear-gradient(45deg, rgba(34, 34, 35, 0.95) 0%, rgba(34, 34, 35, 0.85) 100%),
     url("https://images.unsplash.com/photo-1541233349642-6e425fe6190e?auto=format&fit=crop&w=2000&q=80");
   background-size: cover;
@@ -186,7 +180,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: 
+  background:
     linear-gradient(45deg, rgba(34, 34, 35, 0.95) 0%, rgba(34, 34, 35, 0.85) 100%),
     url("https://images.unsplash.com/photo-1584225064785-c62a8b43d148?auto=format&fit=crop&w=2000&q=80");
   background-size: cover;
@@ -196,9 +190,17 @@
 }
 
 @keyframes gradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* Glass Effect */
@@ -206,6 +208,18 @@
   background: rgba(42, 42, 43, 0.7);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(179, 162, 105, 0.1);
+}
+
+@media (max-width: 768px) {
+  .glass-effect {
+    backdrop-filter: blur(4px);
+    /* Reduced from 10px */
+  }
+
+  .animated-bg {
+    animation: none;
+    /* Disable expensive background animation */
+  }
 }
 
 /* Interactive Elements */
@@ -240,8 +254,15 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* DatePicker Dark Theme */
@@ -303,6 +324,19 @@
   background: rgba(179, 162, 105, 0.8);
 }
 
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -312,33 +346,63 @@
     @apply bg-[#222223] font-barlow text-[#E5E1E6];
   }
 
-  h1, h2, h3, .title-font {
+  h1,
+  h2,
+  h3,
+  .title-font {
     @apply font-dorsa tracking-wider;
   }
 
-  h4, h5, h6, .subtitle-font {
+  h4,
+  h5,
+  h6,
+  .subtitle-font {
     @apply font-barlow-condensed;
   }
 
   /* Typography Scale */
-  h1 { @apply text-7xl md:text-8xl leading-tight; }
-  h2 { @apply text-5xl md:text-6xl leading-tight; }
-  h3 { @apply text-3xl md:text-4xl leading-tight; }
-  h4 { @apply text-xl md:text-2xl leading-snug; }
-  h5 { @apply text-lg md:text-xl leading-snug; }
-  h6 { @apply text-base md:text-lg leading-snug; }
+  h1 {
+    @apply text-7xl md:text-8xl leading-tight;
+  }
 
-  p { @apply text-base leading-relaxed; }
+  h2 {
+    @apply text-5xl md:text-6xl leading-tight;
+  }
 
-  .small-text { @apply text-sm leading-relaxed; }
+  h3 {
+    @apply text-3xl md:text-4xl leading-tight;
+  }
+
+  h4 {
+    @apply text-xl md:text-2xl leading-snug;
+  }
+
+  h5 {
+    @apply text-lg md:text-xl leading-snug;
+  }
+
+  h6 {
+    @apply text-base md:text-lg leading-snug;
+  }
+
+  p {
+    @apply text-base leading-relaxed;
+  }
+
+  .small-text {
+    @apply text-sm leading-relaxed;
+  }
 
   /* Interactive Elements */
-  button, a {
+  button,
+  a {
     @apply transition-all duration-300 ease-in-out;
   }
 
   /* Form Elements */
-  input, select, textarea {
+  input,
+  select,
+  textarea {
     @apply transition-all duration-200;
   }
 

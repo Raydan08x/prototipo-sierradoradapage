@@ -63,27 +63,40 @@ const HomePage = () => {
       <section className="relative h-screen">
         {/* Background Videos */}
         <div className="absolute inset-0 w-full h-full overflow-hidden">
-          {backgroundVideos.map((video, index) => (
-            <motion.div
-              key={video}
-              className="absolute inset-0"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: index === currentVideoIndex ? 1 : 0 }}
-              transition={{ duration: 1 }}
-              style={{ opacity: backgroundOpacity }}
-            >
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full w-auto h-auto object-cover"
-                style={{ filter: 'brightness(0.4)' }}
+          {/* Static Image for Mobile */}
+          <div className="absolute inset-0 block md:hidden">
+            <img
+              src="https://images.unsplash.com/photo-1559526324-593bc073d938?auto=format&fit=crop&w=800&q=80"
+              alt="Sierra Dorada Background"
+              className="w-full h-full object-cover"
+              style={{ filter: 'brightness(0.4)' }}
+            />
+          </div>
+
+          {/* Video for Desktop */}
+          <div className="hidden md:block w-full h-full">
+            {backgroundVideos.map((video, index) => (
+              <motion.div
+                key={video}
+                className="absolute inset-0"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: index === currentVideoIndex ? 1 : 0 }}
+                transition={{ duration: 1 }}
+                style={{ opacity: backgroundOpacity }}
               >
-                <source src={video} type="video/mp4" />
-              </video>
-            </motion.div>
-          ))}
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full w-auto h-auto object-cover"
+                  style={{ filter: 'brightness(0.4)' }}
+                >
+                  <source src={video} type="video/mp4" />
+                </video>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
         {/* Overlay Content */}
