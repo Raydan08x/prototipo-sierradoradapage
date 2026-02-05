@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Thermometer, ShoppingCart, Package, X, Check } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Thermometer, ShoppingCart, Package, X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
 
@@ -151,12 +151,12 @@ const Features = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
-  const [clonedProducts, setClonedProducts] = useState([...products, ...products, ...products, ...products]);
+  const [clonedProducts] = useState([...products, ...products, ...products, ...products]); // Fixed size, no state growth
   const [customPack, setCustomPack] = useState<typeof products[0][]>([]);
   const [showPackModal, setShowPackModal] = useState(false);
 
   useEffect(() => {
-    if (!containerRef.current || !autoScroll) return;
+    if (!containerRef.current || !autoScroll || isDragging) return; // Stop auto-scroll on drag
 
     const container = containerRef.current;
     let animationFrameId: number;
@@ -166,27 +166,26 @@ const Features = () => {
       const deltaTime = currentTime - lastTime;
       lastTime = currentTime;
 
-      if (!isDragging && container) {
-        const baseSpeed = 0.5;
+      const baseSpeed = 0.05; // Adjusted base speed for smoother animation
 
-        let speedMultiplier;
-        if (scrollSpeed === 0.25) speedMultiplier = 0.5;
-        else if (scrollSpeed === 1) speedMultiplier = 1.25;
-        else speedMultiplier = 1;
+      let speedMultiplier;
+      if (scrollSpeed === 0.25) speedMultiplier = 0.5;
+      else if (scrollSpeed === 1) speedMultiplier = 2; // Increased max speed slightly
+      else speedMultiplier = 1;
 
-        container.scrollLeft += baseSpeed * speedMultiplier * deltaTime * 0.1;
+      // Use a consistent speed increment adjusted by delta time
+      container.scrollLeft += baseSpeed * speedMultiplier * deltaTime;
 
-        const scrollWidth = container.scrollWidth;
-        const clientWidth = container.clientWidth;
-        const maxScroll = scrollWidth - clientWidth;
+      // Infinite Scroll Logic (Reset Position)
+      const scrollWidth = container.scrollWidth;
+      const clientWidth = container.clientWidth;
+      // We assume the content is tripled/quadrupled. 
+      // Reset when we've scrolled past the first set of items (roughly 1/4 of total width)
+      const oneSetWidth = scrollWidth / 4;
 
-        if (container.scrollLeft >= maxScroll * 0.75) {
-          setClonedProducts(prev => [...prev, ...products]);
-        }
-
-        if (container.scrollLeft >= maxScroll * 0.9) {
-          container.scrollLeft = maxScroll * 0.25;
-        }
+      if (container.scrollLeft >= oneSetWidth * 2) {
+        // Seamlessly jump back to the first set
+        container.scrollLeft -= oneSetWidth;
       }
 
       animationFrameId = requestAnimationFrame(animate);
@@ -199,8 +198,9 @@ const Features = () => {
         cancelAnimationFrame(animationFrameId);
       }
     };
-  }, [isDragging, scrollSpeed, autoScroll, products]);
+  }, [isDragging, scrollSpeed, autoScroll]); // Removed products dependency to prevent re-runs
 
+  // Mouse Events
   const handleMouseDown = (e: React.MouseEvent) => {
     setIsDragging(true);
     setAutoScroll(false);
@@ -217,6 +217,27 @@ const Features = () => {
     if (!isDragging) return;
     e.preventDefault();
     const x = e.pageX - containerRef.current!.offsetLeft;
+    const walk = (x - startX) * 2;
+    containerRef.current!.scrollLeft = scrollLeft - walk;
+  };
+
+  // Touch Events
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setIsDragging(true);
+    setAutoScroll(false);
+    setStartX(e.touches[0].pageX - containerRef.current!.offsetLeft);
+    setScrollLeft(containerRef.current!.scrollLeft);
+  };
+
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+    setAutoScroll(true);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging) return;
+    // e.preventDefault(); // Often better NOT to preventDefault on touchmove unless necessary to stop page scroll
+    const x = e.touches[0].pageX - containerRef.current!.offsetLeft;
     const walk = (x - startX) * 2;
     containerRef.current!.scrollLeft = scrollLeft - walk;
   };
@@ -335,6 +356,9 @@ const Features = () => {
           onMouseUp={handleMouseUp}
           onMouseLeave={handleMouseUp}
           onMouseMove={handleMouseMove}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          onTouchMove={handleTouchMove}
         >
           <div className="flex gap-8 min-w-max px-4">
             {clonedProducts.map((product, index) => (
