@@ -8,7 +8,7 @@ echo "🍺 Sierra Dorada - Deployment Script"
 echo "====================================="
 
 # Variables
-APP_DIR="/home/pi/sierra-dorada"
+APP_DIR="/home/sdpi/sierra-dorada"
 REPO_URL="https://github.com/Raydan08x/prototipo-sierradoradapage.git"
 BRANCH="main"
 
@@ -33,7 +33,7 @@ echo -e "${YELLOW}Step 4: Installing PM2...${NC}"
 sudo npm install -g pm2
 
 # Create logs directory
-mkdir -p /home/pi/logs
+mkdir -p /home/sdpi/logs
 
 # Clone or update repository
 echo -e "${YELLOW}Step 5: Setting up application...${NC}"
@@ -77,7 +77,7 @@ cd $APP_DIR
 pm2 delete sierra-dorada-api 2>/dev/null || true
 pm2 start ecosystem.config.cjs --env production
 pm2 save
-pm2 startup systemd -u pi --hp /home/pi
+pm2 startup systemd -u sdpi --hp /home/sdpi
 
 echo ""
 echo -e "${GREEN}✅ Deployment complete!${NC}"

@@ -3,7 +3,7 @@ module.exports = {
         {
             name: 'sierra-dorada-api',
             script: './server/index.js',
-            cwd: '/home/pi/sierra-dorada',
+            cwd: '/home/sdpi/sierra-dorada',
             instances: 1,
             exec_mode: 'fork',
             autorestart: true,
@@ -13,8 +13,8 @@ module.exports = {
                 NODE_ENV: 'production',
                 PORT: 3003
             },
-            error_file: '/home/pi/logs/sierra-api-error.log',
-            out_file: '/home/pi/logs/sierra-api-out.log',
+            error_file: '/home/sdpi/logs/sierra-api-error.log',
+            out_file: '/home/sdpi/logs/sierra-api-out.log',
             log_date_format: 'YYYY-MM-DD HH:mm:ss',
             merge_logs: true
         }
