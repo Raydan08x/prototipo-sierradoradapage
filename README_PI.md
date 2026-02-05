@@ -47,7 +47,19 @@ Asegúrate de configurar los datos de la base de datos (según lo que creaste en
 
 ## 🐛 Solución de Problemas
 
+
 Si algo falla, verifica los logs de error:
 ```bash
 cat /home/sdpi/logs/sierra-api-error.log
 ```
+
+### Error: "Unable to acquire the dpkg frontend lock"
+Si ves este error, es porque la Raspberry se está actualizando sola en segundo plano. Ejecuta esto para desbloquearla:
+
+```bash
+sudo killall apt apt-get
+sudo rm /var/lib/dpkg/lock-frontend
+sudo rm /var/lib/dpkg/lock
+sudo dpkg --configure -a
+```
+Y luego intenta instalar de nuevo.
