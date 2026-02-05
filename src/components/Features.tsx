@@ -351,7 +351,7 @@ const Features = () => {
 
         <div
           ref={containerRef}
-          className="flex overflow-x-auto md:overflow-x-hidden cursor-grab active:cursor-grabbing snap-x snap-mandatory scroll-smooth no-scrollbar"
+          className="flex overflow-x-hidden cursor-grab active:cursor-grabbing no-scrollbar"
           onMouseDown={handleMouseDown}
           onMouseUp={handleMouseUp}
           onMouseLeave={handleMouseUp}
@@ -359,7 +359,7 @@ const Features = () => {
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
           onTouchMove={handleTouchMove}
-          style={{ WebkitOverflowScrolling: 'touch' }}
+          style={{ touchAction: 'pan-y' }}
         >
           <div className="flex gap-8 min-w-max px-4">
             {clonedProducts.map((product, index) => (
