@@ -17,7 +17,7 @@ const Preloader = () => {
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#222223]">
       <div className="relative">
         {/* Logo animado */}
-        <div className="w-48 h-48 rounded-full border-4 border-[#B3A269] animate-spin" style={{
+        <div className="w-24 h-24 rounded-full border-4 border-[#B3A269] animate-spin" style={{
           borderRightColor: 'transparent',
           animationDuration: '2s'
         }} />
