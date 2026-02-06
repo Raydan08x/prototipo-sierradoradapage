@@ -122,13 +122,7 @@ const Navbar = () => {
                   >
                     Registrarse
                   </button>
-                  <button
-                    onClick={() => handleNavigation('/acceso-admin')}
-                    className="p-2 text-[#E5E1E6] hover:text-[#B3A269] transition-colors"
-                    title="Acceso Personal"
-                  >
-                    <UserCircle className="w-6 h-6" />
-                  </button>
+
                 </div>
               )}
             </div>
@@ -200,12 +194,7 @@ const Navbar = () => {
                 >
                   Registrarse
                 </button>
-                <button
-                  onClick={() => handleNavigation('/acceso-admin')}
-                  className="block w-full text-left px-4 py-2 text-[#E5E1E6] hover:text-[#B3A269] transition-colors"
-                >
-                  Acceso Personal
-                </button>
+
               </>
             )}
           </div>

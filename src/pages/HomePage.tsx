@@ -149,7 +149,7 @@ const HomePage = () => {
             >
               <span className="block text-[#E5E1E6] font-dorsa">Sierra Dorada</span>
               <span className="block bg-gradient-to-r from-[#B3A269] to-[#E5E1E6] text-transparent bg-clip-text font-dorsa">
-                El Tesoro del Dorado
+                El Tesoro de El Dorado
               </span>
             </motion.h1>
 
