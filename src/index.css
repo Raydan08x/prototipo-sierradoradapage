@@ -1,3 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Primary Colors */
+  --color-gold: #B3A269;
+  --color-black: #222223;
+  --color-light: #E5E1E6;
+
+  /* Additional Colors */
+  --color-forest: #034638;
+  --color-burgundy: #5C1D45;
+  --color-gray: #757878;
+}
+
 /* Local Fonts Setup */
 @font-face {
   font-family: 'Dorsa';
