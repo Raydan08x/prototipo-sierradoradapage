@@ -21,10 +21,14 @@ const Preloader = () => {
           borderRightColor: 'transparent',
           animationDuration: '2s'
         }} />
-        
-        {/* Texto animado */}
+
+        {/* Isotipo animado */}
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <span className="text-[#B3A269] text-xl font-bold animate-pulse">SD</span>
+          <img
+            src="/assets/isotipo.png"
+            alt="Sierra Dorada"
+            className="w-10 h-10 animate-pulse"
+          />
         </div>
       </div>
     </div>

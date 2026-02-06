@@ -131,7 +131,7 @@ const HomePage = () => {
               <div className="relative w-24 h-24">
                 <div className="absolute inset-0 bg-[#B3A269] rounded-full opacity-20 animate-pulse"></div>
                 <img
-                  src="/assets/isotipo.png"
+                  src="/assets/logo-circular.png"
                   alt="Sierra Dorada"
                   className="w-full h-full relative z-10"
                 />
