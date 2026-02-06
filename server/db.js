@@ -6,11 +6,11 @@ dotenv.config();
 const { Pool } = pg;
 
 const pool = new Pool({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'SDDB',
-    password: process.env.DB_PASSWORD || '199611Cm.',
-    port: 5432,
+    user: process.env.DB_USER || 'postgres',
+    host: process.env.DB_HOST || 'localhost',
+    database: process.env.DB_NAME || 'SDDB',
+    password: process.env.DB_PASSWORD,
+    port: parseInt(process.env.DB_PORT || '5432'),
 });
 
 pool.on('error', (err) => {
@@ -18,6 +18,11 @@ pool.on('error', (err) => {
     process.exit(-1);
 });
 
+pool.on('connect', () => {
+    console.log('Connected to PostgreSQL database:', process.env.DB_NAME || 'SDDB');
+});
+
 export default {
     query: (text, params) => pool.query(text, params),
+    pool: pool
 };

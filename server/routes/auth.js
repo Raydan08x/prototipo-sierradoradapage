@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import db from '../db.js';
 
 const router = express.Router();
-const JWT_SECRET = 'your-secret-key-change-me'; // In production use dotenv
+const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-me';
 
 // REGISTER
 router.post('/signup', async (req, res) => {
