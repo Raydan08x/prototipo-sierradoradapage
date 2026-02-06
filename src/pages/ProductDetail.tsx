@@ -1,7 +1,6 @@
-import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Beer, ShoppingCart, Thermometer, ArrowLeft } from 'lucide-react';
+import { ShoppingCart, Thermometer, ArrowLeft } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
 
 const products = [
