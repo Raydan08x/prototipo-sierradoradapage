@@ -258,8 +258,8 @@ const HomePage = () => {
                     </div>
                   </div>
                 </div>
-                <h3 className="text-xl font-bold text-[#E5E1E6] mb-2 group-hover:text-[#B3A269] transition-colors">{item.title}</h3>
-                <p className="text-[#E5E1E6]/80">{item.description}</p>
+                <h3 className="text-xl font-bold text-[#E5E1E6] mb-2 group-hover:text-[#B3A269] transition-colors text-center">{item.title}</h3>
+                <p className="text-[#E5E1E6]/80 text-center">{item.description}</p>
               </motion.div>
             ))}
           </div>
