@@ -11,9 +11,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="space-y-8">
             <img
-              src="/assets/logo-white.svg"
+              src="/assets/logo-vertical.png"
               alt="Sierra Dorada"
-              className="h-12 w-auto"
+              className="h-24 w-auto"
             />
             <p className="text-[#E5E1E6]">
               Cervecería artesanal comprometida con la calidad y la tradición cervecera desde 2010.

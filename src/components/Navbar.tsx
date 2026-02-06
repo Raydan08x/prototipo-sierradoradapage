@@ -60,7 +60,7 @@ const Navbar = () => {
               className="focus:outline-none"
             >
               <img
-                src="/assets/logo-color.svg"
+                src="/assets/logo-horizontal.png"
                 alt="Sierra Dorada"
                 className="h-12 w-auto"
               />
