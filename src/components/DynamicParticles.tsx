@@ -16,7 +16,7 @@ const DynamicParticles = ({
     secondaryColorSequence = ['#FFD700', '#DAA520', '#CD853F', '#FFD700'],
     inputRange,
     auraOpacity = 0.4,
-    particleCount = 36
+    particleCount = 18
 }: DynamicParticlesProps) => {
 
     // Internal scroll hook if not provided externally
@@ -71,20 +71,14 @@ const DynamicParticles = ({
             {particles.map((p) => (
                 <motion.div
                     key={p.id}
-                    className="absolute rounded-full blur-[1px]"
+                    className="absolute rounded-full" // Removed blur
                     style={{
                         left: `${p.x}%`,
                         top: `${p.y}%`,
                         width: p.size,
                         height: p.size,
                         backgroundColor: p.isSecondary ? color2 : color1,
-                        // Optimized: Box shadow is heavy, but key to look. We keep it but add will-change.
-                        // Ideally, use a child element for glow to avoid box-shadow repaint, 
-                        // but sticking to transform/opacity optimization first.
-                        boxShadow: useTransform(
-                            p.isSecondary ? color2 : color1,
-                            (c) => `0 0 ${p.size}px ${c}` // Reduced shadow radius for perf
-                        ),
+                        // Optimized: Removed box-shadow entirely for performance
                         y: springY,
                         willChange: "transform, opacity" // Critical for fluidity
                     }}
@@ -104,7 +98,7 @@ const DynamicParticles = ({
             ))}
 
             {/* Extra "Sparkles" Layer - Optimized */}
-            {Array.from({ length: 9 }).map((_, i) => ( // Reduced count from 15 to 9
+            {Array.from({ length: 5 }).map((_, i) => ( // Reduced count to 5
                 <motion.div
                     key={`sparkle-${i}`}
                     className="absolute rounded-full bg-white"
@@ -113,7 +107,7 @@ const DynamicParticles = ({
                         top: `${Math.random() * 100}%`,
                         width: Math.random() * 2 + 1,
                         height: Math.random() * 2 + 1,
-                        boxShadow: `0 0 4px white`, // Static shadow is cheaper
+                        // Removed box-shadow
                         y: springY,
                         willChange: "transform, opacity"
                     }}

@@ -13,11 +13,11 @@ const MuiscaBackground = () => {
             {/* Base Gradient */}
             <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#111] to-[#0a0a0a]" />
 
-            {/* Floating Particles (Golden Dust) */}
-            {[...Array(30)].map((_, i) => (
+            {/* Floating Particles (Golden Dust) - Optimized */}
+            {[...Array(12)].map((_, i) => (
                 <motion.div
                     key={`particle-${i}`}
-                    className="absolute bg-[#B3A269] rounded-full blur-[1px]"
+                    className="absolute bg-[#B3A269] rounded-full" // Removed blur-[1px]
                     style={{
                         width: Math.random() * 3 + 1,
                         height: Math.random() * 3 + 1,
