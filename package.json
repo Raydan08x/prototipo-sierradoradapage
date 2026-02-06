@@ -13,7 +13,6 @@
     "db:setup": "node server/setup_db_reservations.js"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.39.7",
     "bcryptjs": "^2.4.3",
     "body-parser": "^2.2.2",
     "cors": "^2.8.6",

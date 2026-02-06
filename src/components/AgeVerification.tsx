@@ -20,7 +20,7 @@ const AgeVerification: React.FC<AgeVerificationProps> = ({ onVerified }) => {
     const today = new Date();
     let calculatedAge = today.getFullYear() - birthDate.getFullYear();
     const monthDiff = today.getMonth() - birthDate.getMonth();
-    
+
     if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
       calculatedAge = calculatedAge - 1;
     }
@@ -36,9 +36,9 @@ const AgeVerification: React.FC<AgeVerificationProps> = ({ onVerified }) => {
     <div className="fixed inset-0 z-[60] bg-[#222223] flex items-center justify-center p-4">
       <div className="bg-[#2A2A2B] p-8 rounded-lg max-w-md w-full shadow-xl">
         <div className="text-center mb-8">
-          <img 
-            src="/assets/logo-color.svg" 
-            alt="Sierra Dorada" 
+          <img
+            src="/assets/logo-color.png"
+            alt="Sierra Dorada"
             className="h-16 mx-auto mb-6"
           />
           <h2 className="font-dorsa text-4xl text-[#E5E1E6] mb-4">Verificación de Edad</h2>

@@ -1,0 +1,14 @@
+{
+    "Servers": {
+        "1": {
+            "Name": "Sierra Dorada Local DB",
+            "Group": "Servers",
+            "Port": 5432,
+            "Username": "sierra_admin",
+            "Host": "db",
+            "MaintenanceDB": "sddb",
+            "SSLMode": "prefer",
+            "Comment": "Sierra Dorada Database auto-configured"
+        }
+    }
+}
