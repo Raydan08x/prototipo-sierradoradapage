@@ -312,7 +312,7 @@ const HomePage = () => {
       </section>
 
       {/* Heritage Section */}
-      <section className="py-20 glass-effect">
+      <section className="py-20 relative overflow-hidden bg-[#0a0a0a]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="initial"
@@ -355,7 +355,7 @@ const HomePage = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 glass-effect">
+      <section className="py-20 relative overflow-hidden bg-[#0a0a0a]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="initial"
