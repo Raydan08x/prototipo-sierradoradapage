@@ -58,39 +58,7 @@ const HomePage = () => {
   };
 
   return (
-    <div className="min-h-screen relative text-[#E5E1E6] font-barlow">
-      {/* Fixed Background Layer with Aura - matching Products page structure */}
-      <div className="fixed inset-0 z-[-1] overflow-hidden pointer-events-none bg-[#0a0a0a]">
-        {/* Aura Effect */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(179,162,105,0.15)_0%,_transparent_75%)]" />
-
-        {/* Floating Particles */}
-        {[...Array(12)].map((_, i) => (
-          <motion.div
-            key={`global-particle-${i}`}
-            className="absolute bg-[#B3A269] rounded-full"
-            style={{
-              width: Math.random() * 4 + 1,
-              height: Math.random() * 4 + 1,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              opacity: 0.15
-            }}
-            animate={{
-              y: [0, -80, 0],
-              opacity: [0.1, 0.4, 0.1],
-              scale: [0.8, 1.3, 0.8]
-            }}
-            transition={{
-              duration: Math.random() * 10 + 10,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: Math.random() * 5
-            }}
-          />
-        ))}
-      </div>
-
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative h-screen">
         {/* Background Videos */}

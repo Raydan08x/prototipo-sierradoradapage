@@ -225,15 +225,15 @@ const ProductDetail = () => {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="grid grid-cols-3 gap-6"
             >
-              <div className="bg-[#2A2A2B] p-6 rounded-lg">
+              <div className="p-6 rounded-lg border border-[#B3A269]/10">
                 <p className="text-[#B3A269] font-semibold mb-2">ABV</p>
                 <p className="text-[#E5E1E6] text-2xl">{product.abv}</p>
               </div>
-              <div className="bg-[#2A2A2B] p-6 rounded-lg">
+              <div className="p-6 rounded-lg border border-[#B3A269]/10">
                 <p className="text-[#B3A269] font-semibold mb-2">IBU</p>
                 <p className="text-[#E5E1E6] text-2xl">{product.ibu}</p>
               </div>
-              <div className="bg-[#2A2A2B] p-6 rounded-lg">
+              <div className="p-6 rounded-lg border border-[#B3A269]/10">
                 <p className="text-[#B3A269] font-semibold mb-2">Temperatura</p>
                 <div className="flex items-center gap-2">
                   <Thermometer className="w-6 h-6 text-[#B3A269]" />
@@ -246,7 +246,7 @@ const ProductDetail = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="bg-[#2A2A2B] p-6 rounded-lg"
+              className="p-6 rounded-lg border border-[#B3A269]/10"
             >
               <h3 className="text-xl font-bold text-[#B3A269] mb-4">Características</h3>
               <div className="space-y-4">
@@ -263,7 +263,7 @@ const ProductDetail = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.5 }}
-              className="bg-[#2A2A2B] p-6 rounded-lg"
+              className="p-6 rounded-lg border border-[#B3A269]/10"
             >
               <h3 className="text-xl font-bold text-[#B3A269] mb-4">Proceso de Elaboración</h3>
               <p className="text-[#E5E1E6]">{product.process}</p>
@@ -273,7 +273,7 @@ const ProductDetail = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.6 }}
-              className="bg-[#2A2A2B] p-6 rounded-lg"
+              className="p-6 rounded-lg border border-[#B3A269]/10"
             >
               <h3 className="text-xl font-bold text-[#B3A269] mb-4">La Leyenda</h3>
               <p className="text-[#E5E1E6] italic">{product.legend}</p>
