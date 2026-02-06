@@ -7,6 +7,8 @@ export default {
         dorsa: ['Dorsa', 'sans-serif'],
         barlow: ['Barlow', 'sans-serif'],
         'barlow-condensed': ['Barlow Condensed', 'sans-serif'],
+        espoir: ['Espoir', 'serif'],
+        myriad: ['Myriad Pro', 'sans-serif'],
       },
       colors: {
         brand: {
