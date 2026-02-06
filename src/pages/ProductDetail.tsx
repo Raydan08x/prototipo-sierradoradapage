@@ -112,6 +112,33 @@ const products = [
       { emoji: '🥩', name: 'Carnes asadas' },
       { emoji: '🦪', name: 'Ostras' }
     ]
+  },
+  {
+    id: '5',
+    name: 'American Amber Ale',
+    inspiration: 'Inspirada en Huitaca, diosa muisca del amor y la libertad',
+    description: 'Rebelde y apasionada como Huitaca, esta cerveza celebra la libertad y el placer de vivir.',
+    price: 12000,
+    abv: '5.0%',
+    ibu: '30',
+    image: 'https://images.unsplash.com/photo-1523567830207-96731740fa71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80',
+    colorHex: '#8B0000',
+    colorName: 'Ámbar rojizo',
+    temperature: '7-9°C',
+    legend: 'Inspirada en Huitaca, la diosa muisca del amor, la sensualidad, la embriaguez y la libertad. Desterrada por desafiar las normas impuestas por Bochica, Huitaca representa la rebeldía con propósito, el placer como acto sagrado, y la pasión por la vida sin restricciones.',
+    fullDescription: 'Nuestra American Amber Ale rinde homenaje a Huitaca, símbolo de la noche encantadora, del vino, del deseo y de la mujer empoderada. Su perfil maltoso y equilibrado evoca la dulzura de la libertad, mientras que su color ámbar rojizo refleja la pasión por la vida sin restricciones.',
+    characteristics: {
+      color: 'Ámbar rojizo brillante',
+      aroma: 'Caramelo, pan tostado y notas herbales',
+      sabor: 'Maltoso con un equilibrado amargor',
+      maridaje: 'Carnes a la parrilla, quesos semicurados, pizza'
+    },
+    process: 'Elaborada con una base de maltas caramelo y especiales, complementada con lúpulos americanos.',
+    maridaje: [
+      { emoji: '🍖', name: 'Carnes a la parrilla' },
+      { emoji: '🧀', name: 'Quesos semicurados' },
+      { emoji: '🍕', name: 'Pizza' }
+    ]
   }
 ];
 
