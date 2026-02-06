@@ -61,7 +61,7 @@ services:
     networks:
       - sierra-network
     ports:
-      - "3000:3000"
+      - "3005:3000"
 
   frontend:
     build:
@@ -74,7 +74,7 @@ services:
     networks:
       - sierra-network
     ports:
-      - "8880:8880"
+      - "8881:8880"
 
 networks:
   sierra-network:
