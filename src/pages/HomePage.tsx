@@ -12,7 +12,7 @@ const HomePage = () => {
   const { scrollYProgress } = useScroll();
 
   const backgroundOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
+
 
   const backgroundVideos = [
     "https://player.vimeo.com/progressive_redirect/playback/688518575/rendition/720p/file.mp4?loc=external&oauth2_token_id=1747418641&signature=e0359b9fd0f20ae9e45d8a562552eaefb3f0c0e122daa19577cca8fedf6b6950",
@@ -292,7 +292,7 @@ const HomePage = () => {
                 title: "Sabores Locales",
                 description: "Incorporamos frutos nativos como el corozo en nuestras recetas, celebrando la biodiversidad colombiana."
               }
-            ].map((feature, index) => (
+            ].map((feature) => (
               <motion.div
                 key={feature.title}
                 variants={fadeIn}
@@ -335,7 +335,7 @@ const HomePage = () => {
                 title: "Experiencia Única",
                 description: "Ofrecemos visitas guiadas, catas y eventos especiales para los amantes de la cerveza."
               }
-            ].map((feature, index) => (
+            ].map((feature) => (
               <motion.div
                 key={feature.title}
                 variants={fadeIn}
