@@ -209,7 +209,7 @@ const HomePage = () => {
       </section>
 
       {/* Process Section */}
-      <section className="py-20 glass-effect relative overflow-hidden">
+      <section className="py-20 relative overflow-hidden bg-[#0a0a0a]">
         <div className="absolute inset-0 w-full h-full overflow-hidden">
           {/* Dark Background */}
           <div className="absolute inset-0 bg-[#0a0a0a]" />
