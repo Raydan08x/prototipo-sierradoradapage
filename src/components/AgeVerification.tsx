@@ -37,9 +37,9 @@ const AgeVerification: React.FC<AgeVerificationProps> = ({ onVerified }) => {
       <div className="bg-[#2A2A2B] p-8 rounded-lg max-w-md w-full shadow-xl">
         <div className="text-center mb-8">
           <img
-            src="/assets/logo-color.png"
+            src="/assets/logo-vertical.png"
             alt="Sierra Dorada"
-            className="h-16 mx-auto mb-6"
+            className="h-32 mx-auto mb-6"
           />
           <h2 className="font-dorsa text-4xl text-[#E5E1E6] mb-4">Verificación de Edad</h2>
           <p className="font-barlow-condensed text-[#B3A269] text-sm mb-6">
