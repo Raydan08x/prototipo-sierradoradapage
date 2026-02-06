@@ -53,7 +53,7 @@ const Navbar = () => {
         }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-20 md:h-28">
           <div className="flex-shrink-0">
             <button
               onClick={() => handleNavigation('/')}
@@ -62,7 +62,7 @@ const Navbar = () => {
               <img
                 src="/assets/logo-horizontal.png"
                 alt="Sierra Dorada"
-                className="h-12 w-auto"
+                className="h-12 md:h-20 w-auto"
               />
             </button>
           </div>

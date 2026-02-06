@@ -3,7 +3,7 @@ import Features from '../components/Features';
 
 const ProductsPage = () => {
   return (
-    <div className="pt-20">
+    <div className="pt-28">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
