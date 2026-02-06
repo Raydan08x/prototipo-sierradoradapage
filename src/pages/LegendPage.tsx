@@ -82,7 +82,7 @@ const LegendPage = () => {
           className="py-20 text-center"
         >
           <div className="max-w-4xl mx-auto bg-[#2A2A2B]/50 backdrop-blur-sm border border-[#B3A269]/20 rounded-xl p-12">
-            <h2 className="text-4xl font-dorsa text-[#B3A269] mb-6 tracking-wide">EL VIAJE SAGRADO</h2>
+            <h2 className="text-4xl md:text-5xl font-dorsa text-[#B3A269] mb-6 tracking-wide">EL VIAJE SAGRADO</h2>
             <p className="text-xl text-[#E5E1E6]/80 mb-8 max-w-2xl mx-auto font-barlow">
               Descubre el mito detrás de nuestra creación. Una experiencia inmersiva que conecta la tradición cervecera con la cosmogonía Muisca.
             </p>

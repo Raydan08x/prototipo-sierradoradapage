@@ -80,7 +80,7 @@ const ProductionScroll = () => {
             </div>
 
             <div className="max-w-5xl mx-auto px-4 relative z-10">
-                <h2 className="text-4xl font-dorsa text-[#B3A269] text-center mb-24 tracking-wider">
+                <h2 className="text-4xl md:text-5xl font-dorsa text-[#B3A269] text-center mb-24 tracking-wider">
                     EL VIAJE SAGRADO
                 </h2>
 
