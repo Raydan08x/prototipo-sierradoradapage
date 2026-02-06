@@ -16,22 +16,12 @@ const DynamicParticles = ({
     secondaryColorSequence = ['#FFD700', '#DAA520', '#CD853F', '#FFD700'],
     inputRange,
     auraOpacity = 0.4,
-    particleCount = 60,
-    disableMobileOptimization = false // New prop to opt-out of mobile reduction
-}: DynamicParticlesProps & { disableMobileOptimization?: boolean }) => {
+    particleCount = 60
+}: DynamicParticlesProps) => {
 
     // Internal scroll hook if not provided externally
     const { scrollYProgress: internalScrollProgress } = useScroll();
     const scrollYProgress = externalScrollProgress || internalScrollProgress;
-
-    // Mobile Detection
-    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-
-    // Apply Optimization if Mobile and NOT disabled
-    const shouldOptimize = isMobile && !disableMobileOptimization;
-
-    // Adjust Count: Reduce by 40% (retain 60%) if optimized
-    const finalParticleCount = shouldOptimize ? Math.floor(particleCount * 0.6) : particleCount;
 
     // Interpolate Global Colors based on scroll
     const numSteps = colorSequence.length;
@@ -49,19 +39,16 @@ const DynamicParticles = ({
 
     // Create a particle set
     const particles = useMemo(() => {
-        return Array.from({ length: finalParticleCount }).map((_, i) => ({
+        return Array.from({ length: particleCount }).map((_, i) => ({
             id: i,
             x: Math.random() * 100,
             y: Math.random() * 100,
-            // Optimization: Smaller size on mobile (approx 40% smaller range)
-            size: shouldOptimize
-                ? Math.random() * 5 + 2 // Mobile: 2-7px
-                : Math.random() * 8 + 4, // Desktop: 4-12px
+            size: Math.random() * 8 + 4, // Bigger: 4-12px
             isSecondary: Math.random() > 0.5,
             duration: Math.random() * 10 + 10,
             delay: Math.random() * 5,
         }));
-    }, [finalParticleCount, shouldOptimize]);
+    }, []);
 
     // Parallax effect for particles as a whole or individually?
     // Let's move them slightly with scroll to feel "connected"
@@ -69,7 +56,7 @@ const DynamicParticles = ({
     const springY = useSpring(yMove, { stiffness: 40, damping: 20 });
 
     return (
-        <div className="fixed inset-0 pointer-events-none overflow-hidden z-[-1]">
+        <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
             {/* Global Atmospheric Glow that changes color */}
             <motion.div
                 className="absolute inset-0 blur-3xl will-change-transform" // Added will-change via class or style
@@ -117,7 +104,7 @@ const DynamicParticles = ({
             ))}
 
             {/* Extra "Sparkles" Layer - Optimized */}
-            {Array.from({ length: shouldOptimize ? 9 : 15 }).map((_, i) => ( // Reduced count (~40% less) if optimized
+            {Array.from({ length: 15 }).map((_, i) => ( // Reduced count from 20 to 15
                 <motion.div
                     key={`sparkle-${i}`}
                     className="absolute rounded-full bg-white"

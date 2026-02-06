@@ -150,7 +150,6 @@ const SacredJourneyPage = () => {
                 colorSequence={primaryColors}
                 secondaryColorSequence={secondaryColors}
                 inputRange={colorOffsets}
-                disableMobileOptimization={true} // Maintain rich effect for this journey
             />
 
             {/* Navigation */}
