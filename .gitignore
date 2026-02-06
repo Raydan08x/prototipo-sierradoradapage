@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Sensitive Files
+ACCESS_GUIDE.md
+.env
+.env.docker
