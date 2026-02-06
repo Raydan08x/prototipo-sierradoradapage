@@ -150,6 +150,8 @@ const SacredJourneyPage = () => {
                 colorSequence={primaryColors}
                 secondaryColorSequence={secondaryColors}
                 inputRange={colorOffsets}
+                particleCount={25}
+                auraOpacity={0.5}
             />
 
             {/* Navigation */}
