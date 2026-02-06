@@ -429,43 +429,44 @@
   h2,
   h3,
   .title-font {
-    @apply font-dorsa tracking-widest;
+    font-family: 'Dorsa', sans-serif;
+    letter-spacing: 0.1em;
   }
 
   h4,
   h5,
   h6,
   .subtitle-font {
-    @apply font-barlow-condensed;
+    font-family: 'Barlow Condensed', sans-serif;
   }
 
   /* Typography Scale */
   h1 {
-    @apply text-7xl md:text-8xl leading-tight;
+    @apply text-8xl md:text-9xl leading-tight;
   }
 
   h2 {
-    @apply text-5xl md:text-6xl leading-tight;
+    @apply text-6xl md:text-7xl leading-tight;
   }
 
   h3 {
-    @apply text-3xl md:text-4xl leading-tight;
+    @apply text-4xl md:text-5xl leading-tight;
   }
 
   h4 {
-    @apply text-xl md:text-2xl leading-snug;
+    @apply text-2xl md:text-3xl leading-snug;
   }
 
   h5 {
-    @apply text-lg md:text-xl leading-snug;
+    @apply text-xl md:text-2xl leading-snug;
   }
 
   h6 {
-    @apply text-base md:text-lg leading-snug;
+    @apply text-lg md:text-xl leading-snug;
   }
 
   p {
-    @apply text-base leading-relaxed;
+    @apply text-lg leading-relaxed;
   }
 
   .small-text {
