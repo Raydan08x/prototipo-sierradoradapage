@@ -16,18 +16,22 @@ const Preloader = () => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#222223]">
       <div className="relative">
-        {/* Logo animado */}
-        <div className="w-24 h-24 rounded-full border-4 border-[#B3A269] animate-spin" style={{
-          borderRightColor: 'transparent',
-          animationDuration: '2s'
-        }} />
+        {/* Spinner con brillo dorado */}
+        <div
+          className="w-28 h-28 rounded-full border-4 border-[#B3A269] animate-spin"
+          style={{
+            borderRightColor: 'transparent',
+            animationDuration: '2s',
+            filter: 'drop-shadow(0 0 8px rgba(179, 162, 105, 0.6))'
+          }}
+        />
 
-        {/* Isotipo animado */}
+        {/* Isotipo centrado - casi llena el spinner */}
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
           <img
             src="/assets/isotipo.png"
             alt="Sierra Dorada"
-            className="w-40 h-40 animate-pulse object-contain rounded-full"
+            className="w-20 h-20 animate-pulse object-contain"
           />
         </div>
       </div>
