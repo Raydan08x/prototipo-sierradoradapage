@@ -141,11 +141,17 @@ const GastrobarPage = () => {
                                 {/* Right: QR Code */}
                                 <div className="flex flex-col items-center justify-center bg-[#222223] p-8 rounded-xl border border-[#B3A269]/10">
                                     <div className="bg-white p-4 rounded-lg shadow-lg mb-4">
-                                        <img
-                                            src="/assets/qr-menu.png"
-                                            alt="Código QR Menú"
-                                            className="w-48 h-48 object-contain"
-                                        />
+                                        <a
+                                            href="https://toteat.shop/r/co/Sierra-Dorada-Gastrobar/21360/checkin/menu"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            <img
+                                                src="/assets/qr-menu.png"
+                                                alt="Código QR Menú"
+                                                className="w-48 h-48 object-contain"
+                                            />
+                                        </a>
                                     </div>
                                     <h4 className="text-[#E5E1E6] font-bold flex items-center gap-2 mb-2">
                                         <QrCode className="w-5 h-5 text-[#B3A269]" /> Escanea el Menú
