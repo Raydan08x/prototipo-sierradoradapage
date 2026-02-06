@@ -58,7 +58,7 @@ const HomePage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#222223] relative">
+    <div className="min-h-screen bg-[#0a0a0a] relative">
       {/* Global Background Layer - Single unified background for entire page */}
       <div className="fixed inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
         {/* Aura Effect - Global */}
@@ -95,12 +95,12 @@ const HomePage = () => {
         {/* Background Videos */}
         <div className="absolute inset-0 w-full h-full overflow-hidden">
           {/* Dark Background with Optimized Particles for Mobile */}
-          <div className="absolute inset-0 block md:hidden bg-[#222223]">
+          <div className="absolute inset-0 block md:hidden bg-[#0a0a0a]">
             {/* Aura Effect */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(179,162,105,0.2)_0%,_transparent_70%)] pointer-events-none" />
 
             {/* Dark Gradient Base */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[#222223] via-[#222223]/90 to-[#222223]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#0a0a0a]/90 to-[#0a0a0a]" />
             {/* Particles ABOVE Gradient - 6 particles, smaller, higher opacity */}
             {[...Array(6)].map((_, i) => (
               <motion.div
@@ -200,7 +200,7 @@ const HomePage = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => navigate('/productos')}
-                className="px-8 py-3 bg-[#B3A269] text-[#222223] rounded-full font-medium hover:bg-[#B3A269]/90 transition-all duration-300 shadow-[0_0_20px_rgba(179,162,105,0.4)]"
+                className="px-8 py-3 bg-[#B3A269] text-[#0a0a0a] rounded-full font-medium hover:bg-[#B3A269]/90 transition-all duration-300 shadow-[0_0_20px_rgba(179,162,105,0.4)]"
               >
                 Descubrir Cervezas
               </motion.button>
@@ -219,7 +219,7 @@ const HomePage = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => navigate('/nuestra-leyenda')}
-                className="px-8 py-3 border-2 border-[#B3A269] text-[#B3A269] rounded-full font-medium hover:bg-[#B3A269] hover:text-[#222223] transition-all duration-300"
+                className="px-8 py-3 border-2 border-[#B3A269] text-[#B3A269] rounded-full font-medium hover:bg-[#B3A269] hover:text-[#0a0a0a] transition-all duration-300"
               >
                 Nuestra Historia
               </motion.button>
@@ -243,7 +243,7 @@ const HomePage = () => {
           </div>
         </motion.div>
 
-        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#222223] to-transparent z-20 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#0a0a0a] to-transparent z-20 pointer-events-none" />
       </section>
 
       {/* Process Section */}
