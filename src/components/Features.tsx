@@ -200,44 +200,26 @@ const Features = () => {
     };
   }, [isDragging, scrollSpeed, autoScroll]); // Removed products dependency to prevent re-runs
 
-  // Mouse Events
-  const handleMouseDown = (e: React.MouseEvent) => {
+  // Pointer Events (Unifies Mouse & Touch)
+  const handlePointerDown = (e: React.PointerEvent) => {
     setIsDragging(true);
     setAutoScroll(false);
     setStartX(e.pageX - containerRef.current!.offsetLeft);
     setScrollLeft(containerRef.current!.scrollLeft);
+    // Capture pointer to ensure we track movement even if it leaves the element
+    containerRef.current!.setPointerCapture(e.pointerId);
   };
 
-  const handleMouseUp = () => {
+  const handlePointerUp = (e: React.PointerEvent) => {
     setIsDragging(false);
     setAutoScroll(true);
+    containerRef.current!.releasePointerCapture(e.pointerId);
   };
 
-  const handleMouseMove = (e: React.MouseEvent) => {
+  const handlePointerMove = (e: React.PointerEvent) => {
     if (!isDragging) return;
     e.preventDefault();
     const x = e.pageX - containerRef.current!.offsetLeft;
-    const walk = (x - startX) * 2;
-    containerRef.current!.scrollLeft = scrollLeft - walk;
-  };
-
-  // Touch Events
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setIsDragging(true);
-    setAutoScroll(false);
-    setStartX(e.touches[0].pageX - containerRef.current!.offsetLeft);
-    setScrollLeft(containerRef.current!.scrollLeft);
-  };
-
-  const handleTouchEnd = () => {
-    setIsDragging(false);
-    setAutoScroll(true);
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (!isDragging) return;
-    // e.preventDefault(); // Often better NOT to preventDefault on touchmove unless necessary to stop page scroll
-    const x = e.touches[0].pageX - containerRef.current!.offsetLeft;
     const walk = (x - startX) * 2;
     containerRef.current!.scrollLeft = scrollLeft - walk;
   };
@@ -352,13 +334,10 @@ const Features = () => {
         <div
           ref={containerRef}
           className="flex overflow-x-hidden cursor-grab active:cursor-grabbing no-scrollbar"
-          onMouseDown={handleMouseDown}
-          onMouseUp={handleMouseUp}
-          onMouseLeave={handleMouseUp}
-          onMouseMove={handleMouseMove}
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
-          onTouchMove={handleTouchMove}
+          onPointerDown={handlePointerDown}
+          onPointerUp={handlePointerUp}
+          onPointerLeave={handlePointerUp}
+          onPointerMove={handlePointerMove}
           style={{ touchAction: 'pan-y' }}
         >
           <div className="flex gap-8 min-w-max px-4">
