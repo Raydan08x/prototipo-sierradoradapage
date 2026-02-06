@@ -145,6 +145,26 @@ const Footer = () => {
           </div>
         </div>
 
+        {/* Institutional Logos - Fondo Emprender Section */}
+        <div className="flex flex-col items-center mt-8 mb-8 pt-8 border-t border-[#B3A269]/30">
+          <p className="text-[#B3A269] text-sm font-semibold mb-4">Proyecto avalado por</p>
+          <div className="flex flex-wrap justify-center items-center gap-8">
+            <img
+              src="/assets/sena-fe-png.webp"
+              alt="SENA - Fondo Emprender"
+              className="h-12 md:h-16 w-auto object-contain"
+            />
+            <img
+              src="/assets/logo-presidencia.png"
+              alt="Presidencia de la República de Colombia"
+              className="h-12 md:h-16 w-auto object-contain"
+            />
+          </div>
+          <p className="text-[#E5E1E6]/60 text-xs mt-4 text-center max-w-md">
+            Proyecto financiado por Fondo Emprender del SENA
+          </p>
+        </div>
+
         <div className="border-t border-[#B3A269] pt-8 flex flex-col md:flex-row justify-between items-center relative">
           <div className="w-full text-center">
             <p className="text-[#E5E1E6]">
