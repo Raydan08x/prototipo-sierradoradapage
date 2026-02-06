@@ -1,0 +1,72 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: sierra-dorada-db
+    restart: always
+    environment:
+      POSTGRES_DB: sddb
+      POSTGRES_USER: sierra_admin
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-199611Cm.}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    networks:
+      - sierra-network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: sierra-dorada-pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@sierradorada.co
+      PGADMIN_DEFAULT_PASSWORD: ${DB_PASSWORD:-199611Cm.}
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
+    networks:
+      - sierra-network
+
+  backend:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    container_name: sierra-dorada-backend
+    restart: always
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: sddb
+      DB_USER: sierra_admin
+      DB_PASSWORD: ${DB_PASSWORD:-199611Cm.}
+      JWT_SECRET: ${JWT_SECRET:-sierra-dorada-super-secret-key-2026-xyz123}
+      NODE_ENV: production
+      PORT: 3000
+    depends_on:
+      - db
+    networks:
+      - sierra-network
+    ports:
+      - "3000:3000"
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sierra-dorada-frontend
+    restart: always
+    depends_on:
+      - backend
+    networks:
+      - sierra-network
+    ports:
+      - "8880:8880"
+
+networks:
+  sierra-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
