@@ -140,7 +140,7 @@ const HomePage = () => {
 
             <motion.h1
               variants={fadeIn}
-              className="text-6xl md:text-8xl font-bold mb-6 tracking-tight"
+              className="text-6xl md:text-8xl mb-6 tracking-tight"
             >
               <span className="block text-[#E5E1E6] font-dorsa">Sierra Dorada</span>
               <span className="block bg-gradient-to-r from-[#B3A269] to-[#E5E1E6] text-transparent bg-clip-text font-dorsa">
