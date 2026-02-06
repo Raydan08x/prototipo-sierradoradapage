@@ -379,7 +379,7 @@ const HomePage = () => {
               <motion.div
                 key={feature.title}
                 variants={fadeIn}
-                className="bg-[#222223]/50 p-8 rounded-lg backdrop-blur-sm border border-[#B3A269]/10 hover:border-[#B3A269]/30 transition-all duration-300"
+                className="p-8 rounded-lg border border-[#B3A269]/10 hover:border-[#B3A269]/30 transition-all duration-300 group"
               >
                 <div className="w-16 h-16 bg-[#B3A269]/20 rounded-full flex items-center justify-center mx-auto mb-6">
                   <feature.icon className="w-8 h-8 text-[#B3A269]" />
@@ -452,7 +452,7 @@ const HomePage = () => {
               <motion.div
                 key={feature.title}
                 variants={fadeIn}
-                className="bg-[#222223]/50 p-8 rounded-lg backdrop-blur-sm border border-[#B3A269]/10 hover:border-[#B3A269]/30 transition-all duration-300"
+                className="p-8 rounded-lg border border-[#B3A269]/10 hover:border-[#B3A269]/30 transition-all duration-300 group"
               >
                 <div className="w-16 h-16 bg-[#B3A269]/20 rounded-full flex items-center justify-center mx-auto mb-6">
                   <feature.icon className="w-8 h-8 text-[#B3A269]" />
