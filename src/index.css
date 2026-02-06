@@ -429,7 +429,7 @@
   h2,
   h3,
   .title-font {
-    @apply font-dorsa tracking-wider;
+    @apply font-dorsa tracking-widest;
   }
 
   h4,
