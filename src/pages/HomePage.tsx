@@ -313,7 +313,34 @@ const HomePage = () => {
 
       {/* Heritage Section */}
       <section className="py-20 relative overflow-hidden bg-[#0a0a0a]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="absolute inset-0 w-full h-full overflow-hidden">
+          {/* Particles */}
+          {[...Array(6)].map((_, i) => (
+            <motion.div
+              key={`heritage-particle-${i}`}
+              className="absolute bg-[#B3A269] rounded-full z-10"
+              style={{
+                width: Math.random() * 3 + 1,
+                height: Math.random() * 3 + 1,
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                opacity: 0.15
+              }}
+              animate={{
+                y: [0, -60, 0],
+                opacity: [0.1, 0.3, 0.1],
+                scale: [0.8, 1.2, 0.8]
+              }}
+              transition={{
+                duration: Math.random() * 8 + 8,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: Math.random() * 4
+              }}
+            />
+          ))}
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial="initial"
             whileInView="animate"
@@ -356,7 +383,34 @@ const HomePage = () => {
 
       {/* Features Section */}
       <section className="py-20 relative overflow-hidden bg-[#0a0a0a]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="absolute inset-0 w-full h-full overflow-hidden">
+          {/* Particles */}
+          {[...Array(6)].map((_, i) => (
+            <motion.div
+              key={`features-particle-${i}`}
+              className="absolute bg-[#B3A269] rounded-full z-10"
+              style={{
+                width: Math.random() * 3 + 1,
+                height: Math.random() * 3 + 1,
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                opacity: 0.15
+              }}
+              animate={{
+                y: [0, -60, 0],
+                opacity: [0.1, 0.3, 0.1],
+                scale: [0.8, 1.2, 0.8]
+              }}
+              transition={{
+                duration: Math.random() * 8 + 8,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: Math.random() * 4
+              }}
+            />
+          ))}
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial="initial"
             whileInView="animate"
@@ -399,7 +453,33 @@ const HomePage = () => {
 
       {/* CTA Section */}
       <section className="py-20 relative overflow-hidden bg-[#0a0a0a]">
-        <div className="absolute inset-0 bg-[#0a0a0a]" />
+        <div className="absolute inset-0 w-full h-full overflow-hidden">
+          {/* Particles */}
+          {[...Array(6)].map((_, i) => (
+            <motion.div
+              key={`cta-particle-${i}`}
+              className="absolute bg-[#B3A269] rounded-full z-10"
+              style={{
+                width: Math.random() * 3 + 1,
+                height: Math.random() * 3 + 1,
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                opacity: 0.15
+              }}
+              animate={{
+                y: [0, -60, 0],
+                opacity: [0.1, 0.3, 0.1],
+                scale: [0.8, 1.2, 0.8]
+              }}
+              transition={{
+                duration: Math.random() * 8 + 8,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: Math.random() * 4
+              }}
+            />
+          ))}
+        </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -428,8 +508,32 @@ const HomePage = () => {
 
       {/* Newsletter Section */}
       <section className="py-20 relative overflow-hidden bg-[#0a0a0a]">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[#0a0a0a]" />
+        <div className="absolute inset-0 w-full h-full overflow-hidden">
+          {/* Particles */}
+          {[...Array(6)].map((_, i) => (
+            <motion.div
+              key={`newsletter-particle-${i}`}
+              className="absolute bg-[#B3A269] rounded-full z-10"
+              style={{
+                width: Math.random() * 3 + 1,
+                height: Math.random() * 3 + 1,
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                opacity: 0.15
+              }}
+              animate={{
+                y: [0, -60, 0],
+                opacity: [0.1, 0.3, 0.1],
+                scale: [0.8, 1.2, 0.8]
+              }}
+              transition={{
+                duration: Math.random() * 8 + 8,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: Math.random() * 4
+              }}
+            />
+          ))}
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
