@@ -14,20 +14,20 @@ const MuiscaBackground = () => {
             <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#111] to-[#0a0a0a]" />
 
             {/* Floating Particles (Golden Dust) - Optimized */}
-            {[...Array(12)].map((_, i) => (
+            {[...Array(8)].map((_, i) => (
                 <motion.div
                     key={`particle-${i}`}
                     className="absolute bg-[#B3A269] rounded-full" // Removed blur-[1px]
                     style={{
-                        width: Math.random() * 3 + 1,
-                        height: Math.random() * 3 + 1,
+                        width: Math.random() * 2 + 1,
+                        height: Math.random() * 2 + 1,
                         left: `${Math.random() * 100}%`,
                         top: `${Math.random() * 100}%`,
                     }}
                     animate={{
-                        y: [0, -100, 0],
-                        opacity: [0, 0.4, 0],
-                        scale: [0, 1.5, 0]
+                        y: [0, -80, 0],
+                        opacity: [0.1, 0.7, 0.1],
+                        scale: [0.5, 1.2, 0.5]
                     }}
                     transition={{
                         duration: Math.random() * 10 + 10,

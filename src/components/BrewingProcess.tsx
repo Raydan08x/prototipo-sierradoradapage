@@ -345,6 +345,27 @@ const BrewingProcess = () => {
                 <p className="text-[#E5E1E6]/90 text-base leading-relaxed font-barlow">
                   {steps[selectedStep - 1].description}
                 </p>
+
+                {/* Prev/Next Navigation Buttons */}
+                <div className="flex justify-between items-center mt-6 pt-4 border-t border-[#B3A269]/10">
+                  <button
+                    onClick={() => setSelectedStep(selectedStep > 1 ? selectedStep - 1 : steps.length)}
+                    className="flex items-center gap-2 px-4 py-2 text-sm text-[#E5E1E6]/70 hover:text-[#B3A269] transition-colors group"
+                  >
+                    <span className="transform group-hover:-translate-x-1 transition-transform">←</span>
+                    <span className="hidden sm:inline">{steps[(selectedStep - 2 + steps.length) % steps.length].name}</span>
+                    <span className="sm:hidden">Anterior</span>
+                  </button>
+                  <span className="text-[#B3A269] text-sm font-bold">{selectedStep} / {steps.length}</span>
+                  <button
+                    onClick={() => setSelectedStep(selectedStep < steps.length ? selectedStep + 1 : 1)}
+                    className="flex items-center gap-2 px-4 py-2 text-sm text-[#E5E1E6]/70 hover:text-[#B3A269] transition-colors group"
+                  >
+                    <span className="hidden sm:inline">{steps[selectedStep % steps.length].name}</span>
+                    <span className="sm:hidden">Siguiente</span>
+                    <span className="transform group-hover:translate-x-1 transition-transform">→</span>
+                  </button>
+                </div>
               </motion.div>
             )}
           </AnimatePresence>

@@ -65,32 +65,32 @@ const HomePage = () => {
         <div className="absolute inset-0 w-full h-full overflow-hidden">
           {/* Dark Background with Optimized Particles for Mobile */}
           <div className="absolute inset-0 block md:hidden bg-[#0a0a0a]">
-            {/* Reduced Particles for Mobile - Only 8 for Performance */}
-            {[...Array(8)].map((_, i) => (
+            {/* Dark Gradient Base */}
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#0a0a0a]/90 to-[#0a0a0a]" />
+            {/* Particles ABOVE Gradient - 6 particles, smaller, higher opacity */}
+            {[...Array(6)].map((_, i) => (
               <motion.div
                 key={`mobile-particle-${i}`}
-                className="absolute bg-[#B3A269] rounded-full"
+                className="absolute bg-[#B3A269] rounded-full z-10"
                 style={{
-                  width: Math.random() * 4 + 2,
-                  height: Math.random() * 4 + 2,
+                  width: Math.random() * 3 + 1,
+                  height: Math.random() * 3 + 1,
                   left: `${Math.random() * 100}%`,
                   top: `${Math.random() * 100}%`,
                 }}
                 animate={{
-                  y: [0, -80, 0],
-                  opacity: [0, 0.6, 0],
-                  scale: [0.5, 1.2, 0.5]
+                  y: [0, -60, 0],
+                  opacity: [0.2, 0.9, 0.2],
+                  scale: [0.8, 1.3, 0.8]
                 }}
                 transition={{
-                  duration: Math.random() * 8 + 8,
+                  duration: Math.random() * 6 + 6,
                   repeat: Infinity,
                   ease: "easeInOut",
-                  delay: Math.random() * 4
+                  delay: Math.random() * 3
                 }}
               />
             ))}
-            {/* Dark Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#0a0a0a]/80 to-[#0a0a0a]" />
           </div>
 
           {/* Video for Desktop */}
