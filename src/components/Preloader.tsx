@@ -18,7 +18,7 @@ const Preloader = () => {
       <div className="relative">
         {/* Spinner con brillo dorado */}
         <div
-          className="w-32 h-32 rounded-full border-4 border-[#B3A269] animate-spin"
+          className="w-36 h-36 rounded-full border-4 border-[#B3A269] animate-spin"
           style={{
             borderRightColor: 'transparent',
             animationDuration: '2s',
@@ -31,7 +31,7 @@ const Preloader = () => {
           <img
             src="/assets/isotipo.png"
             alt="Sierra Dorada"
-            className="w-28 h-28 animate-pulse object-contain"
+            className="w-[200px] h-[200px] animate-pulse object-contain"
           />
         </div>
       </div>
