@@ -133,7 +133,7 @@ const HomePage = () => {
                 <img
                   src="/assets/logo-circular.png"
                   alt="Sierra Dorada"
-                  className="w-full h-full relative z-10"
+                  className="w-full h-full relative z-20 opacity-90"
                 />
               </div>
             </motion.div>

@@ -27,7 +27,7 @@ const Preloader = () => {
           <img
             src="/assets/isotipo.png"
             alt="Sierra Dorada"
-            className="w-10 h-10 animate-pulse"
+            className="w-14 h-14 animate-pulse"
           />
         </div>
       </div>
