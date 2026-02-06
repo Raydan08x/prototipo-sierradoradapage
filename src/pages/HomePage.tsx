@@ -178,7 +178,7 @@ const HomePage = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => navigate('/nuestra-leyenda?openTest=true')}
-                className="px-8 py-3 bg-gradient-to-r from-[#8B4513] to-[#B3A269] text-[#E5E1E6] rounded-full font-medium hover:brightness-110 transition-all duration-300 flex items-center gap-2 border border-[#B3A269]/50"
+                className="px-8 py-3 bg-gradient-to-r from-[#8B4513] to-[#B3A269] text-[#E5E1E6] rounded-full font-medium hover:brightness-110 transition-all duration-300 flex items-center justify-center gap-2 border border-[#B3A269]/50"
               >
                 <Beer className="w-4 h-4" />
                 Test de Cerveza
