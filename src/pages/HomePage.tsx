@@ -584,7 +584,7 @@ const HomePage = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Tu correo electrónico"
-                className="w-full px-6 py-4 bg-[#222223] text-[#E5E1E6] rounded-full focus:outline-none focus:ring-2 focus:ring-[#B3A269] pr-36"
+                className="w-full px-6 py-4 bg-transparent text-[#E5E1E6] rounded-full focus:outline-none focus:ring-2 focus:ring-[#B3A269] pr-36 border border-[#B3A269]/30"
               />
               <motion.button
                 whileHover={{ scale: 1.05 }}
