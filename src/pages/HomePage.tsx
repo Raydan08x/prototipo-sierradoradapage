@@ -236,19 +236,19 @@ const HomePage = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=800&q=80",
+                image: "/assets/proceso-produccion.png",
                 title: "Arte de la Elaboración",
                 description: "Ingredientes locales de la más alta calidad",
                 link: "/nuestra-leyenda"
               },
               {
-                image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80",
+                image: "/assets/viaje-dorado.png",
                 title: "Viaje Dorado",
                 description: "Técnicas artesanales tradicionales",
                 link: "/viaje-sagrado"
               },
               {
-                image: "https://images.unsplash.com/photo-1584225064785-c62a8b43d148?auto=format&fit=crop&w=800&q=80",
+                image: "/assets/reservas.png",
                 title: "Reserva tu Visita",
                 description: "Vive la experiencia Sierra Dorada en persona",
                 link: "/servicios"
