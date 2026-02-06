@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import toast from 'react-hot-toast';
 import { Beer, X, Eye, EyeOff } from 'lucide-react';
+import { GoogleLogin } from '@react-oauth/google';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -24,6 +25,36 @@ const LoginForm = () => {
       toast.error('Error al iniciar sesión. Por favor, verifica tus credenciales.');
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleGoogleSuccess = async (credentialResponse: any) => {
+    try {
+      const response = await fetch('http://localhost:3000/api/auth/google-login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ credential: credentialResponse.credential }),
+      });
+      const data = await response.json();
+
+      if (!response.ok) throw new Error(data.error);
+
+      // Save token and state consistent with manual login
+      // Assuming AuthContext handles this, but here we might need manual handling if context doesn't expose a method for token/user object directly.
+      // Actually, looking at AuthContext usage in RegisterForm verify, it seems we save to localStorage manually there?
+      // Let's check VerificationPage: Yes, it saves to localStorage manually.
+      // We should really use AuthContext.login if available, but checking LoginForm it calls signIn. 
+      // For consistency and cleaner code, ideally signIn handles it. Since we are adding a NEW flow, we'll manually set localstorage and reload or dispatch event if needed.
+      // Or better yet, we can reload to let AuthProvider pick up the token?
+
+      localStorage.setItem('token', data.access_token);
+      localStorage.setItem('user', JSON.stringify(data.user));
+
+      toast.success(`¡Bienvenido ${data.user.full_name || 'Usuari@'}!`);
+      window.location.href = '/'; // Force reload to update context
+
+    } catch (error: any) {
+      toast.error(error.message || 'Error con Google Login');
     }
   };
 
@@ -72,7 +103,7 @@ const LoginForm = () => {
               <input
                 id="password"
                 name="password"
-                type={showPassword ? 'text' : 'password'}
+                type="password"
                 autoComplete="current-password"
                 required
                 value={password}
@@ -102,6 +133,22 @@ const LoginForm = () => {
             >
               {isLoading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
             </button>
+          </div>
+
+          <div className="relative flex py-2 items-center">
+            <div className="flex-grow border-t border-gray-300"></div>
+            <span className="flex-shrink-0 mx-4 text-gray-400">O continúa con</span>
+            <div className="flex-grow border-t border-gray-300"></div>
+          </div>
+
+          <div className="flex justify-center">
+            <GoogleLogin
+              onSuccess={handleGoogleSuccess}
+              onError={() => toast.error('Error al conectar con Google')}
+              theme="filled_black"
+              shape="circle"
+              text="continue_with"
+            />
           </div>
 
           <div className="text-center">

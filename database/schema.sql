@@ -7,6 +7,10 @@ CREATE TABLE IF NOT EXISTS users (
     email TEXT UNIQUE NOT NULL,
     password_hash TEXT NOT NULL, -- Store hashed passwords here
     role TEXT DEFAULT 'client', -- 'client', 'employee', 'admin'
+    is_verified BOOLEAN DEFAULT FALSE,
+    verification_code TEXT,
+    code_expires_at TIMESTAMP WITH TIME ZONE,
+    google_id TEXT UNIQUE,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     last_sign_in TIMESTAMP WITH TIME ZONE
 );
@@ -21,6 +25,7 @@ CREATE TABLE IF NOT EXISTS profiles (
     gender TEXT CHECK (gender IN ('male', 'female')),
     terms_accepted BOOLEAN DEFAULT FALSE,
     terms_accepted_at TIMESTAMP WITH TIME ZONE,
+    data_processing_consent BOOLEAN DEFAULT FALSE,
     newsletter_subscription BOOLEAN DEFAULT FALSE,
     marketing_consent BOOLEAN DEFAULT FALSE,
     role_title TEXT,

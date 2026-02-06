@@ -17,6 +17,7 @@ interface RegisterFormData {
   confirmPassword: string;
   gender: 'male' | 'female' | '';
   termsAccepted: boolean;
+  dataConsent: boolean;
   newsletterSubscription: boolean;
 }
 
@@ -32,6 +33,7 @@ const RegisterForm = () => {
     confirmPassword: '',
     gender: '',
     termsAccepted: false,
+    dataConsent: false,
     newsletterSubscription: false
   });
   const [showTerms, setShowTerms] = useState(false);
@@ -70,6 +72,11 @@ const RegisterForm = () => {
       return;
     }
 
+    if (!formData.dataConsent) {
+      toast.error('Debes autorizar el tratamiento de datos personales');
+      return;
+    }
+
     if (formData.password !== formData.confirmPassword) {
       toast.error('Las contraseñas no coinciden');
       return;
@@ -90,75 +97,102 @@ const RegisterForm = () => {
         phone: formData.phone,
         birth_date: formData.birthDate.toISOString(),
         terms_accepted: true,
+        data_processing_consent: true,
         terms_accepted_at: new Date().toISOString(),
         newsletter_subscription: formData.newsletterSubscription,
         marketing_consent: formData.newsletterSubscription
       };
 
-      const { session } = await signUp(formData.email, formData.password, userData);
+      await signUp(formData.email, formData.password, userData);
 
-      if (!session) {
-        // Confirmation email required
-        toast.success(
-          '¡Cuenta creada! Hemos enviado un enlace de confirmación a tu correo.',
-          { duration: 6000, icon: '📧' }
-        );
-        // Wait a moment so user reads message, then redirect
-        setTimeout(() => navigate('/login'), 2000);
+      // Verify logic: Redirect to Verification Page
+      toast.success('¡Cuenta creada! Verifica tu correo.');
+      navigate('/verificar', { state: { email: formData.email } });
+
+    } catch (error: any) {
+      // Check for specific error messages from backend
+      if (error.message?.includes('ya existe')) {
+        toast.error('El usuario ya existe. Intenta iniciar sesión.');
       } else {
-        // Immediate login
-        toast.success('Registro exitoso. Bienvenido.');
-        navigate('/');
+        toast.error('Error al registrarse. Por favor, intenta de nuevo.');
       }
-    } catch (error) {
-      toast.error('Error al registrarse. Por favor, intenta de nuevo.');
     } finally {
       setIsLoading(false);
     }
   };
 
   const TermsModal = () => (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-      <div className="bg-white rounded-lg max-h-[80vh] w-full max-w-2xl overflow-y-auto p-6">
-        <h3 className="text-xl font-bold text-gray-900 mb-4">Términos y Condiciones</h3>
-        <div className="prose prose-sm max-w-none">
-          <h4>1. Introducción</h4>
-          <p>Los presentes términos y condiciones (los "Términos") rigen el uso de los servicios ofrecidos por Sierra Dorada ("nosotros", "nuestro", "la Empresa") a través de su sitio web y aplicaciones.</p>
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50 backdrop-blur-sm">
+      <div className="bg-white rounded-lg max-h-[80vh] w-full max-w-2xl overflow-y-auto p-8 shadow-2xl relative">
+        <button
+          onClick={() => setShowTerms(false)}
+          className="absolute top-4 right-4 p-2 text-gray-400 hover:text-[#222223]"
+        >
+          <X className="w-6 h-6" />
+        </button>
 
-          <h4>2. Marco Legal</h4>
-          <p>De acuerdo con la Ley 1581 de 2012 de Protección de Datos Personales y el Decreto 1377 de 2013 de Colombia, al aceptar estos términos, usted autoriza el tratamiento de sus datos personales.</p>
+        <h3 className="text-2xl font-bold text-[#222223] mb-6 border-b pb-2 border-[#B3A269]">
+          Términos y Condiciones y Política de Privacidad
+        </h3>
 
-          <h4>3. Tratamiento de Datos Personales</h4>
-          <p>La información personal será utilizada para:</p>
-          <ul>
-            <li>Verificar su identidad y edad</li>
-            <li>Procesar y gestionar pedidos</li>
-            <li>Enviar información sobre productos y servicios</li>
-            <li>Mejorar nuestros servicios</li>
-            <li>Cumplir con obligaciones legales</li>
+        <div className="prose prose-sm text-gray-700 space-y-4">
+          <h4 className="text-lg font-bold text-[#222223]">1. Aceptación de los Términos</h4>
+          <p>
+            Al registrarse y acceder a la plataforma de <strong>Sierra Dorada</strong>, usted confirma que ha leído, entendido y aceptado los presentes Términos y Condiciones. Asimismo, declara ser mayor de edad (18 años o más) de acuerdo con la legislación colombiana y la de su lugar de residencia. El consumo de alcohol por menores de edad está prohibido.
+          </p>
+
+          <h4 className="text-lg font-bold text-[#222223]">2. Política de Tratamiento de Datos Personales (Ley 1581 de 2012)</h4>
+          <p>
+            En cumplimiento de la <strong>Ley 1581 de 2012</strong> y el Decreto 1377 de 2013, <strong>Sierra Dorada</strong> informa que es responsable del tratamiento de sus datos personales. Al marcar la casilla "Autorizo el tratamiento de mis datos personales" en el formulario de registro, usted otorga su autorización previa, expresa e informada para que sus datos sean recolectados, almacenados, usados y circulados con las siguientes finalidades:
+          </p>
+          <ul className="list-disc pl-5 space-y-1">
+            <li><strong>Verificación de Identidad y Edad:</strong> Asegurar que los usuarios cumplen con la edad legal para navegar en un sitio relacionado con bebidas alcohólicas.</li>
+            <li><strong>Gestión de Usuarios:</strong> Permitir el acceso, administración de cuenta, y recuperación de perfil a través de correo electrónico o autenticación de terceros (Google).</li>
+            <li><strong>Comunicaciones Comerciales (Opcional):</strong> Si usted lo autoriza, enviar promociones, novedades sobre lanzamientos de cervezas, invitaciones a catas y eventos en el Gastrobar.</li>
+            <li><strong>Mejora del Servicio:</strong> Análisis estadístico anonimizado para mejorar la experiencia de usuario y la oferta de productos.</li>
+            <li><strong>Cumplimiento Legal:</strong> Dar respuesta a requerimientos de autoridades competentes según sea necesario.</li>
           </ul>
 
-          <h4>4. Derechos del Titular</h4>
-          <p>Conforme a la Ley 1581 de 2012, usted tiene derecho a:</p>
-          <ul>
-            <li>Conocer, actualizar y rectificar sus datos personales</li>
-            <li>Solicitar prueba de la autorización otorgada</li>
-            <li>Ser informado sobre el uso de sus datos</li>
-            <li>Revocar la autorización y/o solicitar la supresión de datos</li>
-            <li>Acceder gratuitamente a sus datos personales</li>
+          <h4 className="text-lg font-bold text-[#222223]">3. Derechos del Titular de los Datos</h4>
+          <p>Como titular de sus datos personales, usted tiene derecho a:</p>
+          <ul className="list-disc pl-5 space-y-1">
+            <li>Conocer, actualizar y rectificar sus datos personales frente a los Responsables del Tratamiento.</li>
+            <li>Solicitar prueba de la autorización otorgada.</li>
+            <li>Ser informado, previa solicitud, respecto del uso que se le ha dado a sus datos.</li>
+            <li>Revocar la autorización y/o solicitar la supresión del dato cuando en el tratamiento no se respeten los principios, derechos y garantías constitucionales y legales.</li>
+            <li>Acceder en forma gratuita a sus datos personales.</li>
           </ul>
+          <p className="mt-2">
+            Para ejercer estos derechos, puede contactarnos a través del correo electrónico: <strong>contacto@sierradorada.co</strong>.
+          </p>
 
-          <h4>5. Seguridad</h4>
-          <p>Implementamos medidas de seguridad técnicas y organizativas para proteger sus datos personales.</p>
+          <h4 className="text-lg font-bold text-[#222223]">4. Autenticación con Google</h4>
+          <p>
+            Al utilizar la opción "Continuar con Google", usted autoriza a Sierra Dorada a recibir información básica de su perfil público de Google (Nombre, Apellidos, Correo Electrónico y Foto de Perfil) para facilitar la creación automática de su cuenta. Estos datos serán tratados bajo la misma Política de Protección de Datos descrita anteriormente.
+          </p>
 
-          <h4>6. Comunicaciones Comerciales</h4>
-          <p>Al aceptar recibir comunicaciones comerciales, autoriza el envío de información sobre productos, servicios y promociones.</p>
+          <h4 className="text-lg font-bold text-[#222223]">5. Uso Responsable</h4>
+          <p>
+            El usuario se compromete a hacer un uso adecuado de los contenidos y servicios (como chat, comentarios, etc.) que Sierra Dorada ofrece. Queda prohibido difundir contenidos de carácter racista, xenófobo, pornográfico-ilegal, de apología del terrorismo o atentatorio contra los derechos humanos.
+          </p>
 
+          <h4 className="text-lg font-bold text-[#222223]">6. Propiedad Intelectual</h4>
+          <p>
+            Todos los derechos de propiedad intelectual del contenido de este sitio web, su diseño gráfico y sus códigos fuente, son titularidad exclusiva de Sierra Dorada.
+          </p>
+
+          <h4 className="text-lg font-bold text-[#222223]">7. Modificaciones</h4>
+          <p>
+            Sierra Dorada se reserva el derecho de efectuar sin previo aviso las modificaciones que considere oportunas en su portal, pudiendo cambiar, suprimir o añadir tanto los contenidos y servicios que se presten a través de la misma como la forma en la que éstos aparezcan presentados.
+          </p>
+        </div>
+
+        <div className="mt-8 flex justify-end pt-4 border-t border-gray-200">
           <button
             onClick={() => setShowTerms(false)}
-            className="mt-6 px-4 py-2 bg-[#B3A269] text-white rounded-lg hover:bg-[#B3A269]/90 transition-colors"
+            className="px-6 py-2.5 bg-[#B3A269] text-[#222223] font-bold rounded-lg hover:bg-[#9f8f5a] transition-colors shadow-md"
           >
-            Cerrar
+            Entendido y Cerrar
           </button>
         </div>
       </div>
@@ -357,15 +391,30 @@ const RegisterForm = () => {
                     <button
                       type="button"
                       onClick={() => setShowTerms(true)}
-                      className="text-[#B3A269] hover:text-[#B3A269]/80 inline-flex items-center"
+                      className="text-[#B3A269] hover:text-[#B3A269]/80 inline-flex items-center font-bold"
                     >
                       términos y condiciones
                       <ExternalLink className="w-4 h-4 ml-1" />
                     </button>
                   </label>
-                  <p className="text-xs text-gray-500">
-                    Al aceptar, reconozco que he leído y entendido la política de tratamiento de datos personales según la Ley 1581 de 2012.
-                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start">
+                <div className="flex items-center h-5">
+                  <input
+                    id="dataConsent"
+                    name="dataConsent"
+                    type="checkbox"
+                    checked={formData.dataConsent}
+                    onChange={(e) => setFormData({ ...formData, dataConsent: e.target.checked })}
+                    className="h-4 w-4 text-[#B3A269] focus:ring-[#B3A269] border-gray-300 rounded"
+                  />
+                </div>
+                <div className="ml-3">
+                  <label htmlFor="dataConsent" className="text-sm text-gray-700">
+                    Autorizo el <strong>tratamiento de mis datos personales</strong> conforme a la política de privacidad.
+                  </label>
                 </div>
               </div>
 
@@ -384,9 +433,6 @@ const RegisterForm = () => {
                   <label htmlFor="newsletter" className="text-sm text-gray-700">
                     Deseo recibir información sobre productos, promociones y eventos
                   </label>
-                  <p className="text-xs text-gray-500">
-                    Puedes cancelar tu suscripción en cualquier momento.
-                  </p>
                 </div>
               </div>
             </div>

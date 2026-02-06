@@ -13,14 +13,17 @@
     "db:setup": "node server/setup_db_reservations.js"
   },
   "dependencies": {
+    "@react-oauth/google": "^0.13.4",
     "bcryptjs": "^2.4.3",
     "body-parser": "^2.2.2",
     "cors": "^2.8.6",
     "dotenv": "^17.2.3",
     "express": "^4.18.2",
     "framer-motion": "^11.0.8",
+    "google-auth-library": "^10.5.0",
     "jsonwebtoken": "^9.0.0",
     "lucide-react": "^0.344.0",
+    "nodemailer": "^8.0.0",
     "pg": "^8.18.0",
     "react": "^18.3.1",
     "react-datepicker": "^6.1.0",

@@ -25,6 +25,7 @@ const ContactPageLazy = React.lazy(() => import('./pages/ContactPage'));
 const GastrobarPageLazy = React.lazy(() => import('./pages/GastrobarPage'));
 const LoginFormLazy = React.lazy(() => import('./components/auth/LoginForm'));
 const RegisterFormLazy = React.lazy(() => import('./components/auth/RegisterForm'));
+const VerificationPageLazy = React.lazy(() => import('./pages/VerificationPage'));
 const AdminLoginFormLazy = React.lazy(() => import('./components/auth/AdminLoginForm'));
 const UserProfileLazy = React.lazy(() => import('./components/user/UserProfile'));
 const SacredJourneyPageLazy = React.lazy(() => import('./pages/SacredJourneyPage'));
@@ -105,6 +106,7 @@ function App() {
               <Route path="/producto/:id" element={<MainLayout><ProductDetailLazy /></MainLayout>} />
               <Route path="/login" element={<LoginFormLazy />} />
               <Route path="/register" element={<RegisterFormLazy />} />
+              <Route path="/verificar" element={<VerificationPageLazy />} />
               <Route path="/acceso-admin" element={<AdminLoginFormLazy />} />
               <Route path="/perfil" element={<MainLayout><UserProfileLazy /></MainLayout>} />
             </Routes>
