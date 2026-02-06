@@ -398,8 +398,8 @@ const HomePage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[#222223]/90 backdrop-blur-sm" />
+      <section className="py-20 relative overflow-hidden bg-[#0a0a0a]">
+        <div className="absolute inset-0 bg-[#0a0a0a]" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -427,9 +427,9 @@ const HomePage = () => {
       </section>
 
       {/* Newsletter Section */}
-      <section className="py-20 relative overflow-hidden glass-effect">
+      <section className="py-20 relative overflow-hidden bg-[#0a0a0a]">
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-r from-[#222223] via-transparent to-[#222223]" />
+          <div className="absolute inset-0 bg-[#0a0a0a]" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
