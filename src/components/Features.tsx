@@ -262,7 +262,7 @@ const Features = () => {
   };
 
   return (
-    <div className="py-24 bg-[#2A2A2B]">
+    <div className="py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="font-dorsa text-6xl md:text-[5rem] text-[#B3A269] font-semibold tracking-wide uppercase">
