@@ -63,14 +63,34 @@ const HomePage = () => {
       <section className="relative h-screen">
         {/* Background Videos */}
         <div className="absolute inset-0 w-full h-full overflow-hidden">
-          {/* Static Image for Mobile */}
-          <div className="absolute inset-0 block md:hidden">
-            <img
-              src="https://images.unsplash.com/photo-1559526324-593bc073d938?auto=format&fit=crop&w=800&q=80"
-              alt="Sierra Dorada Background"
-              className="w-full h-full object-cover"
-              style={{ filter: 'brightness(0.4)' }}
-            />
+          {/* Dark Background with Optimized Particles for Mobile */}
+          <div className="absolute inset-0 block md:hidden bg-[#0a0a0a]">
+            {/* Reduced Particles for Mobile - Only 8 for Performance */}
+            {[...Array(8)].map((_, i) => (
+              <motion.div
+                key={`mobile-particle-${i}`}
+                className="absolute bg-[#B3A269] rounded-full"
+                style={{
+                  width: Math.random() * 4 + 2,
+                  height: Math.random() * 4 + 2,
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                }}
+                animate={{
+                  y: [0, -80, 0],
+                  opacity: [0, 0.6, 0],
+                  scale: [0.5, 1.2, 0.5]
+                }}
+                transition={{
+                  duration: Math.random() * 8 + 8,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: Math.random() * 4
+                }}
+              />
+            ))}
+            {/* Dark Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#0a0a0a]/80 to-[#0a0a0a]" />
           </div>
 
           {/* Video for Desktop */}
