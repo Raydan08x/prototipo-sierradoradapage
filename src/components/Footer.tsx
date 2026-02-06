@@ -8,19 +8,21 @@ const Footer = () => {
   return (
     <footer>
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="space-y-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+          {/* Logo y descripción - centrado en móvil */}
+          <div className="space-y-4 flex flex-col items-center md:items-start">
             <img
               src="/assets/logo-vertical.png"
               alt="Sierra Dorada"
               className="h-24 w-auto"
             />
-            <p className="text-[#E5E1E6]">
+            <p className="text-[#E5E1E6] text-sm max-w-xs">
               Cervecería artesanal comprometida con la calidad y la tradición cervecera desde 2010.
             </p>
           </div>
 
-          <div>
+          {/* Enlaces Rápidos - centrado en móvil */}
+          <div className="flex flex-col items-center md:items-start">
             <h3 className="text-[#B3A269] text-lg font-bold mb-4">Enlaces Rápidos</h3>
             <ul className="space-y-2">
               <li>
@@ -58,23 +60,24 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div>
+          {/* Contacto - centrado en móvil */}
+          <div className="flex flex-col items-center md:items-start">
             <h3 className="text-[#B3A269] text-lg font-bold mb-4">Contacto</h3>
             <ul className="space-y-4 text-[#E5E1E6]">
-              <li className="flex items-start">
+              <li className="flex items-start justify-center md:justify-start">
                 <MapPin className="h-5 w-5 mr-2 text-[#B3A269] mt-1 shrink-0" />
                 <a
                   href="https://www.google.com/maps/search/?api=1&query=5.0361865663151395,-73.99458376574964"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-[#B3A269] transition-colors text-sm leading-relaxed"
+                  className="hover:text-[#B3A269] transition-colors text-sm leading-relaxed text-left"
                 >
                   Calle 26#12-63 Local 112 <br />
                   CC Paseo de Gracia, Prados del Mirador, <br />
                   Zipaquirá, Cundinamarca.
                 </a>
               </li>
-              <li className="flex items-center">
+              <li className="flex items-center justify-center md:justify-start">
                 <Phone className="h-5 w-5 mr-2 text-[#B3A269]" />
                 <a
                   href="tel:+573138718154"
@@ -83,7 +86,7 @@ const Footer = () => {
                   +57 313 871 8154
                 </a>
               </li>
-              <li className="flex items-center">
+              <li className="flex items-center justify-center md:justify-start">
                 <Mail className="h-5 w-5 mr-2 text-[#B3A269]" />
                 <a
                   href="mailto:contacto@sierradorada.co"
