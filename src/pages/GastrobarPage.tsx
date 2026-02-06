@@ -142,7 +142,7 @@ const GastrobarPage = () => {
                                 <div className="flex flex-col items-center justify-center bg-[#222223] p-8 rounded-xl border border-[#B3A269]/10">
                                     <div className="bg-white p-4 rounded-lg shadow-lg mb-4">
                                         <img
-                                            src="/images/menu-qr.png"
+                                            src="/assets/qr-menu.png"
                                             alt="Código QR Menú"
                                             className="w-48 h-48 object-contain"
                                         />
