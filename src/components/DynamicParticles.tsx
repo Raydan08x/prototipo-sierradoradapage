@@ -16,7 +16,7 @@ const DynamicParticles = ({
     secondaryColorSequence = ['#FFD700', '#DAA520', '#CD853F', '#FFD700'],
     inputRange,
     auraOpacity = 0.4,
-    particleCount = 60
+    particleCount = 36
 }: DynamicParticlesProps) => {
 
     // Internal scroll hook if not provided externally
@@ -104,7 +104,7 @@ const DynamicParticles = ({
             ))}
 
             {/* Extra "Sparkles" Layer - Optimized */}
-            {Array.from({ length: 15 }).map((_, i) => ( // Reduced count from 20 to 15
+            {Array.from({ length: 9 }).map((_, i) => ( // Reduced count from 15 to 9
                 <motion.div
                     key={`sparkle-${i}`}
                     className="absolute rounded-full bg-white"
