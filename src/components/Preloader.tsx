@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const Preloader = () => {
   const [loading, setLoading] = useState(true);
@@ -17,7 +17,7 @@ const Preloader = () => {
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#222223]">
       <div className="relative">
         {/* Logo animado */}
-        <div className="w-24 h-24 rounded-full border-4 border-[#B3A269] animate-spin" style={{
+        <div className="w-48 h-48 rounded-full border-4 border-[#B3A269] animate-spin" style={{
           borderRightColor: 'transparent',
           animationDuration: '2s'
         }} />
@@ -27,7 +27,7 @@ const Preloader = () => {
           <img
             src="/assets/isotipo.png"
             alt="Sierra Dorada"
-            className="w-16 h-16 animate-pulse object-contain rounded-full"
+            className="w-32 h-32 animate-pulse object-contain rounded-full"
           />
         </div>
       </div>
