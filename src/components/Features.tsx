@@ -13,7 +13,7 @@ const products = [
     price: 12000,
     abv: '4.8%',
     ibu: '31',
-    image: 'https://images.unsplash.com/photo-1608270586620-248524c67de9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80',
+    image: 'https://images.unsplash.com/photo-1608270586620-248524c67de9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
     colorHex: '#F4A460',
     colorName: 'Ámbar dorado',
     temperature: '8-10°C',
@@ -40,7 +40,7 @@ const products = [
     price: 18000,
     abv: '10.0%',
     ibu: '50',
-    image: 'https://images.unsplash.com/photo-1584225064785-c62a8b43d148?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80',
+    image: 'https://images.unsplash.com/photo-1584225064785-c62a8b43d148?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
     colorHex: '#8B4513',
     colorName: 'Ámbar profundo',
     temperature: '12-14°C',
@@ -67,7 +67,7 @@ const products = [
     price: 13000,
     abv: '4.5%',
     ibu: '5',
-    image: 'https://images.unsplash.com/photo-1523567830207-96731740fa71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80',
+    image: 'https://images.unsplash.com/photo-1523567830207-96731740fa71?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
     colorHex: '#990012',
     colorName: 'Rojo carmesí',
     temperature: '6-8°C',
@@ -94,7 +94,7 @@ const products = [
     price: 14000,
     abv: '6.2%',
     ibu: '49',
-    image: 'https://images.unsplash.com/photo-1612528443702-f6741f70a049?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80',
+    image: 'https://images.unsplash.com/photo-1612528443702-f6741f70a049?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
     colorHex: '#000000',
     colorName: 'Negro intenso',
     temperature: '10-12°C',
@@ -121,7 +121,7 @@ const products = [
     price: 12000,
     abv: '5.0%',
     ibu: '30',
-    image: 'https://images.unsplash.com/photo-1523567830207-96731740fa71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80',
+    image: 'https://images.unsplash.com/photo-1523567830207-96731740fa71?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
     colorHex: '#8B0000',
     colorName: 'Ámbar rojizo',
     temperature: '7-9°C',
@@ -139,6 +139,7 @@ const products = [
       { emoji: '🧀', name: 'Quesos semicurados' },
       { emoji: '🍕', name: 'Pizza' }
     ]
+
   }
 ];
 
@@ -333,7 +334,7 @@ const Features = () => {
 
         <div
           ref={containerRef}
-          className="flex overflow-x-hidden cursor-grab active:cursor-grabbing no-scrollbar"
+          className="flex overflow-x-hidden cursor-grab active:cursor-grabbing no-scrollbar will-change-scroll"
           onPointerDown={handlePointerDown}
           onPointerUp={handlePointerUp}
           onPointerLeave={handlePointerUp}
@@ -347,7 +348,7 @@ const Features = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`w-80 md:w-96 bg-[#222223] rounded-lg overflow-hidden shadow-xl transform hover:scale-105 transition-all duration-300 flex flex-col snap-center ${product.id === '3' ? 'relative ring-2 ring-[#B3A269]' : ''
+                className={`w-80 md:w-96 bg-[#222223] rounded-lg overflow-hidden md:shadow-xl transform md:hover:scale-105 transition-all duration-300 flex flex-col snap-center ${product.id === '3' ? 'relative ring-2 ring-[#B3A269]' : ''
                   }`}
               >
                 {product.id === '3' && (
