@@ -264,14 +264,14 @@ const Features = () => {
   return (
     <div className="py-24 bg-[#2A2A2B]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="lg:text-center mb-16">
+        <div className="text-center mb-16">
           <h2 className="font-dorsa text-base text-[#B3A269] font-semibold tracking-wide uppercase">
             Nuestras Cervezas
           </h2>
           <p className="mt-2 font-dorsa text-4xl leading-8 tracking-tight text-[#E5E1E6] sm:text-5xl">
             Tesoros Líquidos
           </p>
-          <p className="mt-4 max-w-2xl font-barlow text-xl text-[#E5E1E6]/80 lg:mx-auto">
+          <p className="mt-4 max-w-2xl font-barlow text-xl text-[#E5E1E6]/80 mx-auto text-justify md:text-center">
             Cada cerveza es una obra maestra artesanal que honra a las deidades Muiscas,
             elaborada con los mejores ingredientes y años de experiencia.
           </p>
@@ -383,8 +383,8 @@ const Features = () => {
                     />
                   </div>
 
-                  <p className="font-barlow text-[#B3A269] text-sm mb-2">{product.inspiration}</p>
-                  <p className="font-barlow text-[#E5E1E6]/80 mb-4">{product.description}</p>
+                  <p className="font-barlow text-[#B3A269] text-sm mb-2 text-center md:text-left">{product.inspiration}</p>
+                  <p className="font-barlow text-[#E5E1E6]/80 mb-4 text-justify">{product.description}</p>
 
                   <div className="grid grid-cols-2 gap-4 mb-6">
                     <div>
@@ -415,7 +415,7 @@ const Features = () => {
                   <div className="flex gap-2 mt-auto">
                     <button
                       onClick={() => navigate(`/producto/${product.id}`)}
-                      className="flex-1 px-4 py-2 border-2 border-[#B3A269] text-[#B3A269] rounded-full font-barlow-condensed text-sm font-medium hover:bg-[#B3A269] hover:text-[#222223] transition-colors"
+                      className="flex-1 px-4 py-2 border-2 border-[#B3A269] text-[#B3A269] rounded-full font-barlow-condensed text-sm font-medium hover:bg-[#B3A269] hover:text-[#222223] transition-colors flex items-center justify-center"
                     >
                       Ver Detalles
                     </button>
@@ -434,14 +434,14 @@ const Features = () => {
         </div>
 
         <div className="mt-24">
-          <div className="lg:text-center mb-16">
+          <div className="text-center mb-16">
             <h2 className="font-dorsa text-base text-[#B3A269] font-semibold tracking-wide uppercase">
               Oferta Especial
             </h2>
             <p className="mt-2 font-dorsa text-4xl leading-8 tracking-tight text-[#E5E1E6] sm:text-5xl">
               Crea tu 4-Pack
             </p>
-            <p className="mt-4 max-w-2xl font-barlow text-xl text-[#E5E1E6]/80 lg:mx-auto">
+            <p className="mt-4 max-w-2xl font-barlow text-xl text-[#E5E1E6]/80 mx-auto text-justify md:text-center">
               Selecciona tus 4 cervezas favoritas y obtén un 25% de descuento en tu pack personalizado.
             </p>
           </div>
