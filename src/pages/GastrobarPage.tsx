@@ -16,7 +16,7 @@ const GastrobarPage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 className="text-center mb-16"
             >
-                <h1 className="text-4xl md:text-5xl font-bold text-[#B3A269] mb-4 font-cinzel">
+                <h1 className="text-7xl font-bold text-[#E5E1E6] mb-4 font-dorsa">
                     Sierra Dorada Gastrobar
                 </h1>
                 <p className="text-[#E5E1E6]/80 max-w-2xl mx-auto text-lg">

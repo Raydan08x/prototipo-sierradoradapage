@@ -64,12 +64,12 @@ const HomePage = () => {
         {/* Background Videos */}
         <div className="absolute inset-0 w-full h-full overflow-hidden">
           {/* Dark Background with Optimized Particles for Mobile */}
-          <div className="absolute inset-0 block md:hidden bg-[#0a0a0a]">
+          <div className="absolute inset-0 block md:hidden">
             {/* Aura Effect */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(179,162,105,0.2)_0%,_transparent_70%)] pointer-events-none" />
 
             {/* Dark Gradient Base */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#0a0a0a]/90 to-[#0a0a0a]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-transparent" />
             {/* Particles ABOVE Gradient - 6 particles, smaller, higher opacity */}
             {[...Array(6)].map((_, i) => (
               <motion.div
@@ -212,14 +212,14 @@ const HomePage = () => {
           </div>
         </motion.div>
 
-        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#0a0a0a] to-transparent z-20 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-transparent to-transparent z-20 pointer-events-none" />
       </section>
 
       {/* Process Section */}
-      <section className="py-20 relative overflow-hidden bg-[#0a0a0a]">
+      <section className="py-20 relative overflow-hidden">
         <div className="absolute inset-0 w-full h-full overflow-hidden">
           {/* Dark Background */}
-          <div className="absolute inset-0 bg-[#0a0a0a]" />
+          <div className="absolute inset-0" />
 
           {/* Aura Effect */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(179,162,105,0.15)_0%,_transparent_75%)] pointer-events-none" />
@@ -320,7 +320,7 @@ const HomePage = () => {
       </section>
 
       {/* Heritage Section */}
-      <section className="py-20 relative overflow-hidden bg-[#0a0a0a]">
+      <section className="py-20 relative overflow-hidden">
         <div className="absolute inset-0 w-full h-full overflow-hidden">
           {/* Aura Effect */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(179,162,105,0.15)_0%,_transparent_75%)] pointer-events-none" />
@@ -393,7 +393,7 @@ const HomePage = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 relative overflow-hidden bg-[#0a0a0a]">
+      <section className="py-20 relative overflow-hidden">
         <div className="absolute inset-0 w-full h-full overflow-hidden">
           {/* Aura Effect */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(179,162,105,0.15)_0%,_transparent_75%)] pointer-events-none" />
@@ -466,7 +466,7 @@ const HomePage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 relative overflow-hidden bg-[#0a0a0a]">
+      <section className="py-20 relative overflow-hidden">
         <div className="absolute inset-0 w-full h-full overflow-hidden">
           {/* Aura Effect */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(179,162,105,0.15)_0%,_transparent_75%)] pointer-events-none" />
@@ -524,7 +524,7 @@ const HomePage = () => {
       </section>
 
       {/* Newsletter Section */}
-      <section className="py-20 relative overflow-hidden bg-[#0a0a0a]">
+      <section className="py-20 relative overflow-hidden">
         <div className="absolute inset-0 w-full h-full overflow-hidden">
           {/* Aura Effect */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(179,162,105,0.15)_0%,_transparent_75%)] pointer-events-none" />

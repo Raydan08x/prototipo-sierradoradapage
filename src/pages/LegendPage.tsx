@@ -12,7 +12,7 @@ const LegendPage = () => {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h1 className="text-4xl font-bold text-[#E5E1E6] mb-4">La Leyenda de Sierra Dorada</h1>
+          <h1 className="text-7xl font-bold text-[#E5E1E6] mb-4 font-dorsa">La Leyenda de Sierra Dorada</h1>
           <p className="text-xl text-[#E5E1E6]/80 max-w-3xl mx-auto">
             Una historia que se entrelaza con los mitos y leyendas de El Dorado,
             donde cada cerveza cuenta una parte de nuestra búsqueda por la perfección.
