@@ -265,7 +265,7 @@ const Features = () => {
     <div className="py-24 bg-[#2A2A2B]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="font-dorsa text-base text-[#B3A269] font-semibold tracking-wide uppercase">
+          <h2 className="font-dorsa text-4xl md:text-5xl text-[#B3A269] font-semibold tracking-wide uppercase">
             Nuestras Cervezas
           </h2>
           <p className="mt-2 font-dorsa text-4xl leading-8 tracking-tight text-[#E5E1E6] sm:text-5xl">
@@ -435,7 +435,7 @@ const Features = () => {
 
         <div className="mt-24">
           <div className="text-center mb-16">
-            <h2 className="font-dorsa text-base text-[#B3A269] font-semibold tracking-wide uppercase">
+            <h2 className="font-dorsa text-4xl md:text-5xl text-[#B3A269] font-semibold tracking-wide uppercase">
               Oferta Especial
             </h2>
             <p className="mt-2 font-dorsa text-4xl leading-8 tracking-tight text-[#E5E1E6] sm:text-5xl">
