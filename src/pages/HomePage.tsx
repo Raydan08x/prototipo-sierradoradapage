@@ -58,18 +58,49 @@ const HomePage = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-[#222223] relative">
+      {/* Global Background Layer - Single unified background for entire page */}
+      <div className="fixed inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
+        {/* Aura Effect - Global */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(179,162,105,0.15)_0%,_transparent_70%)]" />
+
+        {/* Global Particles - 12 particles spread across the page */}
+        {[...Array(12)].map((_, i) => (
+          <motion.div
+            key={`global-particle-${i}`}
+            className="absolute bg-[#B3A269] rounded-full"
+            style={{
+              width: Math.random() * 3 + 1,
+              height: Math.random() * 3 + 1,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, -80, 0],
+              opacity: [0.15, 0.4, 0.15],
+              scale: [0.8, 1.3, 0.8]
+            }}
+            transition={{
+              duration: Math.random() * 10 + 10,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: Math.random() * 5
+            }}
+          />
+        ))}
+      </div>
+
       {/* Hero Section */}
       <section className="relative h-screen">
         {/* Background Videos */}
         <div className="absolute inset-0 w-full h-full overflow-hidden">
           {/* Dark Background with Optimized Particles for Mobile */}
-          <div className="absolute inset-0 block md:hidden bg-[#0a0a0a]">
+          <div className="absolute inset-0 block md:hidden bg-[#222223]">
             {/* Aura Effect */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(179,162,105,0.2)_0%,_transparent_70%)] pointer-events-none" />
 
             {/* Dark Gradient Base */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#0a0a0a]/90 to-[#0a0a0a]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#222223] via-[#222223]/90 to-[#222223]" />
             {/* Particles ABOVE Gradient - 6 particles, smaller, higher opacity */}
             {[...Array(6)].map((_, i) => (
               <motion.div
@@ -212,46 +243,12 @@ const HomePage = () => {
           </div>
         </motion.div>
 
-        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#0a0a0a] to-transparent z-20 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#222223] to-transparent z-20 pointer-events-none" />
       </section>
 
       {/* Process Section */}
-      <section className="py-20 relative overflow-hidden bg-[#0a0a0a]">
-        <div className="absolute inset-0 w-full h-full overflow-hidden">
-          {/* Dark Background */}
-          <div className="absolute inset-0 bg-[#0a0a0a]" />
-
-          {/* Aura Effect */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(179,162,105,0.15)_0%,_transparent_75%)] pointer-events-none" />
-
-          {/* Particles */}
-          {[...Array(6)].map((_, i) => (
-            <motion.div
-              key={`process-particle-${i}`}
-              className="absolute bg-[#B3A269] rounded-full z-10"
-              style={{
-                width: Math.random() * 3 + 1,
-                height: Math.random() * 3 + 1,
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                opacity: 0.2
-              }}
-              animate={{
-                y: [0, -60, 0],
-                opacity: [0.2, 0.5, 0.2],
-                scale: [0.8, 1.2, 0.8]
-              }}
-              transition={{
-                duration: Math.random() * 6 + 6,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: Math.random() * 3
-              }}
-            />
-          ))}
-        </div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="py-20 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -317,41 +314,11 @@ const HomePage = () => {
             ))}
           </div>
         </div>
-      </section>
+      </div>
 
       {/* Heritage Section */}
-      <section className="py-20 relative overflow-hidden bg-[#0a0a0a]">
-        <div className="absolute inset-0 w-full h-full overflow-hidden">
-          {/* Aura Effect */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(179,162,105,0.15)_0%,_transparent_75%)] pointer-events-none" />
-
-          {/* Particles */}
-          {[...Array(6)].map((_, i) => (
-            <motion.div
-              key={`heritage-particle-${i}`}
-              className="absolute bg-[#B3A269] rounded-full z-10"
-              style={{
-                width: Math.random() * 3 + 1,
-                height: Math.random() * 3 + 1,
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                opacity: 0.15
-              }}
-              animate={{
-                y: [0, -60, 0],
-                opacity: [0.1, 0.3, 0.1],
-                scale: [0.8, 1.2, 0.8]
-              }}
-              transition={{
-                duration: Math.random() * 8 + 8,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: Math.random() * 4
-              }}
-            />
-          ))}
-        </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="py-20 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="initial"
             whileInView="animate"
@@ -379,52 +346,22 @@ const HomePage = () => {
               <motion.div
                 key={feature.title}
                 variants={fadeIn}
-                className="p-8 rounded-lg border border-[#B3A269]/10 hover:border-[#B3A269]/30 transition-all duration-300 group"
+                className="p-8 text-center"
               >
                 <div className="w-16 h-16 bg-[#B3A269]/20 rounded-full flex items-center justify-center mx-auto mb-6">
                   <feature.icon className="w-8 h-8 text-[#B3A269]" />
                 </div>
-                <h3 className="text-xl font-bold text-[#E5E1E6] mb-4 text-center">{feature.title}</h3>
-                <p className="text-[#E5E1E6]/80 text-center">{feature.description}</p>
+                <h3 className="text-xl font-bold text-[#E5E1E6] mb-4">{feature.title}</h3>
+                <p className="text-[#E5E1E6]/80">{feature.description}</p>
               </motion.div>
             ))}
           </motion.div>
         </div>
-      </section>
+      </div>
 
       {/* Features Section */}
-      <section className="py-20 relative overflow-hidden bg-[#0a0a0a]">
-        <div className="absolute inset-0 w-full h-full overflow-hidden">
-          {/* Aura Effect */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(179,162,105,0.15)_0%,_transparent_75%)] pointer-events-none" />
-
-          {/* Particles */}
-          {[...Array(6)].map((_, i) => (
-            <motion.div
-              key={`features-particle-${i}`}
-              className="absolute bg-[#B3A269] rounded-full z-10"
-              style={{
-                width: Math.random() * 3 + 1,
-                height: Math.random() * 3 + 1,
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                opacity: 0.15
-              }}
-              animate={{
-                y: [0, -60, 0],
-                opacity: [0.1, 0.3, 0.1],
-                scale: [0.8, 1.2, 0.8]
-              }}
-              transition={{
-                duration: Math.random() * 8 + 8,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: Math.random() * 4
-              }}
-            />
-          ))}
-        </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="py-20 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="initial"
             whileInView="animate"
@@ -452,52 +389,22 @@ const HomePage = () => {
               <motion.div
                 key={feature.title}
                 variants={fadeIn}
-                className="p-8 rounded-lg border border-[#B3A269]/10 hover:border-[#B3A269]/30 transition-all duration-300 group"
+                className="p-8 text-center"
               >
                 <div className="w-16 h-16 bg-[#B3A269]/20 rounded-full flex items-center justify-center mx-auto mb-6">
                   <feature.icon className="w-8 h-8 text-[#B3A269]" />
                 </div>
-                <h3 className="text-xl font-bold text-[#E5E1E6] mb-4 text-center">{feature.title}</h3>
-                <p className="text-[#E5E1E6]/80 text-center">{feature.description}</p>
+                <h3 className="text-xl font-bold text-[#E5E1E6] mb-4">{feature.title}</h3>
+                <p className="text-[#E5E1E6]/80">{feature.description}</p>
               </motion.div>
             ))}
           </motion.div>
         </div>
-      </section>
+      </div>
 
       {/* CTA Section */}
-      <section className="py-20 relative overflow-hidden bg-[#0a0a0a]">
-        <div className="absolute inset-0 w-full h-full overflow-hidden">
-          {/* Aura Effect */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(179,162,105,0.15)_0%,_transparent_75%)] pointer-events-none" />
-
-          {/* Particles */}
-          {[...Array(6)].map((_, i) => (
-            <motion.div
-              key={`cta-particle-${i}`}
-              className="absolute bg-[#B3A269] rounded-full z-10"
-              style={{
-                width: Math.random() * 3 + 1,
-                height: Math.random() * 3 + 1,
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                opacity: 0.15
-              }}
-              animate={{
-                y: [0, -60, 0],
-                opacity: [0.1, 0.3, 0.1],
-                scale: [0.8, 1.2, 0.8]
-              }}
-              transition={{
-                duration: Math.random() * 8 + 8,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: Math.random() * 4
-              }}
-            />
-          ))}
-        </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      <div className="py-20 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -521,42 +428,11 @@ const HomePage = () => {
             </motion.button>
           </motion.div>
         </div>
-      </section>
+      </div>
 
       {/* Newsletter Section */}
-      <section className="py-20 relative overflow-hidden bg-[#0a0a0a]">
-        <div className="absolute inset-0 w-full h-full overflow-hidden">
-          {/* Aura Effect */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(179,162,105,0.15)_0%,_transparent_75%)] pointer-events-none" />
-
-          {/* Particles */}
-          {[...Array(6)].map((_, i) => (
-            <motion.div
-              key={`newsletter-particle-${i}`}
-              className="absolute bg-[#B3A269] rounded-full z-10"
-              style={{
-                width: Math.random() * 3 + 1,
-                height: Math.random() * 3 + 1,
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                opacity: 0.15
-              }}
-              animate={{
-                y: [0, -60, 0],
-                opacity: [0.1, 0.3, 0.1],
-                scale: [0.8, 1.2, 0.8]
-              }}
-              transition={{
-                duration: Math.random() * 8 + 8,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: Math.random() * 4
-              }}
-            />
-          ))}
-        </div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="py-20 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -610,7 +486,7 @@ const HomePage = () => {
             </p>
           </motion.div>
         </div>
-      </section>
+      </div>
     </div>
   );
 };
