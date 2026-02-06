@@ -23,6 +23,7 @@ CREATE TABLE IF NOT EXISTS profiles (
     terms_accepted_at TIMESTAMP WITH TIME ZONE,
     newsletter_subscription BOOLEAN DEFAULT FALSE,
     marketing_consent BOOLEAN DEFAULT FALSE,
+    role_title TEXT,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
