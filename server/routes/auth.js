@@ -17,9 +17,9 @@ router.post('/signup', async (req, res) => {
             return res.status(400).json({ error: 'El usuario ya existe' });
         }
 
-        // Hash password (if not already hashed by frontend, but better to hash here)
-        // Note: The previous logic might have sent raw passwords. Secure flows hash on server.
-        const hashedPassword = password; // For simplicity based on previous seed, or implement bcrypt
+        // Hash password with bcrypt
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
 
         // Insert User
         const userResult = await db.query(
@@ -57,11 +57,14 @@ router.post('/signin', async (req, res) => {
 
         const user = result.rows[0];
 
-        // Simple password check for the hardcoded ones, or bcrypt compare
-        // We used plain text for admin seeds '199611Cm.', '12345678' in schema.sql
-        // So we invoke direct comparison here to match the seed data.
-        // In a real app, ALWAYS use bcrypt.compare(password, user.password_hash)
-        if (user.password_hash !== password) {
+        // Compare password with bcrypt
+        const isMatch = await bcrypt.compare(password, user.password_hash);
+
+        // Fallback for legacy plain text passwords (optional, for migration transition)
+        // Check if password_hash matches plain text (only if bcrypt fails)
+        const isLegacyMatch = user.password_hash === password;
+
+        if (!isMatch && !isLegacyMatch) {
             return res.status(400).json({ error: 'Credenciales inválidas' });
         }
 
