@@ -210,12 +210,35 @@ const HomePage = () => {
 
       {/* Process Section */}
       <section className="py-20 glass-effect relative overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            src="https://images.unsplash.com/photo-1559526324-593bc073d938?auto=format&fit=crop&w=2000&q=80"
-            alt="Brewing Process"
-            className="w-full h-full object-cover opacity-10"
-          />
+        <div className="absolute inset-0 w-full h-full overflow-hidden">
+          {/* Dark Background */}
+          <div className="absolute inset-0 bg-[#0a0a0a]" />
+
+          {/* Particles */}
+          {[...Array(6)].map((_, i) => (
+            <motion.div
+              key={`process-particle-${i}`}
+              className="absolute bg-[#B3A269] rounded-full z-10"
+              style={{
+                width: Math.random() * 3 + 1,
+                height: Math.random() * 3 + 1,
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                opacity: 0.2
+              }}
+              animate={{
+                y: [0, -60, 0],
+                opacity: [0.2, 0.5, 0.2],
+                scale: [0.8, 1.2, 0.8]
+              }}
+              transition={{
+                duration: Math.random() * 6 + 6,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: Math.random() * 3
+              }}
+            />
+          ))}
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -248,7 +271,7 @@ const HomePage = () => {
                 link: "/viaje-sagrado"
               },
               {
-                image: "/assets/reservas.png",
+                image: "/assets/reserva.png",
                 title: "Reserva tu Visita",
                 description: "Vive la experiencia Sierra Dorada en persona",
                 link: "/servicios"
