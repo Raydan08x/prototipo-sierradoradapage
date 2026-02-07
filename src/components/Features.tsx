@@ -414,13 +414,15 @@ const Features = () => {
 
                   <div className="flex gap-2 mt-auto">
                     <button
-                      onClick={() => navigate(`/producto/${product.id}`)}
+                      onClick={(e) => { e.stopPropagation(); navigate(`/producto/${product.id}`); }}
+                      onPointerDown={(e) => e.stopPropagation()}
                       className="flex-1 px-4 py-2 border-2 border-[#B3A269] text-[#B3A269] rounded-full font-barlow-condensed text-sm font-medium hover:bg-[#B3A269] hover:text-[#222223] transition-colors flex items-center justify-center"
                     >
                       Ver Detalles
                     </button>
                     <button
-                      onClick={() => handleAddToCart(product)}
+                      onClick={(e) => { e.stopPropagation(); handleAddToCart(product); }}
+                      onPointerDown={(e) => e.stopPropagation()}
                       className="flex-1 px-4 py-2 bg-[#B3A269] text-[#222223] rounded-full font-barlow-condensed text-sm font-medium hover:bg-[#B3A269]/90 transition-colors flex items-center justify-center gap-2"
                     >
                       <ShoppingCart className="w-4 h-4" />
