@@ -94,7 +94,7 @@ app.get('/', (req, res) => {
     </head>
     <body>
         <div class="container">
-            <img src="/public/assets/logo-color.png" alt="Sierra Dorada Logo" class="logo">
+            <img src="/public/assets/isotipo.png" alt="Sierra Dorada Logo" class="logo">
             <h1>Sierra Dorada API</h1>
             <div class="status">
                 <div class="status-dot"></div>
@@ -103,7 +103,7 @@ app.get('/', (req, res) => {
             <div class="info">
                 <p>Base de Datos: <strong>Conectada (SDDB)</strong></p>
                 <p>Versión: <strong>1.0.0 (Robust)</strong></p>
-                <p>Acceso Web: <a href="http://192.168.1.5:8880">Ir al Sitio Principal</a></p>
+                <p>Acceso Web: <a href="http://192.168.1.13:8881">Ir al Sitio Principal</a></p>
             </div>
         </div>
     </body>
