@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import DatePicker from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css";
 import { Calendar } from 'lucide-react';
 import { publicAsset } from '../lib/assets';
 
@@ -9,20 +7,48 @@ interface AgeVerificationProps {
 }
 
 const AgeVerification: React.FC<AgeVerificationProps> = ({ onVerified }) => {
-  const [birthDate, setBirthDate] = useState<Date | null>(null);
+  const [birthDate, setBirthDate] = useState('');
   const [error, setError] = useState(false);
 
+  const parseBirthDate = (value: string) => {
+    const normalizedValue = value.trim();
+    const slashMatch = normalizedValue.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+    const dashMatch = normalizedValue.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+
+    if (!slashMatch && !dashMatch) {
+      return null;
+    }
+
+    const [, first, second, third] = slashMatch ?? dashMatch ?? [];
+    const day = slashMatch ? Number(first) : Number(third);
+    const month = Number(second);
+    const year = slashMatch ? Number(third) : Number(first);
+    const date = new Date(year, month - 1, day);
+
+    if (
+      date.getFullYear() !== year ||
+      date.getMonth() !== month - 1 ||
+      date.getDate() !== day
+    ) {
+      return null;
+    }
+
+    return date;
+  };
+
   const checkAge = () => {
-    if (!birthDate) {
+    const today = new Date();
+    const parsedBirthDate = parseBirthDate(birthDate);
+
+    if (!parsedBirthDate || parsedBirthDate > today) {
       setError(true);
       return;
     }
 
-    const today = new Date();
-    let calculatedAge = today.getFullYear() - birthDate.getFullYear();
-    const monthDiff = today.getMonth() - birthDate.getMonth();
+    let calculatedAge = today.getFullYear() - parsedBirthDate.getFullYear();
+    const monthDiff = today.getMonth() - parsedBirthDate.getMonth();
 
-    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < parsedBirthDate.getDate())) {
       calculatedAge = calculatedAge - 1;
     }
 
@@ -50,21 +76,17 @@ const AgeVerification: React.FC<AgeVerificationProps> = ({ onVerified }) => {
 
         <div className="relative mb-6">
           <div className="flex items-center">
-            <DatePicker
-              selected={birthDate}
-              onChange={(date) => {
-                setBirthDate(date);
+            <input
+              type="text"
+              value={birthDate}
+              onChange={(event) => {
+                setBirthDate(event.target.value);
                 setError(false);
               }}
-              dateFormat="dd/MM/yyyy"
-              showYearDropdown
-              scrollableYearDropdown
-              yearDropdownItemNumber={100}
-              placeholderText="DD/MM/AAAA"
+              inputMode="numeric"
+              placeholder="DD/MM/AAAA"
+              aria-label="Fecha de nacimiento"
               className="w-full bg-[#222223] text-[#E5E1E6] p-3 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-[#B3A269]"
-              maxDate={new Date()}
-              calendarClassName="bg-[#2A2A2B] border-[#B3A269] text-[#E5E1E6]"
-              wrapperClassName="w-full"
             />
             <div className="bg-[#222223] p-3 rounded-r-lg border-l border-[#B3A269]">
               <Calendar className="h-6 w-6 text-[#B3A269]" />
