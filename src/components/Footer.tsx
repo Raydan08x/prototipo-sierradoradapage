@@ -1,6 +1,7 @@
 
 import { Facebook, Instagram, Phone, Mail, Linkedin, Video, MessageCircle, Lock, MapPin } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { publicAsset } from '../lib/assets';
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ const Footer = () => {
           {/* Logo y descripción - centrado */}
           <div className="space-y-4 flex flex-col items-center">
             <img
-              src="/assets/logo-vertical.png"
+              src={publicAsset('assets/logo-vertical.png')}
               alt="Sierra Dorada"
               className="h-24 w-auto"
             />
@@ -150,12 +151,12 @@ const Footer = () => {
           <p className="text-[#B3A269] text-sm font-semibold mb-4">Proyecto avalado por</p>
           <div className="flex flex-wrap justify-center items-center gap-8">
             <img
-              src="/assets/sena-fe-png.webp"
+              src={publicAsset('assets/sena-fe-png.webp')}
               alt="SENA - Fondo Emprender"
               className="h-12 md:h-16 w-auto object-contain"
             />
             <img
-              src="/assets/logo-presidencia.png"
+              src={publicAsset('assets/logo-presidencia.png')}
               alt="Presidencia de la República de Colombia"
               className="h-12 md:h-16 w-auto object-contain"
             />

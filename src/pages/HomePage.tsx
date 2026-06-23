@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { Beer, Award, Users, Mountain, Leaf, Sun, Mail, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import { publicAsset } from '../lib/assets';
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -136,7 +137,7 @@ const HomePage = () => {
               <div className="relative w-24 h-24">
                 <div className="absolute inset-0 bg-[#B3A269] rounded-full opacity-20 animate-pulse"></div>
                 <img
-                  src="/assets/logo-circular.png"
+                  src={publicAsset('assets/logo-circular.png')}
                   alt="Sierra Dorada"
                   className="w-full h-full relative z-20 opacity-90"
                 />
@@ -269,19 +270,19 @@ const HomePage = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                image: "/assets/proceso-produccion.png",
+                image: publicAsset('assets/proceso-produccion.png'),
                 title: "Arte de la Elaboración",
                 description: "Ingredientes locales de la más alta calidad",
                 link: "/nuestra-leyenda"
               },
               {
-                image: "/assets/viaje-dorado.png",
+                image: publicAsset('assets/viaje-dorado.png'),
                 title: "Viaje Dorado",
                 description: "Técnicas artesanales tradicionales",
                 link: "/viaje-sagrado"
               },
               {
-                image: "/assets/reserva.png",
+                image: publicAsset('assets/reserva.png'),
                 title: "Reserva tu Visita",
                 description: "Vive la experiencia Sierra Dorada en persona",
                 link: "/servicios"

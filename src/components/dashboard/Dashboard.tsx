@@ -5,6 +5,7 @@ import {
 } from 'lucide-react';
 import ProductManagement from './ProductManagement';
 import ReservationManagement from './ReservationManagement';
+import { publicAsset } from '../../lib/assets';
 
 const Dashboard = () => {
   const { user, signOut } = useAuth();
@@ -27,7 +28,7 @@ const Dashboard = () => {
           <div className="flex justify-between h-16 items-center">
             <div className="flex items-center gap-4">
               <img
-                src="/assets/logo-white.svg"
+                src={publicAsset('assets/logo-white.svg')}
                 alt="Sierra Dorada"
                 className="h-8 w-auto"
               />

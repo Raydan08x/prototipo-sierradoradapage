@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MapPin, Utensils, QrCode, ArrowRight } from 'lucide-react';
+import { publicAsset } from '../lib/assets';
 
 const GastrobarPage = () => {
     const [selectedBranch, setSelectedBranch] = useState<'zipaquira' | null>(null);
@@ -147,7 +148,7 @@ const GastrobarPage = () => {
                                             rel="noopener noreferrer"
                                         >
                                             <img
-                                                src="/assets/qr-menu.png"
+                                                src={publicAsset('assets/qr-menu.png')}
                                                 alt="Código QR Menú"
                                                 className="w-48 h-48 object-contain"
                                             />

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import { Calendar } from 'lucide-react';
+import { publicAsset } from '../lib/assets';
 
 interface AgeVerificationProps {
   onVerified: () => void;
@@ -37,7 +38,7 @@ const AgeVerification: React.FC<AgeVerificationProps> = ({ onVerified }) => {
       <div className="bg-[#2A2A2B] p-8 rounded-lg max-w-md w-full shadow-xl">
         <div className="text-center mb-8">
           <img
-            src="/assets/logo-vertical.png"
+            src={publicAsset('assets/logo-vertical.png')}
             alt="Sierra Dorada"
             className="h-32 mx-auto mb-6"
           />

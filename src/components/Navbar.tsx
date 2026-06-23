@@ -3,6 +3,7 @@ import { Menu, X, ShoppingCart, UserCircle } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
 import { useAuth } from '../contexts/AuthContext';
+import { publicAsset } from '../lib/assets';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -60,7 +61,7 @@ const Navbar = () => {
               className="focus:outline-none"
             >
               <img
-                src="/assets/logo-horizontal.png"
+                src={publicAsset('assets/logo-horizontal.png')}
                 alt="Sierra Dorada"
                 className="h-12 md:h-20 w-auto"
               />

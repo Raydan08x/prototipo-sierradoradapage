@@ -90,7 +90,7 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
 function App() {
   return (
-    <Router>
+    <Router basename={import.meta.env.BASE_URL}>
       <AuthProvider>
         <CartProvider>
           <Toaster position="top-right" />

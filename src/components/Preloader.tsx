@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { publicAsset } from '../lib/assets';
 
 const Preloader = () => {
   const [loading, setLoading] = useState(true);
@@ -29,7 +30,7 @@ const Preloader = () => {
         {/* Isotipo centrado - casi llena el spinner */}
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
           <img
-            src="/assets/isotipo.png"
+            src={publicAsset('assets/isotipo.png')}
             alt="Sierra Dorada"
             className="w-[200px] h-[200px] animate-pulse object-contain"
           />
