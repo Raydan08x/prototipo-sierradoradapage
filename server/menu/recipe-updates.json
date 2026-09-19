@@ -1,0 +1,26 @@
+[
+  {
+    "id": "S1002",
+    "description": "Carne de res, pan artesanal, queso mozzarella, tocineta, cebolla caramelizada al vino tinto, tomate, lechuga, salsa ahumada y salsa golf. Acompañada de papas francesas.",
+    "recipe_notes": "Fuente: ficha Chía Burger, formato KISS.\nPan artesanal: 80 g (la ficha repite 80 g arriba y abajo; confirmar si es el peso total del pan, no se sumó).\nSalsa ahumada: 25 g.\nTocineta: 2 tiras, 30 g.\nCebolla caramelizada al vino tinto: 35 g (aprox. 90 g cruda + 15 ml de vino tinto).\nQueso mozzarella: 30 g.\nTomate: 30 g.\nLechuga: 15 g.\nCarne de res molida: 150 g.\nSalsa golf: 25 g.\nAcompañamiento: papas francesas, 150 g.",
+    "image_url": "/assets/gastrobar/chia.png"
+  },
+  {
+    "id": "S1003",
+    "description": "Carne de res con suero, pan artesanal, queso infusionado en almíbar de piña, queso doble crema, piña, tomate, salsa chipotle y salsa burger. Acompañada de papas francesas.",
+    "recipe_notes": "Fuente: ficha Xue Burguer, formato KISS.\nPan superior: 40 g.\nSalsa chipotle: 15 g.\nPiña: 10 g.\nTomate: 30 g.\nQueso infusionado en almíbar de piña: 25 g.\nQueso doble crema: 20 g.\nCarne de res: 150 g + suero: 20 g.\nSalsa burger: 15 g.\nPan inferior: 40 g.\nAcompañamiento: papas francesas, 150 g.",
+    "image_url": "/assets/gastrobar/xue.png"
+  },
+  {
+    "id": "S1000",
+    "description": "Carne de res, pan artesanal, cebolla caramelizada, salsa de queso cheddar, queso doble crema, tomate, lechuga crespa y salsa burger. Acompañada de papas francesas.",
+    "recipe_notes": "Fuente: ficha Muisca Burger, formato KISS.\nPan artesanal: 80 g (la ficha repite 80 g arriba y abajo; confirmar si es el peso total del pan, no se sumó).\nCebolla caramelizada: 30 g (aprox. 80–90 g de cebolla cruda reducida).\nSalsa de queso cheddar: 25 g.\nQueso doble crema: 1 lonja, 25 g.\nCarne de res molida: 150 g.\nTomate: 2 rodajas, 30–40 g.\nLechuga crespa: 15 g.\nSalsa burger: 25 g.\nAcompañamiento: papas francesas, 150 g.",
+    "image_url": "/assets/gastrobar/muisca.png"
+  },
+  {
+    "id": "S1001",
+    "description": "Carne de res, pan artesanal, maduritos en cubos, guacamole, queso mozzarella, tomate, lechuga crespa y salsa golf. Acompañada de papas francesas.",
+    "recipe_notes": "Fuente: ficha Zipa Burguer, formato KISS.\nPan artesanal: 80 g (la ficha repite 80 g arriba y abajo; confirmar si es el peso total del pan, no se sumó).\nMaduritos en cubos: 70 g.\nGuacamole: 50 g.\nQueso mozzarella: 30 g.\nCarne de res molida: 150 g.\nTomate: 30 g.\nLechuga crespa: 15 g.\nSalsa golf: 25 g.\nAcompañamiento: papas francesas, 150 g.",
+    "image_url": "/assets/gastrobar/zipa.png"
+  }
+]

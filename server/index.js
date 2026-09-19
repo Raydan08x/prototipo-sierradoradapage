@@ -4,6 +4,8 @@ import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import authRoutes from './routes/auth.js';
 import dataRoutes from './routes/data.js';
+import db from './db.js';
+import { createMenuRouter } from './menu/routes.js';
 
 dotenv.config();
 
@@ -12,6 +14,7 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors());
+app.use('/api/menu', createMenuRouter(db));
 app.use(bodyParser.json());
 
 // Serve static files (logo, etc.)
