@@ -33,6 +33,45 @@ type Draft = Omit<MenuItem, "id"> & { id?: string };
 type CategoryDraft = Omit<MenuCategory, "id"> & { id?: string };
 const errorText = (e: unknown) =>
   e instanceof Error ? e.message : "No se pudo completar la operación.";
+const saveBlob = (blob: Blob, filename: string) => {
+  const objectUrl = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = objectUrl;
+  link.download = filename;
+  link.click();
+  setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
+};
+const loadCanvasImage = (source: string) =>
+  new Promise<HTMLImageElement>((resolve, reject) => {
+    const image = new Image();
+    image.onload = () => resolve(image);
+    image.onerror = () => reject(new Error("No se pudo preparar la imagen."));
+    image.src = source;
+  });
+const canvasBlob = (canvas: HTMLCanvasElement) =>
+  new Promise<Blob>((resolve, reject) =>
+    canvas.toBlob(
+      (blob) =>
+        blob ? resolve(blob) : reject(new Error("No se pudo crear el PNG.")),
+      "image/png",
+    ),
+  );
+const drawSpacedText = (
+  context: CanvasRenderingContext2D,
+  text: string,
+  centerX: number,
+  y: number,
+  spacing: number,
+) => {
+  const widths = [...text].map((character) => context.measureText(character).width);
+  const total = widths.reduce((sum, width) => sum + width, 0) +
+    spacing * Math.max(0, text.length - 1);
+  let x = centerX - total / 2;
+  [...text].forEach((character, index) => {
+    context.fillText(character, x, y);
+    x += widths[index] + spacing;
+  });
+};
 const newItem = (category: string): Draft => ({
   name: "",
   description: "",
@@ -136,7 +175,7 @@ function FixedQR() {
         setError("No se pudo generar el QR. Revisa la dirección del menú."),
       );
   }, [url]);
-  async function download(type: "svg" | "png") {
+  async function downloadQr(type: "svg" | "png") {
     try {
       const blob =
         type === "svg"
@@ -150,12 +189,80 @@ function FixedQR() {
                 }),
               )
             ).blob();
-      const objectUrl = URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = objectUrl;
-      link.download = `sierra-dorada-menu-fijo.${type}`;
-      link.click();
-      setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
+      saveBlob(blob, `sierra-dorada-qr-menu.${type}`);
+    } catch (e) {
+      toast.error(errorText(e));
+    }
+  }
+  async function downloadCard() {
+    try {
+      const canvas = document.createElement("canvas");
+      canvas.width = 1600;
+      canvas.height = 2400;
+      const context = canvas.getContext("2d");
+      if (!context) throw new Error("Tu navegador no permite crear la tarjeta.");
+
+      const x = 70;
+      const y = 60;
+      const width = 1460;
+      const height = 2280;
+      const archHeight = 570;
+      const bottomRadius = 22;
+      context.beginPath();
+      context.moveTo(x, y + archHeight);
+      context.bezierCurveTo(x, y + archHeight * 0.34, x + width * 0.24, y, x + width / 2, y);
+      context.bezierCurveTo(x + width * 0.76, y, x + width, y + archHeight * 0.34, x + width, y + archHeight);
+      context.lineTo(x + width, y + height - bottomRadius);
+      context.quadraticCurveTo(x + width, y + height, x + width - bottomRadius, y + height);
+      context.lineTo(x + bottomRadius, y + height);
+      context.quadraticCurveTo(x, y + height, x, y + height - bottomRadius);
+      context.closePath();
+      context.fillStyle = "#fffdf6";
+      context.fill();
+      context.strokeStyle = "#b39a69";
+      context.lineWidth = 4;
+      context.stroke();
+
+      const centerX = canvas.width / 2;
+      context.textAlign = "center";
+      context.textBaseline = "alphabetic";
+      context.fillStyle = "#8a662c";
+      context.font = "700 42px Arial, sans-serif";
+      drawSpacedText(context, "SIERRA DORADA", centerX, 300, 9);
+      context.fillStyle = "#28271e";
+      context.font = "20px Arial, sans-serif";
+      drawSpacedText(context, "GASTROBAR · ZIPAQUIRÁ", centerX, 360, 9);
+
+      context.font = "92px Georgia, serif";
+      context.fillText("Tu próximo", centerX, 600);
+      context.font = "italic 104px Georgia, serif";
+      context.fillText("antojo está aquí.", centerX, 720);
+
+      const qrSource = await QRCode.toDataURL(url, {
+        width: 1200,
+        margin: 4,
+        errorCorrectionLevel: "H",
+        color: { dark: "#000000", light: "#ffffff" },
+      });
+      const qrImage = await loadCanvasImage(qrSource);
+      const qrSize = 1020;
+      const qrX = centerX - qrSize / 2;
+      const qrY = 820;
+      context.fillStyle = "#ffffff";
+      context.fillRect(qrX, qrY, qrSize, qrSize);
+      context.drawImage(qrImage, qrX, qrY, qrSize, qrSize);
+
+      context.fillStyle = "#28271e";
+      context.font = "700 25px Arial, sans-serif";
+      drawSpacedText(context, "ESCANEA Y DESCUBRE LA CARTA", centerX, 1950, 4);
+      context.font = "italic 42px Georgia, serif";
+      context.fillText("Buena mesa. Mejor compañía.", centerX, 2050);
+      context.fillStyle = "#686555";
+      context.font = "22px Arial, sans-serif";
+      context.fillText(url, centerX, 2200);
+
+      saveBlob(await canvasBlob(canvas), "sierra-dorada-tarjeta-mesa.png");
+      toast.success("Tarjeta PNG lista para imprimir.");
     } catch (e) {
       toast.error(errorText(e));
     }
@@ -189,16 +296,23 @@ function FixedQR() {
           <button
             className="gm-primary"
             disabled={!svg || !isPermanent}
-            onClick={() => void download("svg")}
+            onClick={() => void downloadQr("png")}
           >
-            <Download size={16} /> Descargar SVG
+            <Download size={16} /> Descargar QR
           </button>
           <button
             className="ga-secondary"
             disabled={!svg || !isPermanent}
-            onClick={() => void download("png")}
+            onClick={() => void downloadCard()}
           >
-            PNG
+            <ImagePlus size={16} /> Descargar tarjeta
+          </button>
+          <button
+            className="ga-secondary"
+            disabled={!svg || !isPermanent}
+            onClick={() => void downloadQr("svg")}
+          >
+            QR vectorial
           </button>
           <button
             className="ga-secondary"
