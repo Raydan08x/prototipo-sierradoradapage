@@ -38,7 +38,7 @@ Requisitos: Node.js 20 o superior y PostgreSQL. Ejecutar desde la raíz del prot
    Para un archivo privado separado, Node permite `node --env-file=ruta/al/archivo.env server/menu/setup.js --seed --recipes --admin`. Este comando crea las tablas dentro de una transacción. Al repetir `--seed` no sobrescribe productos existentes; no debe usarse como sincronización continua. Las siguientes ediciones se hacen desde el CRUD. `--recipes` aplica explícitamente las cuatro fichas KISS; vuelve a escribir sus descripciones, imágenes y notas, por lo que solo debe repetirse si se quiere restaurar esas referencias. `--admin` permite crear otra cuenta o cambiar su contraseña desde el entorno del servidor. Retirar `MENU_ADMIN_PASSWORD` del entorno después de usarlo.
 
 5. Iniciar la API dedicada con `npm run menu:server`. Escucha por defecto en `127.0.0.1:3001`; se puede cambiar con `MENU_HOST` y `MENU_PORT`. En contenedores, configurar `MENU_HOST=0.0.0.0` y exponerla solo en la red interna.
-6. Para desarrollo, configurar `VITE_API_PROXY_TARGET=http://127.0.0.1:3001`, `VITE_BASE_PATH=/` y ejecutar `npm run dev`. El despliegue dedicado se construye con `VITE_BASE_PATH=/` y `VITE_GASTROBAR_MENU_URL=https://gastro.sierradorada.co/gastrobar/menu`. Las variables Vite se fijan al compilar; no contienen secretos.
+6. Para desarrollo, configurar `VITE_API_PROXY_TARGET=http://127.0.0.1:3001`, `VITE_BASE_PATH=/` y ejecutar `npm run dev`. El despliegue dedicado se construye con `VITE_BASE_PATH=/` y `VITE_GASTROBAR_MENU_URL=https://gastro.sierradorada.co`. Las variables Vite se fijan al compilar; no contienen secretos.
 7. Publicar únicamente `dist/` como frontend. Mantener fallback de las rutas de React hacia `index.html` y proxy de `/api/menu` hacia la API dedicada.
 
 Ejemplo de bloque Nginx para una API en la misma máquina (adaptar el destino si corre en Docker):
@@ -59,7 +59,7 @@ location / {
 
 La configuración del repositorio usa otro destino (`backend:3000`) para su API preexistente. El nuevo router también se monta en `server/index.js` para compatibilidad, pero se incluye la entrada dedicada para publicar solo la carta. El prototipo original contiene accesos y rutas genéricas de datos sin protección suficiente; esos módulos no deben exponerse como parte de un despliegue nuevo del menú. La entrada `menu:server` no los monta. El login de la carta usa scrypt, tokens con audiencia propia y comprobación de cuenta activa en cada operación; el cliente público nunca recibe costos.
 
-El Dockerfile del frontend acepta `--build-arg VITE_BASE_PATH=/ --build-arg VITE_GASTROBAR_MENU_URL=https://gastro.sierradorada.co/gastrobar/menu`.
+El Dockerfile del frontend acepta `--build-arg VITE_BASE_PATH=/ --build-arg VITE_GASTROBAR_MENU_URL=https://gastro.sierradorada.co`.
 
 Las imágenes originales de las fichas se sirven desde `public/assets/gastrobar/`; se muestran completas en el detalle del producto. La ficha de receta interna permite editar ingredientes y cantidades como texto; no calcula costos automáticamente. En Chía, Muisca y Zipa la referencia repite 80 g de pan arriba y abajo; se señala esta ambigüedad sin sumarlos. La carta y la administración usan fondo oscuro con acentos dorados.
 
@@ -75,7 +75,7 @@ Revisar `server/menu/import-report.json` antes de ejecutar `menu:setup -- --seed
 
 En Administración → QR de las mesas se puede descargar SVG, PNG o imprimir una tarjeta A5. El SVG es apropiado para imprenta y no pierde nitidez al ampliar. El código contiene únicamente la URL permanente, sin identificadores de producto, fechas, tokens, servicios intermediarios ni vencimiento.
 
-La dirección permanente es **https://gastro.sierradorada.co/gastrobar/menu**. El subdominio identifica claramente la carta del gastrobar y queda separado de la tienda electrónica. Verificar la dirección desde un celular antes de imprimir las tarjetas definitivas. Si la infraestructura cambia en el futuro, conservar este dominio y esta ruta para no reemplazar los QR de las mesas.
+La dirección permanente del QR es **https://gastro.sierradorada.co**. El servidor redirige esa dirección a la ruta actual de la carta. Así se puede reorganizar la aplicación en el futuro sin reemplazar los QR de las mesas. Verificar la dirección desde un celular antes de imprimir las tarjetas definitivas.
 
 Un QR impreso no puede cambiar su contenido; lo editable es la carta que carga esa dirección. Los cambios se muestran al abrir/recargar la carta, y se actualiza al volver a enfocar la pestaña. No se usa un catálogo de respaldo desactualizado cuando falla la API.
 
