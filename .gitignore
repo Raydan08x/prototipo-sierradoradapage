@@ -27,3 +27,7 @@ dist-ssr
 ACCESS_GUIDE.md
 .env
 .env.docker
+
+# Gastrobar imports contain private product costs; never commit to a public repo.
+server/menu/seed.json
+server/menu/import-report.json

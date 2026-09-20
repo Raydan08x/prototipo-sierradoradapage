@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MapPin, Utensils, QrCode, ArrowRight } from 'lucide-react';
-import { publicAsset } from '../lib/assets';
+import GastrobarQr from '../components/GastrobarQr';
 
 const GastrobarPage = () => {
     const [selectedBranch, setSelectedBranch] = useState<'zipaquira' | null>(null);
@@ -116,7 +116,7 @@ const GastrobarPage = () => {
 
                                     <div className="flex flex-col gap-4">
                                         <a
-                                            href="https://toteat.shop/r/co/Sierra-Dorada-Gastrobar/21360/checkin/menu"
+                                            href={`${import.meta.env.BASE_URL}gastrobar/menu`}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="w-full py-4 bg-[#B3A269] text-[#222223] font-bold text-lg rounded-lg hover:bg-[#B3A269]/90 transition-colors shadow-lg flex items-center justify-center gap-2"
@@ -143,15 +143,11 @@ const GastrobarPage = () => {
                                 <div className="flex flex-col items-center justify-center bg-[#222223] p-8 rounded-xl border border-[#B3A269]/10">
                                     <div className="bg-white p-4 rounded-lg shadow-lg mb-4">
                                         <a
-                                            href="https://toteat.shop/r/co/Sierra-Dorada-Gastrobar/21360/checkin/menu"
+                                            href={`${import.meta.env.BASE_URL}gastrobar/menu`}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                         >
-                                            <img
-                                                src={publicAsset('assets/qr-menu.png')}
-                                                alt="Código QR Menú"
-                                                className="w-48 h-48 object-contain"
-                                            />
+                                            <GastrobarQr />
                                         </a>
                                     </div>
                                     <h4 className="text-[#E5E1E6] font-bold flex items-center gap-2 mb-2">

@@ -10,7 +10,11 @@
     "preview": "vite preview",
     "server": "node server/index.js",
     "start:prod": "NODE_ENV=production node server/index.js",
-    "db:setup": "node server/setup_db_reservations.js"
+    "db:setup": "node server/setup_db_reservations.js",
+    "menu:setup": "node server/menu/setup.js",
+    "test:menu": "node --test server/menu/*.test.js",
+    "menu:import": "node server/menu/import.js",
+    "menu:server": "node server/menu/start.js"
   },
   "dependencies": {
     "@react-oauth/google": "^0.13.4",
@@ -25,6 +29,7 @@
     "lucide-react": "^0.344.0",
     "nodemailer": "^8.0.0",
     "pg": "^8.18.0",
+    "qrcode": "^1.5.4",
     "react": "^18.3.1",
     "react-datepicker": "^6.1.0",
     "react-dom": "^18.3.1",
@@ -33,6 +38,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.9.1",
+    "@types/qrcode": "^1.5.6",
     "@types/react": "^18.3.5",
     "@types/react-datepicker": "^6.0.1",
     "@types/react-dom": "^18.3.0",

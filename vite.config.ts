@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-  base: '/prototipo-sierradoradapage/',
+  base: process.env.VITE_BASE_PATH || '/prototipo-sierradoradapage/',
   plugins: [react()],
   server: {
     proxy: {
@@ -13,7 +13,7 @@ export default defineConfig({
         rewrite: (path) => path.replace(/^\/.supabase/, ''),
       },
       '/api': {
-        target: 'http://localhost:3000',
+        target: process.env.VITE_API_PROXY_TARGET || 'http://localhost:3000',
         changeOrigin: true,
         secure: false,
       }

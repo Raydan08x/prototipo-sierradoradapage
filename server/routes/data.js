@@ -3,6 +3,17 @@ import db from '../db.js';
 
 const router = express.Router();
 
+// Identifiers must never allow SQL fragments to reach the generic query builder.
+router.use((req, res, next) => {
+    const identifier = /^[a-z_][a-z0-9_]*$/;
+    const keys = [...Object.keys(req.query), ...Object.keys(req.body || {})];
+    if (keys.some(key => !identifier.test(key)) ||
+        (req.query.order && (typeof req.query.order !== 'string' || !/^[a-z_][a-z0-9_]*\.(asc|desc)$/.test(req.query.order)))) {
+        return res.status(400).json({ error: 'Invalid query identifier' });
+    }
+    next();
+});
+
 // Helper to build dynamic queries
 // WARNING: In production, use a library like Knex.js to avoid SQL Injection risks more robustly.
 // For this local prototype, we use basic sanitization.

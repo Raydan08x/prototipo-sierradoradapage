@@ -23,6 +23,8 @@ const ProductDetailLazy = React.lazy(() => import('./pages/ProductDetail'));
 const ServicesPageLazy = React.lazy(() => import('./pages/ServicesPage'));
 const ContactPageLazy = React.lazy(() => import('./pages/ContactPage'));
 const GastrobarPageLazy = React.lazy(() => import('./pages/GastrobarPage'));
+const GastrobarMenuPageLazy = React.lazy(() => import('./pages/GastrobarMenuPage'));
+const GastrobarAdminPageLazy = React.lazy(() => import('./pages/GastrobarAdminPage'));
 const LoginFormLazy = React.lazy(() => import('./components/auth/LoginForm'));
 const RegisterFormLazy = React.lazy(() => import('./components/auth/RegisterForm'));
 const VerificationPageLazy = React.lazy(() => import('./pages/VerificationPage'));
@@ -102,6 +104,8 @@ function App() {
               <Route path="/viaje-sagrado" element={<SacredJourneyPageLazy />} />
               <Route path="/servicios" element={<MainLayout><ServicesPageLazy /></MainLayout>} />
               <Route path="/gastrobar" element={<MainLayout><GastrobarPageLazy /></MainLayout>} />
+              <Route path="/gastrobar/menu" element={<GastrobarMenuPageLazy />} />
+              <Route path="/admin/gastrobar" element={<GastrobarAdminPageLazy />} />
               <Route path="/contacto" element={<MainLayout><ContactPageLazy /></MainLayout>} />
               <Route path="/producto/:id" element={<MainLayout><ProductDetailLazy /></MainLayout>} />
               <Route path="/login" element={<LoginFormLazy />} />
