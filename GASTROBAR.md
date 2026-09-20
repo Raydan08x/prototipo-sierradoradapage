@@ -73,7 +73,7 @@ Revisar `server/menu/import-report.json` antes de ejecutar `menu:setup -- --seed
 
 ## QR fijo para mesas
 
-En Administración → QR de las mesas se puede descargar SVG, PNG o imprimir una tarjeta A5. El SVG es apropiado para imprenta y no pierde nitidez al ampliar. El código contiene únicamente la URL permanente, sin identificadores de producto, fechas, tokens, servicios intermediarios ni vencimiento.
+En Administración → QR de las mesas se puede descargar el QR como PNG o SVG, descargar la tarjeta de mesa completa como PNG o imprimirla directamente. El SVG es apropiado para imprenta y no pierde nitidez al ampliar. El código contiene únicamente la URL permanente, sin identificadores de producto, fechas, tokens, servicios intermediarios ni vencimiento.
 
 La dirección permanente del QR es **https://gastro.sierradorada.co**. El servidor redirige esa dirección a la ruta actual de la carta. Así se puede reorganizar la aplicación en el futuro sin reemplazar los QR de las mesas. Verificar la dirección desde un celular antes de imprimir las tarjetas definitivas.
 
